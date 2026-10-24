@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Agents - EstateAgency Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Tech Team & Specialists - Reign Electronics & Mali Mali</title>
+  <meta name="description" content="Meet our certified hardware engineers, audio consultants, and smart home specialists at Reign Electronics.">
+  <meta name="keywords" content="Reign team, hardware specialists, laptop repair engineers, audio consultants, Nairobi tech store">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,53 +28,69 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: EstateAgency
-  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-  * Updated: Apr 08 2026 with Bootstrap v5.3.8
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="agents-page">
 
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Estate<span>Agency</span></h1>
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Electronics & mali mali</span></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="properties.html">Properties</a></li>
-          <li><a href="agents.html" class="active">Agents</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
+          <li><a href="properties.html">Shop Catalog</a></li>
+          <li><a href="services.html">Services & Care</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="agents.html" class="active">Tech Team</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <button class="nav-icon-btn" aria-label="Search" onclick="openSearchModal()"><i class="bi bi-search"></i></button>
+          <button class="nav-icon-btn position-relative" aria-label="Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="wishlist-counter-pill position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:10px;">0</span>
+          </button>
+          <button class="nav-cart-btn" aria-label="Cart" onclick="openCart()">
+            <i class="bi bi-bag"></i><span class="cart-counter-pill">2</span>
+          </button>
+
+          <!-- Auth Button (guest state) -->
+          <div id="auth-guest" class="auth-nav-group d-flex align-items-center gap-2">
+            <button class="btn-auth-login" id="open-login-btn" onclick="openAuthModal('login')">
+              <i class="bi bi-person"></i> Login
+            </button>
+            <button class="btn-auth-signup" id="open-signup-btn" onclick="openAuthModal('register')">
+              Sign Up
+            </button>
+          </div>
+
+          <!-- User Avatar Dropdown (logged-in state) -->
+          <div id="auth-user" class="auth-user-dropdown d-none">
+            <button class="auth-avatar-btn" id="user-avatar-btn" aria-label="User menu">
+              <span class="auth-avatar-initials" id="user-initials">RE</span>
+              <i class="bi bi-chevron-down" style="font-size:11px;"></i>
+            </button>
+            <div class="auth-dropdown-menu" id="user-dropdown-menu">
+              <div class="auth-dropdown-header">
+                <span class="auth-dropdown-name" id="user-display-name">Customer</span>
+                <span class="auth-dropdown-email" id="user-display-email">customer@reignshop.com</span>
+              </div>
+              <hr class="auth-dropdown-divider">
+              <a href="#" class="auth-dropdown-item"><i class="bi bi-person-circle"></i> My Orders</a>
+              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> View Cart</a>
+              <hr class="auth-dropdown-divider">
+              <button class="auth-dropdown-item auth-signout-btn" id="signout-btn" onclick="signOut()">
+                <i class="bi bi-box-arrow-right"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
@@ -82,113 +100,182 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
+    <div class="page-title" data-aos="fade" style="background: linear-gradient(rgba(15,23,42,0.88), rgba(15,23,42,0.88)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; padding: 120px 0 60px; color: #fff;">
       <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Agents</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-            </div>
-          </div>
+        <div class="container text-center">
+          <p class="eyebrow" style="color:#ffb48a;">Passionate Hardware Gurus</p>
+          <h1 style="color:#fff; font-size:2.8rem; font-weight:800;">Our Specialists & Tech Team</h1>
+          <p class="subtext mx-auto" style="max-width:640px; color:rgba(255,255,255,0.82);">
+            Meet the engineers, audio consultants, and smart home designers behind Reign Electronics & Mali Mali.
+          </p>
         </div>
       </div>
-      <nav class="breadcrumbs">
+      <nav class="breadcrumbs" style="background:rgba(0,0,0,0.25); padding:12px 0;">
         <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Agents</li>
+          <ol class="d-flex gap-2 list-unstyled m-0 justify-content-center" style="font-size:14px;">
+            <li><a href="index.html" style="color:#ffb48a; text-decoration:none;">Home</a></li>
+            <li class="text-white-50">/</li>
+            <li class="current text-white">Tech Team</li>
           </ol>
         </div>
       </nav>
     </div><!-- End Page Title -->
 
-    <!-- Agents Section -->
-    <section id="agents" class="agents section">
-
+    <!-- Team Grid Section -->
+    <section id="agents" class="agents section py-5">
       <div class="container">
 
-        <div class="row gy-5">
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+          <h2 class="fw-bold">Here to Help You Choose, Build & Repair</h2>
+          <p class="text-secondary">Direct personal guidance without pushy sales pitches.</p>
+        </div>
 
+        <div class="row gy-4">
+
+          <!-- Member 1 -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="member">
-              <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+            <div class="card border-0 rounded-4 shadow-sm overflow-hidden h-100">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                class="card-img-top" style="height:320px; object-fit:cover;" alt="Vincent Nyasani">
+              <div class="card-body p-4">
+                <span class="badge mb-2" style="background:#fff1ea; color:#ff7d3b; font-weight:700;">Founder & Hardware Architect</span>
+                <h4 class="fw-bold mb-1">Vincent Nyasani</h4>
+                <p class="text-secondary small mb-3">12+ years in consumer tech supply chains and motherboard micro-architecture. Passionate about authentic hardware access across East Africa.</p>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <span class="text-muted small"><i class="bi bi-envelope-fill me-1"></i> vincent@reignshop.com</span>
+                  <div class="social-links d-flex gap-2">
+                    <a href="#" class="text-secondary"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="text-secondary"><i class="bi bi-twitter-x"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>
 
+          <!-- Member 2 -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Rent Manager</span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+            <div class="card border-0 rounded-4 shadow-sm overflow-hidden h-100">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80"
+                class="card-img-top" style="height:320px; object-fit:cover;" alt="Sarah Wambui">
+              <div class="card-body p-4">
+                <span class="badge mb-2" style="background:#fff1ea; color:#ff7d3b; font-weight:700;">Audio & Acoustics Consultant</span>
+                <h4 class="fw-bold mb-1">Sarah Wambui</h4>
+                <p class="text-secondary small mb-3">Certified acoustic specialist advising music producers, gamers, and audiophiles on studio monitors, DACs, and ANC headphones.</p>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <span class="text-muted small"><i class="bi bi-envelope-fill me-1"></i> sarah@reignshop.com</span>
+                  <div class="social-links d-flex gap-2">
+                    <a href="#" class="text-secondary"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="text-secondary"><i class="bi bi-instagram"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>
 
+          <!-- Member 3 -->
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>Sale manager<br></span>
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter-x"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
+            <div class="card border-0 rounded-4 shadow-sm overflow-hidden h-100">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80"
+                class="card-img-top" style="height:320px; object-fit:cover;" alt="Marcus Vance">
+              <div class="card-body p-4">
+                <span class="badge mb-2" style="background:#fff1ea; color:#ff7d3b; font-weight:700;">Lead Diagnostic Engineer</span>
+                <h4 class="fw-bold mb-1">Marcus Vance</h4>
+                <p class="text-secondary small mb-3">IPC-A-610 master soldering specialist. Specializes in logic board power rail restoration, GPU reballing, and clean room data recovery.</p>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <span class="text-muted small"><i class="bi bi-envelope-fill me-1"></i> lab@reignshop.com</span>
+                  <div class="social-links d-flex gap-2">
+                    <a href="#" class="text-secondary"><i class="bi bi-linkedin"></i></a>
+                    <a href="#" class="text-secondary"><i class="bi bi-github"></i></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div><!-- End Team Member -->
+          </div>
+
+          <!-- Member 4 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="card border-0 rounded-4 shadow-sm overflow-hidden h-100">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80"
+                class="card-img-top" style="height:320px; object-fit:cover;" alt="Grace Muthoni">
+              <div class="card-body p-4">
+                <span class="badge mb-2" style="background:#fff1ea; color:#ff7d3b; font-weight:700;">Smart Home & Mali Mali Curator</span>
+                <h4 class="fw-bold mb-1">Grace Muthoni</h4>
+                <p class="text-secondary small mb-3">Handpicks high-utility smart living gadgets, ergonomic office accessories, and premium kitchen essentials for modern African homes.</p>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <span class="text-muted small"><i class="bi bi-envelope-fill me-1"></i> grace@reignshop.com</span>
+                  <div class="social-links d-flex gap-2">
+                    <a href="#" class="text-secondary"><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 5 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="card border-0 rounded-4 shadow-sm overflow-hidden h-100">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80"
+                class="card-img-top" style="height:320px; object-fit:cover;" alt="David Chen">
+              <div class="card-body p-4">
+                <span class="badge mb-2" style="background:#fff1ea; color:#ff7d3b; font-weight:700;">Custom Rig & Workstation Lead</span>
+                <h4 class="fw-bold mb-1">David Chen</h4>
+                <p class="text-secondary small mb-3">Builder of 500+ extreme liquid-cooled gaming rigs and deep learning multi-GPU workstations for local studios and universities.</p>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <span class="text-muted small"><i class="bi bi-envelope-fill me-1"></i> david@reignshop.com</span>
+                  <div class="social-links d-flex gap-2">
+                    <a href="#" class="text-secondary"><i class="bi bi-youtube"></i></a>
+                    <a href="#" class="text-secondary"><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Member 6 -->
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="card border-0 rounded-4 shadow-sm overflow-hidden h-100">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+                class="card-img-top" style="height:320px; object-fit:cover;" alt="Elena Rostova">
+              <div class="card-body p-4">
+                <span class="badge mb-2" style="background:#fff1ea; color:#ff7d3b; font-weight:700;">Customer Care & Enterprise Lead</span>
+                <h4 class="fw-bold mb-1">Elena Rostova</h4>
+                <p class="text-secondary small mb-3">Oversees seamless doorstep deliveries, corporate procurement accounts, and warranty claim tracking with dedicated 24/7 care.</p>
+                <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                  <span class="text-muted small"><i class="bi bi-envelope-fill me-1"></i> care@reignshop.com</span>
+                  <div class="social-links d-flex gap-2">
+                    <a href="#" class="text-secondary"><i class="bi bi-linkedin"></i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         </div>
 
       </div>
-
-    </section><!-- /Agents Section -->
+    </section>
 
   </main>
 
+  <!-- Footer -->
   <footer id="footer" class="footer light-background">
-
     <div class="container">
       <div class="row gy-3">
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-geo-alt icon"></i>
           <div class="address">
-            <h4>Address</h4>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p></p>
+            <h4>Store Location</h4>
+            <p>Reign Plaza, 48 Tech Avenue</p>
+            <p>Nairobi / San Diego Flagship</p>
           </div>
-
         </div>
 
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-telephone icon"></i>
           <div>
-            <h4>Contact</h4>
-            <p>
-              <strong>Phone:</strong> <span>+1 5589 55488 55</span><br>
-              <strong>Email:</strong> <span>info@example.com</span><br>
-            </p>
+            <h4>Contact Support</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
           </div>
         </div>
 
@@ -196,15 +283,12 @@
           <i class="bi bi-clock icon"></i>
           <div>
             <h4>Opening Hours</h4>
-            <p>
-              <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>
-              <strong>Sunday</strong>: <span>Closed</span>
-            </p>
+            <p><strong>Mon-Sat:</strong> <span>8:30AM - 8:30PM</span><br><strong>Sunday:</strong> <span>10:00AM - 6:00PM</span></p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6">
-          <h4>Follow Us</h4>
+          <h4>Stay Connected</h4>
           <div class="social-links d-flex">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -212,32 +296,175 @@
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">EstateAgency</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics & Mali Mali</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed for Modern Electronics, Tech & Smart Living Essentials</div>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       Cart Drawer (Offcanvas Slide-in)
+  ======================================================= -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCart(event)">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <h3 id="cart-title">
+          <i class="bi bi-bag"></i> Your Cart
+          <span class="cart-badge-count" id="cart-count-badge">0</span>
+        </h3>
+        <button class="cart-close-btn" onclick="closeCart()" aria-label="Close cart">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="cart-body" id="cart-drawer-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-summary-row">
+          <span>Shipping:</span>
+          <span class="text-success fw-bold">FREE (Orders $99+)</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <button class="cart-checkout-btn" onclick="checkoutCart()">
+          <i class="bi bi-lock-fill"></i> Checkout Now
+        </button>
+        <button class="cart-clear-btn" onclick="clearCart()">Empty Cart</button>
       </div>
     </div>
+  </div>
 
-  </footer>
+  <!-- ======================================================
+       Auth Modal (Login / Register)
+  ======================================================= -->
+  <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+
+      <button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="auth-modal-brand">
+        <div class="auth-modal-logo">R</div>
+        <span>Reign<strong>Electronics</strong></span>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" id="tab-register" role="tab" onclick="switchAuthTab('register')">Create Account</button>
+        <div class="auth-tab-indicator" id="auth-tab-indicator"></div>
+      </div>
+
+      <!-- LOGIN PANEL -->
+      <div class="auth-panel" id="panel-login">
+        <h2 class="auth-panel-title" id="auth-modal-title">Welcome back</h2>
+        <p class="auth-panel-sub">Sign in to track orders & saved wishlist items</p>
+
+        <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+          <div class="auth-field">
+            <label for="login-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="login-email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="login-password">
+              Password
+              <a href="#" class="auth-forgot-link">Forgot password?</a>
+            </label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('login-password', this)" aria-label="Show password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-remember">
+            <label class="auth-checkbox-label">
+              <input type="checkbox" id="remember-me"> Remember me
+            </label>
+          </div>
+          <div class="auth-error" id="login-error"></div>
+          <button type="submit" class="auth-submit-btn" id="login-submit-btn">
+            <span class="btn-text">Sign In</span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text mt-3">Don't have an account? <button type="button" onclick="switchAuthTab('register')">Create one</button></p>
+      </div>
+
+      <!-- REGISTER PANEL -->
+      <div class="auth-panel d-none" id="panel-register">
+        <h2 class="auth-panel-title">Create account</h2>
+        <p class="auth-panel-sub">Enjoy exclusive deals and quick checkout</p>
+
+        <form id="register-form" onsubmit="handleRegister(event)" novalidate>
+          <div class="auth-field-row">
+            <div class="auth-field">
+              <label for="reg-firstname">First name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-firstname" name="firstname" placeholder="John" required>
+              </div>
+            </div>
+            <div class="auth-field">
+              <label for="reg-lastname">Last name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-lastname" name="lastname" placeholder="Doe" required>
+              </div>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="reg-email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-password">Password</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="reg-password" name="password" placeholder="Create a password" required>
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('reg-password', this)">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-error" id="register-error"></div>
+          <button type="submit" class="auth-submit-btn" id="register-submit-btn">
+            <span class="btn-text">Create Account</span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text mt-3">Already have an account? <button type="button" onclick="switchAuthTab('login')">Sign in</button></p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="auth-panel d-none" id="panel-success">
+        <div class="auth-success-icon"><i class="bi bi-check-circle-fill"></i></div>
+        <h2 class="auth-panel-title">You're in!</h2>
+        <p class="auth-panel-sub" id="success-message">Welcome to Reign Electronics & Mali Mali!</p>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>

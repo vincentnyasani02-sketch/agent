@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Service Details - EstateAgency Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Service Details: Device Repairs & Diagnostics - Reign Electronics</title>
+  <meta name="description" content="Certified diagnostics, screen replacements, battery renewals, and micro-soldering with 90-day guarantee at Reign Electronics & Mali Mali.">
+  <meta name="keywords" content="phone repair, laptop diagnostics, screen repair, Reign Electronics care, tech support">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,53 +28,69 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: EstateAgency
-  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-  * Updated: Apr 08 2026 with Bootstrap v5.3.8
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="service-details-page">
 
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Estate<span>Agency</span></h1>
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Electronics & mali mali</span></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="properties.html">Properties</a></li>
-          <li><a href="agents.html">Agents</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
+          <li><a href="properties.html">Shop Catalog</a></li>
+          <li><a href="services.html" class="active">Services & Care</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="agents.html">Tech Team</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <button class="nav-icon-btn" aria-label="Search" onclick="openSearchModal()"><i class="bi bi-search"></i></button>
+          <button class="nav-icon-btn position-relative" aria-label="Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="wishlist-counter-pill position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:10px;">0</span>
+          </button>
+          <button class="nav-cart-btn" aria-label="Cart" onclick="openCart()">
+            <i class="bi bi-bag"></i><span class="cart-counter-pill">2</span>
+          </button>
+
+          <!-- Auth Button (guest state) -->
+          <div id="auth-guest" class="auth-nav-group d-flex align-items-center gap-2">
+            <button class="btn-auth-login" id="open-login-btn" onclick="openAuthModal('login')">
+              <i class="bi bi-person"></i> Login
+            </button>
+            <button class="btn-auth-signup" id="open-signup-btn" onclick="openAuthModal('register')">
+              Sign Up
+            </button>
+          </div>
+
+          <!-- User Avatar Dropdown (logged-in state) -->
+          <div id="auth-user" class="auth-user-dropdown d-none">
+            <button class="auth-avatar-btn" id="user-avatar-btn" aria-label="User menu">
+              <span class="auth-avatar-initials" id="user-initials">RE</span>
+              <i class="bi bi-chevron-down" style="font-size:11px;"></i>
+            </button>
+            <div class="auth-dropdown-menu" id="user-dropdown-menu">
+              <div class="auth-dropdown-header">
+                <span class="auth-dropdown-name" id="user-display-name">Customer</span>
+                <span class="auth-dropdown-email" id="user-display-email">customer@reignshop.com</span>
+              </div>
+              <hr class="auth-dropdown-divider">
+              <a href="#" class="auth-dropdown-item"><i class="bi bi-person-circle"></i> My Orders</a>
+              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> View Cart</a>
+              <hr class="auth-dropdown-divider">
+              <button class="auth-dropdown-item auth-signout-btn" id="signout-btn" onclick="signOut()">
+                <i class="bi bi-box-arrow-right"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
@@ -82,114 +100,302 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
+    <div class="page-title" data-aos="fade" style="background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; padding: 120px 0 60px; color: #fff;">
       <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Service Details</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-            </div>
-          </div>
+        <div class="container text-center">
+          <p class="eyebrow" style="color:#ffb48a;">Reign Certified Tech Lab</p>
+          <h1 style="color:#fff; font-size:2.8rem; font-weight:800;">Hardware Diagnostics & Repairs</h1>
+          <p class="subtext mx-auto" style="max-width:640px; color:rgba(255,255,255,0.82);">
+            Component-level diagnostics, certified OEM parts, ultrasonic cleaning, and fast turnaround backed by our 90-day service warranty.
+          </p>
         </div>
       </div>
-      <nav class="breadcrumbs">
+      <nav class="breadcrumbs" style="background:rgba(0,0,0,0.25); padding:12px 0;">
         <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Service Details</li>
+          <ol class="d-flex gap-2 list-unstyled m-0 justify-content-center" style="font-size:14px;">
+            <li><a href="index.html" style="color:#ffb48a; text-decoration:none;">Home</a></li>
+            <li class="text-white-50">/</li>
+            <li><a href="services.html" style="color:#cbd5e1; text-decoration:none;">Services & Care</a></li>
+            <li class="text-white-50">/</li>
+            <li class="current text-white">Device Repairs & Diagnostics</li>
           </ol>
         </div>
       </nav>
     </div><!-- End Page Title -->
 
     <!-- Service Details Section -->
-    <section id="service-details" class="service-details section">
-
+    <section id="service-details" class="service-details section py-5">
       <div class="container">
-
         <div class="row gy-5">
 
+          <!-- Left Sidebar -->
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
 
-            <div class="service-box">
-              <h4>Serices List</h4>
-              <div class="services-list">
-                <a href="#" class="active"><i class="bi bi-arrow-right-circle"></i><span>Web Design</span></a>
-                <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Web Design</span></a>
-                <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Product Management</span></a>
-                <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Graphic Design</span></a>
-                <a href="#"><i class="bi bi-arrow-right-circle"></i><span>Marketing</span></a>
+            <!-- Services Directory -->
+            <div class="service-widget-card p-4 rounded-4 bg-white border shadow-sm mb-4">
+              <h4 class="fw-bold mb-3 text-dark">Services Catalog</h4>
+              <div class="d-flex flex-column gap-2">
+                <a href="service-details.html" class="p-3 rounded-3 text-decoration-none fw-bold" style="background:#fff1ea; color:#ff7d3b; border-left:4px solid #ff7d3b;">
+                  <i class="bi bi-cpu me-2"></i> Precision Diagnostics & Repairs
+                </a>
+                <a href="services.html" class="p-3 rounded-3 text-decoration-none text-secondary hover-bg-light">
+                  <i class="bi bi-house-gear me-2"></i> Smart Home & Automation
+                </a>
+                <a href="services.html" class="p-3 rounded-3 text-decoration-none text-secondary hover-bg-light">
+                  <i class="bi bi-arrow-left-right me-2"></i> Trade-In & Buyback Program
+                </a>
+                <a href="services.html" class="p-3 rounded-3 text-decoration-none text-secondary hover-bg-light">
+                  <i class="bi bi-pc-display me-2"></i> Custom PC & Workstation Rigs
+                </a>
+                <a href="services.html" class="p-3 rounded-3 text-decoration-none text-secondary hover-bg-light">
+                  <i class="bi bi-shield-check me-2"></i> Reign Extended Care Plan
+                </a>
+                <a href="services.html" class="p-3 rounded-3 text-decoration-none text-secondary hover-bg-light">
+                  <i class="bi bi-buildings me-2"></i> Bulk Enterprise & School IT
+                </a>
               </div>
-            </div><!-- End Services List -->
+            </div>
 
-            <div class="service-box">
-              <h4>Download Catalog</h4>
-              <div class="download-catalog">
-                <a href="#"><i class="bi bi-filetype-pdf"></i><span>Catalog PDF</span></a>
-                <a href="#"><i class="bi bi-file-earmark-word"></i><span>Catalog DOC</span></a>
+            <!-- Urgent Lab Hotline Box -->
+            <div class="p-4 rounded-4 text-white shadow-sm mb-4" style="background:linear-gradient(135deg, #0f172a, #1e293b); border:1px solid rgba(255,255,255,0.1);">
+              <h4 class="fw-bold mb-2 text-white"><i class="bi bi-headset text-warning me-2"></i> Urgent Repair Help?</h4>
+              <p class="text-white-50 small mb-3">Speak directly with our on-duty technician to get immediate diagnostics or reserve a loaner phone.</p>
+              <div class="d-flex align-items-center gap-2 mb-2">
+                <i class="bi bi-telephone-fill text-warning"></i>
+                <span class="fw-bold fs-5">+1 (619) 555-8411</span>
               </div>
-            </div><!-- End Services List -->
+              <div class="d-flex align-items-center gap-2 text-white-50 small">
+                <i class="bi bi-envelope-fill text-warning"></i>
+                <span>lab@reignshop.com</span>
+              </div>
+            </div>
 
-            <div class="help-box d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-headset help-icon"></i>
-              <h4>Have a Question?</h4>
-              <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>+1 5589 55488 55</span></p>
-              <p class="d-flex align-items-center mt-1 mb-0"><i class="bi bi-envelope me-2"></i> <a href="mailto:contact@example.com">contact@example.com</a></p>
+            <!-- Service Brochure -->
+            <div class="p-4 rounded-4 bg-light border text-center">
+              <i class="bi bi-file-earmark-pdf text-danger fs-1 mb-2 d-inline-block"></i>
+              <h5 class="fw-bold mb-1">Service & Warranty Guide</h5>
+              <p class="text-muted small mb-3">Download our complete price matrix, warranty coverage, and repair turnaround terms.</p>
+              <a href="#" class="btn btn-outline-dark rounded-pill w-100 fw-bold" onclick="showToast('Service guide PDF downloaded', 'info'); return false;">
+                <i class="bi bi-download me-1"></i> Download PDF (2.4MB)
+              </a>
             </div>
 
           </div>
 
-          <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
-            <img src="assets/img/services.jpg" alt="" class="img-fluid services-img">
-            <h3>Temporibus et in vero dicta aut eius lidero plastis trand lined voluptas dolorem ut voluptas</h3>
-            <p>
-              Blanditiis voluptate odit ex error ea sed officiis deserunt. Cupiditate non consequatur et doloremque consequuntur. Accusantium labore reprehenderit error temporibus saepe perferendis fuga doloribus vero. Qui omnis quo sit. Dolorem architecto eum et quos deleniti officia qui.
+          <!-- Right Content Column -->
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+            <img src="https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?auto=format&fit=crop&w=1200&q=80"
+              alt="Reign Tech Repair Lab" class="img-fluid rounded-4 mb-4 shadow-sm w-100" style="max-height:420px; object-fit:cover;">
+
+            <h2 class="fw-bold text-dark mb-3">Certified Hardware Diagnostics & Component-Level Engineering</h2>
+            <p class="text-secondary mb-4" style="line-height:1.75;">
+              At Reign Electronics, we understand that your laptop, phone, or audio gear is essential for your work, creativity, and daily life. Our state-of-the-art diagnostic laboratory is staffed by IPC-certified micro-soldering technicians equipped with thermal imaging cameras, precision microscopes, and automated ultrasonic cleaning tanks.
             </p>
-            <ul>
-              <li><i class="bi bi-check-circle"></i> <span>Aut eum totam accusantium voluptatem.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Assumenda et porro nisi nihil nesciunt voluptatibus.</span></li>
-              <li><i class="bi bi-check-circle"></i> <span>Ullamco laboris nisi ut aliquip ex ea</span></li>
-            </ul>
-            <p>
-              Est reprehenderit voluptatem necessitatibus asperiores neque sed ea illo. Deleniti quam sequi optio iste veniam repellat odit. Aut pariatur itaque nesciunt fuga.
-            </p>
-            <p>
-              Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam aut consequuntur recusandae mollitia doloremque est architecto cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex repellendus eveniet velit sint quia sapiente cumque. Et ipsa perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum. Eaque iusto cupiditate et totam et quia dolorum in. Sunt molestiae ipsum at consequatur vero. Architecto ut pariatur autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit dolore alias explicabo ea.
-            </p>
+
+            <!-- 4 Service Pillars -->
+            <div class="row g-3 mb-5">
+              <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-light border h-100 d-flex gap-3 align-items-start">
+                  <i class="bi bi-patch-check-fill text-success fs-3"></i>
+                  <div>
+                    <h6 class="fw-bold mb-1">100% Genuine OEM Parts</h6>
+                    <p class="text-muted small m-0">Direct factory screens, Grade-A battery cells, and authentic IC controllers.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-light border h-100 d-flex gap-3 align-items-start">
+                  <i class="bi bi-stopwatch text-warning fs-3"></i>
+                  <div>
+                    <h6 class="fw-bold mb-1">2-Hour Express Turnaround</h6>
+                    <p class="text-muted small m-0">Screen and battery replacements completed same-day while you wait.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-light border h-100 d-flex gap-3 align-items-start">
+                  <i class="bi bi-shield-check text-primary fs-3"></i>
+                  <div>
+                    <h6 class="fw-bold mb-1">90-Day Full Warranty</h6>
+                    <p class="text-muted small m-0">Any recurring issue covered at zero cost including labor and replacement.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="p-3 rounded-3 bg-light border h-100 d-flex gap-3 align-items-start">
+                  <i class="bi bi-wallet2 text-danger fs-3"></i>
+                  <div>
+                    <h6 class="fw-bold mb-1">No-Fix, No-Fee Guarantee</h6>
+                    <p class="text-muted small m-0">If our engineers cannot resolve the failure, you owe absolutely nothing.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price & Turnaround Matrix -->
+            <h4 class="fw-bold text-dark mb-3">Popular Repair & Servicing Rates</h4>
+            <div class="table-responsive mb-5 border rounded-3">
+              <table class="table table-hover align-middle m-0">
+                <thead class="table-dark">
+                  <tr>
+                    <th>Service Type</th>
+                    <th>Device Supported</th>
+                    <th>Est. Turnaround</th>
+                    <th>Starting Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Comprehensive 24-Point Scan</strong></td>
+                    <td>Laptops, Phones, Consoles</td>
+                    <td>30 Minutes</td>
+                    <td><span class="badge bg-success">FREE</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>OLED / Retina Screen Replacement</strong></td>
+                    <td>MacBooks, Apex, Dell, iPhone, Samsung</td>
+                    <td>1 - 2 Hours</td>
+                    <td>From $89</td>
+                  </tr>
+                  <tr>
+                    <td><strong>High-Cycle Battery Replacement</strong></td>
+                    <td>All major laptops & phones</td>
+                    <td>45 Minutes</td>
+                    <td>From $49</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Thermal Repaste & Dust Decontamination</strong></td>
+                    <td>Gaming laptops, Workstations</td>
+                    <td>1 Hour</td>
+                    <td>$39</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Logic Board Micro-Soldering (Power/Charging IC)</strong></td>
+                    <td>MacBook, Surface, iPad, Consoles</td>
+                    <td>24 - 48 Hours</td>
+                    <td>From $119</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Interactive Diagnostic Booking Form -->
+            <div class="booking-form-box" data-aos="fade-up">
+              <h3><i class="bi bi-calendar-check me-2"></i> Book a Repair or Diagnostic Slot</h3>
+              <p>Reserve a spot in our priority queue. Drop off your device or schedule a courier pickup.</p>
+
+              <form onsubmit="handleServiceBooking(event)">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label class="form-label text-white-50 small mb-1">Your Full Name</label>
+                    <input type="text" class="booking-input" placeholder="e.g. David Mwangi" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-white-50 small mb-1">Phone Number (WhatsApp)</label>
+                    <input type="tel" class="booking-input" placeholder="+1 (619) 555-0199" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-white-50 small mb-1">Device Model</label>
+                    <input type="text" class="booking-input" placeholder="e.g. MacBook Pro M2, Apex Blade, iPhone 15" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label class="form-label text-white-50 small mb-1">Primary Issue</label>
+                    <select class="booking-input" style="background:#1e293b; color:#fff;" required>
+                      <option value="" disabled selected>Select issue...</option>
+                      <option value="screen">Cracked Screen / Display Flickering</option>
+                      <option value="battery">Battery Draining Fast / Swollen</option>
+                      <option value="water">Liquid / Water Damage</option>
+                      <option value="power">Won't Power On / Boot Loop</option>
+                      <option value="overheating">Overheating / Fan Noise</option>
+                      <option value="other">Other Issue</option>
+                    </select>
+                  </div>
+                  <div class="col-12">
+                    <label class="form-label text-white-50 small mb-1">Additional Notes</label>
+                    <textarea class="booking-input" rows="3" placeholder="Tell us what happened..."></textarea>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="booking-btn">
+                      <i class="bi bi-send-check-fill me-2"></i> Submit Priority Booking
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- Service FAQ -->
+            <div class="mt-5">
+              <h4 class="fw-bold mb-3">Frequently Asked Questions</h4>
+              <div class="accordion" id="serviceFaqAccordion">
+                <div class="accordion-item border rounded-3 mb-2">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                      Do I need an appointment before bringing my device?
+                    </button>
+                  </h2>
+                  <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#serviceFaqAccordion">
+                    <div class="accordion-body text-secondary">
+                      Walk-ins are always welcome at our flagship service desk! However, submitting an advance booking ensures our technicians reserve replacement parts for your model for fastest turnaround.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item border rounded-3 mb-2">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                      Will my personal data remain safe during repairs?
+                    </button>
+                  </h2>
+                  <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#serviceFaqAccordion">
+                    <div class="accordion-body text-secondary">
+                      Yes. We enforce strict data privacy standards. For hardware repairs (such as screens or batteries), we do not need your passcode unless sensor testing is required, which you can supervise.
+                    </div>
+                  </div>
+                </div>
+
+                <div class="accordion-item border rounded-3">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                      What does the 90-day warranty cover?
+                    </button>
+                  </h2>
+                  <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#serviceFaqAccordion">
+                    <div class="accordion-body text-secondary">
+                      The warranty covers any functional defects in the replaced part or assembly. If a replaced screen exhibits touch glitches or a battery loses capacity within 90 days, we replace it instantly at zero charge.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
 
         </div>
-
       </div>
-
-    </section><!-- /Service Details Section -->
+    </section>
 
   </main>
 
+  <!-- Footer -->
   <footer id="footer" class="footer light-background">
-
     <div class="container">
       <div class="row gy-3">
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-geo-alt icon"></i>
           <div class="address">
-            <h4>Address</h4>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p></p>
+            <h4>Store Location</h4>
+            <p>Reign Plaza, 48 Tech Avenue</p>
+            <p>Nairobi / San Diego Flagship</p>
           </div>
-
         </div>
 
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-telephone icon"></i>
           <div>
-            <h4>Contact</h4>
-            <p>
-              <strong>Phone:</strong> <span>+1 5589 55488 55</span><br>
-              <strong>Email:</strong> <span>info@example.com</span><br>
-            </p>
+            <h4>Contact Support</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
           </div>
         </div>
 
@@ -197,15 +403,12 @@
           <i class="bi bi-clock icon"></i>
           <div>
             <h4>Opening Hours</h4>
-            <p>
-              <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>
-              <strong>Sunday</strong>: <span>Closed</span>
-            </p>
+            <p><strong>Mon-Sat:</strong> <span>8:30AM - 8:30PM</span><br><strong>Sunday:</strong> <span>10:00AM - 6:00PM</span></p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6">
-          <h4>Follow Us</h4>
+          <h4>Stay Connected</h4>
           <div class="social-links d-flex">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -213,38 +416,189 @@
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">EstateAgency</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics & Mali Mali</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed for Modern Electronics, Tech & Smart Living Essentials</div>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       Cart Drawer (Offcanvas Slide-in)
+  ======================================================= -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCart(event)">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <h3 id="cart-title">
+          <i class="bi bi-bag"></i> Your Cart
+          <span class="cart-badge-count" id="cart-count-badge">0</span>
+        </h3>
+        <button class="cart-close-btn" onclick="closeCart()" aria-label="Close cart">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="cart-body" id="cart-drawer-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-summary-row">
+          <span>Shipping:</span>
+          <span class="text-success fw-bold">FREE (Orders $99+)</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <button class="cart-checkout-btn" onclick="checkoutCart()">
+          <i class="bi bi-lock-fill"></i> Checkout Now
+        </button>
+        <button class="cart-clear-btn" onclick="clearCart()">Empty Cart</button>
       </div>
     </div>
+  </div>
 
-  </footer>
+  <!-- ======================================================
+       Auth Modal (Login / Register)
+  ======================================================= -->
+  <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+
+      <button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="auth-modal-brand">
+        <div class="auth-modal-logo">R</div>
+        <span>Reign<strong>Electronics</strong></span>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" id="tab-register" role="tab" onclick="switchAuthTab('register')">Create Account</button>
+        <div class="auth-tab-indicator" id="auth-tab-indicator"></div>
+      </div>
+
+      <!-- LOGIN PANEL -->
+      <div class="auth-panel" id="panel-login">
+        <h2 class="auth-panel-title" id="auth-modal-title">Welcome back</h2>
+        <p class="auth-panel-sub">Sign in to track orders & service tickets</p>
+
+        <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+          <div class="auth-field">
+            <label for="login-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="login-email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="login-password">
+              Password
+              <a href="#" class="auth-forgot-link">Forgot password?</a>
+            </label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('login-password', this)" aria-label="Show password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-remember">
+            <label class="auth-checkbox-label">
+              <input type="checkbox" id="remember-me"> Remember me
+            </label>
+          </div>
+          <div class="auth-error" id="login-error"></div>
+          <button type="submit" class="auth-submit-btn" id="login-submit-btn">
+            <span class="btn-text">Sign In</span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text mt-3">Don't have an account? <button type="button" onclick="switchAuthTab('register')">Create one</button></p>
+      </div>
+
+      <!-- REGISTER PANEL -->
+      <div class="auth-panel d-none" id="panel-register">
+        <h2 class="auth-panel-title">Create account</h2>
+        <p class="auth-panel-sub">Enjoy exclusive deals and quick service booking</p>
+
+        <form id="register-form" onsubmit="handleRegister(event)" novalidate>
+          <div class="auth-field-row">
+            <div class="auth-field">
+              <label for="reg-firstname">First name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-firstname" name="firstname" placeholder="John" required>
+              </div>
+            </div>
+            <div class="auth-field">
+              <label for="reg-lastname">Last name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-lastname" name="lastname" placeholder="Doe" required>
+              </div>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="reg-email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-password">Password</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="reg-password" name="password" placeholder="Create a password" required>
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('reg-password', this)">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-error" id="register-error"></div>
+          <button type="submit" class="auth-submit-btn" id="register-submit-btn">
+            <span class="btn-text">Create Account</span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text mt-3">Already have an account? <button type="button" onclick="switchAuthTab('login')">Sign in</button></p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="auth-panel d-none" id="panel-success">
+        <div class="auth-success-icon"><i class="bi bi-check-circle-fill"></i></div>
+        <h2 class="auth-panel-title">You're in!</h2>
+        <p class="auth-panel-sub" id="success-message">Welcome to Reign Electronics & Mali Mali!</p>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
+
+  <script>
+    function handleServiceBooking(e) {
+      e.preventDefault();
+      showToast('Booking submitted! Our technician will call you within 15 minutes.', 'success', 'bi-calendar2-check-fill');
+      e.target.reset();
+    }
+  </script>
 
 </body>
 

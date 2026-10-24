@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Properties - EstateAgency Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Shop Catalog - Reign Electronics & Mali Mali</title>
+  <meta name="description" content="Browse premier laptops, headphones, smartphones, gaming gear, and essential smart living mali mali at unbeatable prices.">
+  <meta name="keywords" content="electronics, laptops, headphones, mali mali, smart home, Kenya tech shop, gadgets">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
@@ -15,7 +15,9 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -26,53 +28,69 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: EstateAgency
-  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-  * Updated: Apr 08 2026 with Bootstrap v5.3.8
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="properties-page">
 
+  <!-- Header -->
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">Estate<span>Agency</span></h1>
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Electronics & mali mali</span></h1>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="services.html">Services</a></li>
-          <li><a href="properties.html" class="active">Properties</a></li>
-          <li><a href="agents.html">Agents</a></li>
-          <li class="dropdown"><a href="#"><span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-            <ul>
-              <li><a href="#">Dropdown 1</a></li>
-              <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                <ul>
-                  <li><a href="#">Deep Dropdown 1</a></li>
-                  <li><a href="#">Deep Dropdown 2</a></li>
-                  <li><a href="#">Deep Dropdown 3</a></li>
-                  <li><a href="#">Deep Dropdown 4</a></li>
-                  <li><a href="#">Deep Dropdown 5</a></li>
-                </ul>
-              </li>
-              <li><a href="#">Dropdown 2</a></li>
-              <li><a href="#">Dropdown 3</a></li>
-              <li><a href="#">Dropdown 4</a></li>
-            </ul>
-          </li>
+          <li><a href="properties.html" class="active">Shop Catalog</a></li>
+          <li><a href="services.html">Services & Care</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="agents.html">Tech Team</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <button class="nav-icon-btn" aria-label="Search" onclick="openSearchModal()"><i class="bi bi-search"></i></button>
+          <button class="nav-icon-btn position-relative" aria-label="Wishlist">
+            <i class="bi bi-heart"></i>
+            <span class="wishlist-counter-pill position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size:10px;">0</span>
+          </button>
+          <button class="nav-cart-btn" aria-label="Cart" onclick="openCart()">
+            <i class="bi bi-bag"></i><span class="cart-counter-pill">2</span>
+          </button>
+
+          <!-- Auth Button (guest state) -->
+          <div id="auth-guest" class="auth-nav-group d-flex align-items-center gap-2">
+            <button class="btn-auth-login" id="open-login-btn" onclick="openAuthModal('login')">
+              <i class="bi bi-person"></i> Login
+            </button>
+            <button class="btn-auth-signup" id="open-signup-btn" onclick="openAuthModal('register')">
+              Sign Up
+            </button>
+          </div>
+
+          <!-- User Avatar Dropdown (logged-in state) -->
+          <div id="auth-user" class="auth-user-dropdown d-none">
+            <button class="auth-avatar-btn" id="user-avatar-btn" aria-label="User menu">
+              <span class="auth-avatar-initials" id="user-initials">RE</span>
+              <i class="bi bi-chevron-down" style="font-size:11px;"></i>
+            </button>
+            <div class="auth-dropdown-menu" id="user-dropdown-menu">
+              <div class="auth-dropdown-header">
+                <span class="auth-dropdown-name" id="user-display-name">Customer</span>
+                <span class="auth-dropdown-email" id="user-display-email">customer@reignshop.com</span>
+              </div>
+              <hr class="auth-dropdown-divider">
+              <a href="#" class="auth-dropdown-item"><i class="bi bi-person-circle"></i> My Orders</a>
+              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> View Cart</a>
+              <hr class="auth-dropdown-divider">
+              <button class="auth-dropdown-item auth-signout-btn" id="signout-btn" onclick="signOut()">
+                <i class="bi bi-box-arrow-right"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
@@ -81,210 +99,390 @@
 
   <main class="main">
 
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
+    <!-- Page Title Banner -->
+    <div class="page-title" data-aos="fade" style="background: linear-gradient(rgba(15,23,42,0.85), rgba(15,23,42,0.85)), url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; padding: 120px 0 60px; color: #fff;">
       <div class="heading">
-        <div class="container">
-          <div class="row d-flex justify-content-center text-center">
-            <div class="col-lg-8">
-              <h1>Properties</h1>
-              <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-            </div>
-          </div>
+        <div class="container text-center">
+          <p class="eyebrow" style="color:#ffb48a;">Official Store Catalog</p>
+          <h1 style="color:#fff; font-size:2.8rem; font-weight:800;">Electronics, Gadgets & Mali Mali</h1>
+          <p class="subtext mx-auto" style="max-width:640px; color:rgba(255,255,255,0.82);">
+            Discover guaranteed authentic hardware, immersive sound devices, powerhouse creator laptops, and curated everyday home essentials.
+          </p>
         </div>
       </div>
-      <nav class="breadcrumbs">
+      <nav class="breadcrumbs" style="background:rgba(0,0,0,0.25); padding:12px 0;">
         <div class="container">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Properties</li>
+          <ol class="d-flex gap-2 list-unstyled m-0 justify-content-center" style="font-size:14px;">
+            <li><a href="index.html" style="color:#ffb48a; text-decoration:none;">Home</a></li>
+            <li class="text-white-50">/</li>
+            <li class="current text-white">Shop Catalog</li>
           </ol>
         </div>
       </nav>
     </div><!-- End Page Title -->
 
-    <!-- Real Estate Section -->
-    <section id="real-estate" class="real-estate section">
-
+    <!-- Catalog Section -->
+    <section id="catalog-section" class="section py-5">
       <div class="container">
 
+        <!-- Category Filters -->
+        <div class="catalog-filters" data-aos="fade-up">
+          <button class="filter-pill active" onclick="filterCatalog('all', this)"><i class="bi bi-grid-fill"></i> All Items (8)</button>
+          <button class="filter-pill" onclick="filterCatalog('computing', this)"><i class="bi bi-laptop"></i> Laptops & Computing</button>
+          <button class="filter-pill" onclick="filterCatalog('audio', this)"><i class="bi bi-headphones"></i> Audio & Sound</button>
+          <button class="filter-pill" onclick="filterCatalog('mobile', this)"><i class="bi bi-phone"></i> Phones & Wearables</button>
+          <button class="filter-pill" onclick="filterCatalog('mali-mali', this)"><i class="bi bi-house-gear"></i> Smart Home & Mali Mali</button>
+        </div>
+
+        <!-- Products Grid -->
         <div class="row gy-4">
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="card">
-              <img src="assets/img/properties/property-1.jpg" alt="" class="img-fluid">
-              <div class="card-body">
-                <span class="sale-rent">Rent | $1200</span>
-                <h3><a href="property-single.html" class="stretched-link">204 Mount Olive Road Two</a></h3>
-                <div class="card-content d-flex flex-column justify-content-center text-center">
-                  <div class="row propery-info">
-                    <div class="col">Area</div>
-                    <div class="col">Beds</div>
-                    <div class="col">Baths</div>
-                    <div class="col">Garages</div>
+          <!-- Product 1: Laptop -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="computing" data-aos="fade-up" data-aos-delay="100">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge hot">Top Seller</span>
+                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="Apex Blade Pro 16">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('apex-blade-pro', 'Apex Blade Pro 16', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Computing</span>
+                <h3 class="product-title"><a href="property-single.html">Apex Blade Pro 16" OLED</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">32GB RAM</span>
+                  <span class="spec-chip">1TB NVMe</span>
+                  <span class="spec-chip">RTX 4080</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                  <span class="review-count">(128)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$1,399</span>
+                    <span class="original-price">$1,799</span>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
-                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'apex-blade-pro', title:'Apex Blade Pro 16 OLED', price:1399, image:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
                 </div>
               </div>
             </div>
-          </div><!-- End Property Item -->
+          </div>
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="card">
-              <img src="assets/img/properties/property-2.jpg" alt="" class="img-fluid">
-              <div class="card-body">
-                <span class="sale-rent">Sale | $350.000</span>
-                <h3><a href="property-single.html" class="stretched-link">647 Molie Road</a></h3>
-                <div class="card-content d-flex flex-column justify-content-center text-center">
-                  <div class="row propery-info">
-                    <div class="col">Area</div>
-                    <div class="col">Beds</div>
-                    <div class="col">Baths</div>
-                    <div class="col">Garages</div>
+          <!-- Product 2: Audio -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="audio" data-aos="fade-up" data-aos-delay="150">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge">-25% OFF</span>
+                <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80" alt="EchoPulse Ultra">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('echopulse-ultra', 'EchoPulse Ultra ANC', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Audio</span>
+                <h3 class="product-title"><a href="property-single.html">EchoPulse Ultra ANC Headset</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">Hybrid ANC</span>
+                  <span class="spec-chip">40h Playtime</span>
+                  <span class="spec-chip">Spatial Audio</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  <span class="review-count">(214)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$249</span>
+                    <span class="original-price">$329</span>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
-                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'echopulse-ultra', title:'EchoPulse Ultra ANC Headset', price:249, image:'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
                 </div>
               </div>
             </div>
-          </div><!-- End Property Item -->
+          </div>
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="card">
-              <img src="assets/img/properties/property-3.jpg" alt="" class="img-fluid">
-              <div class="card-body">
-                <span class="sale-rent">Sale | $580.000</span>
-                <h3><a href="property-single.html" class="stretched-link">711 Avenue Road</a></h3>
-                <div class="card-content d-flex flex-column justify-content-center text-center">
-                  <div class="row propery-info">
-                    <div class="col">Area</div>
-                    <div class="col">Beds</div>
-                    <div class="col">Baths</div>
-                    <div class="col">Garages</div>
+          <!-- Product 3: Mobile / Smartphone -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mobile" data-aos="fade-up" data-aos-delay="200">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge hot">New Flagship</span>
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" alt="Vanta Pro Max 5G">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('vanta-pro-max', 'Vanta Pro Max 5G', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Mobile</span>
+                <h3 class="product-title"><a href="property-single.html">Vanta Pro Max 5G (256GB)</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">120Hz OLED</span>
+                  <span class="spec-chip">200MP Camera</span>
+                  <span class="spec-chip">5000mAh</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                  <span class="review-count">(96)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$899</span>
+                    <span class="original-price">$1,149</span>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
-                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'vanta-pro-max', title:'Vanta Pro Max 5G (256GB)', price:899, image:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
                 </div>
               </div>
             </div>
-          </div><!-- End Property Item -->
+          </div>
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="card">
-              <img src="assets/img/properties/property-4.jpg" alt="" class="img-fluid">
-              <div class="card-body">
-                <span class="sale-rent">Rent | $6500</span>
-                <h3><a href="property-single.html" class="stretched-link">117 Milk Road</a></h3>
-                <div class="card-content d-flex flex-column justify-content-center text-center">
-                  <div class="row propery-info">
-                    <div class="col">Area</div>
-                    <div class="col">Beds</div>
-                    <div class="col">Baths</div>
-                    <div class="col">Garages</div>
+          <!-- Product 4: Smart Home / Mali Mali -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mali-mali" data-aos="fade-up" data-aos-delay="250">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge">Smart Living</span>
+                <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80" alt="HomeSense AI Hub">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('homesense-hub', 'HomeSense AI Hub', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Mali Mali</span>
+                <h3 class="product-title"><a href="property-single.html">HomeSense AI Smart Hub + Sensor</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">Voice Control</span>
+                  <span class="spec-chip">Zigbee/Matter</span>
+                  <span class="spec-chip">App Sync</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                  <span class="review-count">(72)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$179</span>
+                    <span class="original-price">$249</span>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
-                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'homesense-hub', title:'HomeSense AI Smart Hub + Sensor', price:179, image:'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
                 </div>
               </div>
             </div>
-          </div><!-- End Property Item -->
+          </div>
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card">
-              <img src="assets/img/properties/property-5.jpg" alt="" class="img-fluid">
-              <div class="card-body">
-                <span class="sale-rent">Rent | $3000</span>
-                <h3><a href="property-single.html" class="stretched-link">678 Broad Road</a></h3>
-                <div class="card-content d-flex flex-column justify-content-center text-center">
-                  <div class="row propery-info">
-                    <div class="col">Area</div>
-                    <div class="col">Beds</div>
-                    <div class="col">Baths</div>
-                    <div class="col">Garages</div>
+          <!-- Product 5: Wearables -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mobile" data-aos="fade-up" data-aos-delay="300">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge hot">Popular</span>
+                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Chronos Watch 7">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('chronos-watch-7', 'Chronos Watch 7', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Wearables</span>
+                <h3 class="product-title"><a href="property-single.html">Chronos Pro Active Smartwatch</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">ECG / SpO2</span>
+                  <span class="spec-chip">AMOLED Always-On</span>
+                  <span class="spec-chip">5 ATM Water</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  <span class="review-count">(182)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$329</span>
+                    <span class="original-price">$429</span>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
-                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'chronos-watch-7', title:'Chronos Pro Active Smartwatch', price:329, image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
                 </div>
               </div>
             </div>
-          </div><!-- End Property Item -->
+          </div>
 
-          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="card">
-              <img src="assets/img/properties/property-6.jpg" alt="" class="img-fluid">
-              <div class="card-body">
-                <span class="sale-rent">Sale | $650.000</span>
-                <h3><a href="property-single.html" class="stretched-link">974 Denim Road</a></h3>
-                <div class="card-content d-flex flex-column justify-content-center text-center">
-                  <div class="row propery-info">
-                    <div class="col">Area</div>
-                    <div class="col">Beds</div>
-                    <div class="col">Baths</div>
-                    <div class="col">Garages</div>
+          <!-- Product 6: Camera / Creator -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="computing" data-aos="fade-up" data-aos-delay="350">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge">Creator Gear</span>
+                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80" alt="LensMax 4K Mirrorless">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('lensmax-camera', 'LensMax 4K Mirrorless', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Photography</span>
+                <h3 class="product-title"><a href="property-single.html">LensMax 4K Mirrorless Camera</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">4K 60fps</span>
+                  <span class="spec-chip">In-Body OIS</span>
+                  <span class="spec-chip">Dual Card Slots</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                  <span class="review-count">(64)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$899</span>
+                    <span class="original-price">$1,099</span>
                   </div>
-                  <div class="row">
-                    <div class="col">340m2</div>
-                    <div class="col">5</div>
-                    <div class="col">2</div>
-                    <div class="col">1</div>
-                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'lensmax-camera', title:'LensMax 4K Mirrorless Camera', price:899, image:'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
                 </div>
               </div>
             </div>
-          </div><!-- End Property Item -->
+          </div>
 
+          <!-- Product 7: Gaming Console -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="computing" data-aos="fade-up" data-aos-delay="400">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge hot">Special Offer</span>
+                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80" alt="Volt Console Pro">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('volt-console-pro', 'Volt Console Pro', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Gaming</span>
+                <h3 class="product-title"><a href="property-single.html">Volt Console Pro Next-Gen 1TB</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">Ray Tracing</span>
+                  <span class="spec-chip">120 FPS 4K</span>
+                  <span class="spec-chip">Haptic Controller</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                  <span class="review-count">(340)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$699</span>
+                    <span class="original-price">$899</span>
+                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'volt-console-pro', title:'Volt Console Pro Next-Gen 1TB', price:699, image:'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 8: Mali Mali Household / Smart Kitchen Gadget -->
+          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mali-mali" data-aos="fade-up" data-aos-delay="450">
+            <div class="product-card-modern">
+              <div class="product-img-wrap">
+                <span class="product-badge">Home Essential</span>
+                <img src="https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=800&q=80" alt="Smart Barista Espresso Maker">
+                <div class="product-action-btns">
+                  <button class="action-icon-btn" onclick="toggleWishlist('barista-espresso', 'Smart Barista Espresso Maker', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
+                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
+                </div>
+              </div>
+              <div class="product-card-body">
+                <span class="product-category-tag">Mali Mali</span>
+                <h3 class="product-title"><a href="property-single.html">Aura Smart Precision Espresso Maker</a></h3>
+                <div class="product-specs-list">
+                  <span class="spec-chip">19-Bar Italian Pump</span>
+                  <span class="spec-chip">Thermal PID</span>
+                  <span class="spec-chip">Milk Frother</span>
+                </div>
+                <div class="product-rating">
+                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+                  <span class="review-count">(89)</span>
+                </div>
+                <div class="product-card-footer">
+                  <div class="product-price-box">
+                    <span class="current-price">$389</span>
+                    <span class="original-price">$499</span>
+                  </div>
+                  <button class="btn-add-cart" onclick="addToCart({id:'barista-espresso', title:'Aura Smart Precision Espresso Maker', price:389, image:'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=300&q=80'})">
+                    <i class="bi bi-bag-plus"></i> Add
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End Products Grid -->
+
+        <!-- Pagination -->
+        <div class="d-flex justify-content-center mt-5" data-aos="fade-up">
+          <nav aria-label="Catalog pages">
+            <ul class="pagination gap-2">
+              <li class="page-item active"><a class="page-link rounded-3 px-3 py-2 fw-bold" href="#">1</a></li>
+              <li class="page-item"><a class="page-link rounded-3 px-3 py-2 text-dark" href="#">2</a></li>
+              <li class="page-item"><a class="page-link rounded-3 px-3 py-2 text-dark" href="#">3</a></li>
+              <li class="page-item"><a class="page-link rounded-3 px-3 py-2 text-dark" href="#"><i class="bi bi-chevron-right"></i></a></li>
+            </ul>
+          </nav>
         </div>
 
       </div>
+    </section>
 
-    </section><!-- /Real Estate Section -->
+    <!-- Trust Feature Strip -->
+    <section class="promo-strip">
+      <div class="container">
+        <div class="row gy-3 text-center text-lg-start">
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-shield-check"></i><span>100% Genuine Hardware</span></div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-truck"></i><span>Same-Day City Delivery</span></div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-arrow-repeat"></i><span>7-Day Return Guarantee</span></div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-tools"></i><span>Official Repair & Support</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
+  <!-- Footer -->
   <footer id="footer" class="footer light-background">
-
     <div class="container">
       <div class="row gy-3">
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-geo-alt icon"></i>
           <div class="address">
-            <h4>Address</h4>
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p></p>
+            <h4>Store Location</h4>
+            <p>Reign Plaza, 48 Tech Avenue</p>
+            <p>Nairobi / San Diego Flagship</p>
           </div>
-
         </div>
 
         <div class="col-lg-3 col-md-6 d-flex">
           <i class="bi bi-telephone icon"></i>
           <div>
-            <h4>Contact</h4>
-            <p>
-              <strong>Phone:</strong> <span>+1 5589 55488 55</span><br>
-              <strong>Email:</strong> <span>info@example.com</span><br>
-            </p>
+            <h4>Contact Support</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
           </div>
         </div>
 
@@ -292,15 +490,12 @@
           <i class="bi bi-clock icon"></i>
           <div>
             <h4>Opening Hours</h4>
-            <p>
-              <strong>Mon-Sat:</strong> <span>11AM - 23PM</span><br>
-              <strong>Sunday</strong>: <span>Closed</span>
-            </p>
+            <p><strong>Mon-Sat:</strong> <span>8:30AM - 8:30PM</span><br><strong>Sunday:</strong> <span>10:00AM - 6:00PM</span></p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6">
-          <h4>Follow Us</h4>
+          <h4>Stay Connected</h4>
           <div class="social-links d-flex">
             <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
             <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
@@ -308,32 +503,181 @@
             <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
           </div>
         </div>
-
       </div>
     </div>
 
     <div class="container copyright text-center mt-4">
-      <p>© <span>Copyright</span> <strong class="px-1 sitename">EstateAgency</strong> <span>All Rights Reserved</span></p>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics & Mali Mali</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed for Modern Electronics, Tech & Smart Living Essentials</div>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       Cart Drawer (Offcanvas Slide-in)
+  ======================================================= -->
+  <div id="cart-drawer-overlay" class="cart-drawer-overlay" onclick="closeCart(event)">
+    <div class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cart-title">
+      <div class="cart-header">
+        <h3 id="cart-title">
+          <i class="bi bi-bag"></i> Your Cart
+          <span class="cart-badge-count" id="cart-count-badge">0</span>
+        </h3>
+        <button class="cart-close-btn" onclick="closeCart()" aria-label="Close cart">
+          <i class="bi bi-x-lg"></i>
+        </button>
+      </div>
+
+      <div class="cart-body" id="cart-drawer-body">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="cart-footer">
+        <div class="cart-summary-row">
+          <span>Shipping:</span>
+          <span class="text-success fw-bold">FREE (Orders $99+)</span>
+        </div>
+        <div class="cart-summary-row total-row">
+          <span>Subtotal:</span>
+          <span id="cart-subtotal">$0.00</span>
+        </div>
+        <button class="cart-checkout-btn" onclick="checkoutCart()">
+          <i class="bi bi-lock-fill"></i> Checkout Now
+        </button>
+        <button class="cart-clear-btn" onclick="clearCart()">Empty Cart</button>
       </div>
     </div>
+  </div>
 
-  </footer>
+  <!-- ======================================================
+       Auth Modal (Login / Register)
+  ======================================================= -->
+  <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+
+      <button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <div class="auth-modal-brand">
+        <div class="auth-modal-logo">R</div>
+        <span>Reign<strong>Electronics</strong></span>
+      </div>
+
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" id="tab-register" role="tab" onclick="switchAuthTab('register')">Create Account</button>
+        <div class="auth-tab-indicator" id="auth-tab-indicator"></div>
+      </div>
+
+      <!-- LOGIN PANEL -->
+      <div class="auth-panel" id="panel-login">
+        <h2 class="auth-panel-title" id="auth-modal-title">Welcome back</h2>
+        <p class="auth-panel-sub">Sign in to track orders & saved wishlist items</p>
+
+        <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+          <div class="auth-field">
+            <label for="login-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="login-email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="login-password">
+              Password
+              <a href="#" class="auth-forgot-link">Forgot password?</a>
+            </label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required autocomplete="current-password">
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('login-password', this)" aria-label="Show password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-remember">
+            <label class="auth-checkbox-label">
+              <input type="checkbox" id="remember-me"> Remember me
+            </label>
+          </div>
+          <div class="auth-error" id="login-error"></div>
+          <button type="submit" class="auth-submit-btn" id="login-submit-btn">
+            <span class="btn-text">Sign In</span>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or continue with</span></div>
+        <div class="auth-social-row">
+          <button class="auth-social-btn" aria-label="Google">Google</button>
+          <button class="auth-social-btn" aria-label="Facebook">Facebook</button>
+        </div>
+
+        <p class="auth-switch-text">Don't have an account? <button type="button" onclick="switchAuthTab('register')">Create one</button></p>
+      </div>
+
+      <!-- REGISTER PANEL -->
+      <div class="auth-panel d-none" id="panel-register">
+        <h2 class="auth-panel-title">Create account</h2>
+        <p class="auth-panel-sub">Enjoy exclusive deals and quick checkout</p>
+
+        <form id="register-form" onsubmit="handleRegister(event)" novalidate>
+          <div class="auth-field-row">
+            <div class="auth-field">
+              <label for="reg-firstname">First name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-firstname" name="firstname" placeholder="John" required>
+              </div>
+            </div>
+            <div class="auth-field">
+              <label for="reg-lastname">Last name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-lastname" name="lastname" placeholder="Doe" required>
+              </div>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="reg-email" name="email" placeholder="you@example.com" required>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-password">Password</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="reg-password" name="password" placeholder="Create a password" required>
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('reg-password', this)">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-error" id="register-error"></div>
+          <button type="submit" class="auth-submit-btn" id="register-submit-btn">
+            <span class="btn-text">Create Account</span>
+          </button>
+        </form>
+
+        <p class="auth-switch-text mt-3">Already have an account? <button type="button" onclick="switchAuthTab('login')">Sign in</button></p>
+      </div>
+
+      <!-- SUCCESS STATE -->
+      <div class="auth-panel d-none" id="panel-success">
+        <div class="auth-success-icon"><i class="bi bi-check-circle-fill"></i></div>
+        <h2 class="auth-panel-title">You're in!</h2>
+        <p class="auth-panel-sub" id="success-message">Welcome to Reign Electronics & Mali Mali!</p>
+      </div>
+
+    </div>
+  </div>
 
   <!-- Scroll Top -->
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
   <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
