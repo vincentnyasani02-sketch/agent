@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Index - EstateAgency Bootstrap Template</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: EstateAgency
+  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
+  * Updated: Apr 08 2026 with Bootstrap v5.3.8
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Electronics & mali mali </span></h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#deals">Deals</a></li>
+          <li><a href="#categories">Categories</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <button class="nav-icon-btn" aria-label="Search"><i class="bi bi-search"></i></button>
+          <button class="nav-icon-btn" aria-label="Wishlist"><i class="bi bi-heart"></i></button>
+          <button class="nav-cart-btn" aria-label="Cart"><i class="bi bi-bag"></i><span>2</span></button>
+
+          <!-- Auth Button (guest state) -->
+          <div id="auth-guest" class="auth-nav-group d-flex align-items-center gap-2">
+            <button class="btn-auth-login" id="open-login-btn" onclick="openAuthModal('login')">
+              <i class="bi bi-person"></i> Login
+            </button>
+            <button class="btn-auth-signup" id="open-signup-btn" onclick="openAuthModal('register')">
+              Sign Up
+            </button>
+          </div>
+
+          <!-- User Avatar Dropdown (logged-in state, hidden by default) -->
+          <div id="auth-user" class="auth-user-dropdown d-none">
+            <button class="auth-avatar-btn" id="user-avatar-btn" aria-label="User menu">
+              <span class="auth-avatar-initials" id="user-initials">JD</span>
+              <i class="bi bi-chevron-down" style="font-size:11px;"></i>
+            </button>
+            <div class="auth-dropdown-menu" id="user-dropdown-menu">
+              <div class="auth-dropdown-header">
+                <span class="auth-dropdown-name" id="user-display-name">John Doe</span>
+                <span class="auth-dropdown-email" id="user-display-email">john@example.com</span>
+              </div>
+              <hr class="auth-dropdown-divider">
+              <a href="#" class="auth-dropdown-item"><i class="bi bi-person-circle"></i> My Profile</a>
+              <a href="#" class="auth-dropdown-item"><i class="bi bi-heart"></i> Saved Properties</a>
+              <a href="#" class="auth-dropdown-item"><i class="bi bi-gear"></i> Settings</a>
+              <hr class="auth-dropdown-divider">
+              <button class="auth-dropdown-item auth-signout-btn" id="signout-btn" onclick="signOut()">
+                <i class="bi bi-box-arrow-right"></i> Sign Out
+              </button>
+            </div>
+          </div>
+        </div>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <section id="hero" class="hero section dark-background reign-hero">
+      <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+
+        <div class="carousel-item active">
+          <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1400&q=80"
+            alt="Gaming laptop">
+          <div class="carousel-container">
+            <div class="hero-content">
+              <p class="eyebrow">New season tech</p>
+              <h2><span>Power</span> your play</h2>
+              <p class="subtext">Discover pro-grade laptops, immersive audio, and smart gadgets built to elevate every
+                moment.</p>
+              <div class="hero-actions">
+                <a href="#shop" class="btn-get-started">Shop now</a>
+                <a href="#deals" class="btn-secondary">View deals</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1400&q=80"
+            alt="Modern headphones">
+          <div class="carousel-container">
+            <div class="hero-content">
+              <p class="eyebrow">Audio upgrade</p>
+              <h2><span>Hear</span> every detail</h2>
+              <p class="subtext">Premium wireless sound with deep bass, crystal clarity, and all-day comfort.</p>
+              <div class="hero-actions">
+                <a href="#shop" class="btn-get-started">Explore audio</a>
+                <a href="#reviews" class="btn-secondary">See reviews</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=1400&q=80"
+            alt="Smart home devices">
+          <div class="carousel-container">
+            <div class="hero-content">
+              <p class="eyebrow">Smart living</p>
+              <h2><span>Future-ready</span> essentials</h2>
+              <p class="subtext">From smart home devices to everyday productivity tools, we make your space smarter.</p>
+              <div class="hero-actions">
+                <a href="#categories" class="btn-get-started">Shop smart home</a>
+                <a href="#deals" class="btn-secondary">Save big</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+
+        <ol class="carousel-indicators"></ol>
+      </div>
+    </section>
+
+    <section class="promo-strip">
+      <div class="container">
+        <div class="row gy-3 text-center text-lg-start">
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-truck"></i><span>Free shipping over $99</span></div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-shield-check"></i><span>2-year warranty</span></div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-arrow-repeat"></i><span>Easy returns</span></div>
+          </div>
+          <div class="col-lg-3 col-md-6">
+            <div class="promo-item"><i class="bi bi-headset"></i><span>24/7 tech support</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="categories" class="services section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Shop by category</h2>
+        <p>Everything you need for home, work, and play.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="category-card">
+              <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=800&q=80"
+                alt="Laptop category">
+              <div class="category-card__info">
+                <span>Computing</span>
+                <h3>Laptops & tablets</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="category-card">
+              <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80"
+                alt="Audio category">
+              <div class="category-card__info">
+                <span>Audio</span>
+                <h3>Headphones & speakers</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="category-card">
+              <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80"
+                alt="Gaming category">
+              <div class="category-card__info">
+                <span>Gaming</span>
+                <h3>Consoles & gear</h3>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="category-card">
+              <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80"
+                alt="Smart home category">
+              <div class="category-card__info">
+                <span>Smart home</span>
+                <h3>Security & automation</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="shop" class="section products-section">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Best sellers</h2>
+        <p>Handpicked favorites for performance, style, and everyday convenience.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <article class="product-card">
+              <div class="product-badge">-25%</div>
+              <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=900&q=80"
+                alt="Gaming laptop">
+              <div class="product-body">
+                <div class="product-meta"><span>Gaming</span><span>4.9 ★</span></div>
+                <h3>Nova X15 Laptop</h3>
+                <div class="price-row"><strong>$1,399</strong><span>$1,799</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <article class="product-card">
+              <div class="product-badge hot">Hot</div>
+              <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=900&q=80"
+                alt="Wireless headphones">
+              <div class="product-body">
+                <div class="product-meta"><span>Audio</span><span>4.8 ★</span></div>
+                <h3>Echo Pro Headset</h3>
+                <div class="price-row"><strong>$249</strong><span>$329</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <article class="product-card">
+              <div class="product-badge">New</div>
+              <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=900&q=80"
+                alt="Gaming console">
+              <div class="product-body">
+                <div class="product-meta"><span>Gaming</span><span>4.9 ★</span></div>
+                <h3>Volt Console Pro</h3>
+                <div class="price-row"><strong>$699</strong><span>$899</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <article class="product-card">
+              <div class="product-badge">-30%</div>
+              <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=900&q=80"
+                alt="Smart home hub">
+              <div class="product-body">
+                <div class="product-meta"><span>Smart home</span><span>4.7 ★</span></div>
+                <h3>HomeSense Hub</h3>
+                <div class="price-row"><strong>$179</strong><span>$249</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <article class="product-card">
+              <div class="product-badge hot">Top pick</div>
+              <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=900&q=80"
+                alt="Smart watch">
+              <div class="product-body">
+                <div class="product-meta"><span>Wearables</span><span>4.8 ★</span></div>
+                <h3>Chronos Watch 7</h3>
+                <div class="price-row"><strong>$329</strong><span>$429</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <article class="product-card">
+              <div class="product-badge">-18%</div>
+              <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=900&q=80"
+                alt="Camera">
+              <div class="product-body">
+                <div class="product-meta"><span>Photography</span><span>4.9 ★</span></div>
+                <h3>LensMax Mirrorless</h3>
+                <div class="price-row"><strong>$899</strong><span>$1,099</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <article class="product-card">
+              <div class="product-badge hot">Featured</div>
+              <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=900&q=80"
+                alt="Phone">
+              <div class="product-body">
+                <div class="product-meta"><span>Mobile</span><span>4.9 ★</span></div>
+                <h3>Vanta Pro Max</h3>
+                <div class="price-row"><strong>$899</strong><span>$1,149</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <article class="product-card">
+              <div class="product-badge">-22%</div>
+              <img src="https://images.unsplash.com/photo-1518444065439-e933c06ce9cd?auto=format&fit=crop&w=900&q=80"
+                alt="Wireless earbuds">
+              <div class="product-body">
+                <div class="product-meta"><span>Audio</span><span>4.7 ★</span></div>
+                <h3>Pulse Buds Mini</h3>
+                <div class="price-row"><strong>$129</strong><span>$169</span></div>
+                <button>Add to cart</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="deals" class="section deal-banner">
+      <div class="container">
+        <div class="deal-banner__inner" data-aos="zoom-in">
+          <div>
+            <p class="eyebrow">Weekend flash sale</p>
+            <h2>Up to 40% off premium tech</h2>
+            <p>Upgrade your setup with AI-powered devices, audio gear, and smart accessories before midnight.</p>
+            <a href="#shop" class="btn-get-started">Grab the deal</a>
+          </div>
+          <div class="deal-banner__stats">
+            <div><strong>24H</strong><span>Flash offer</span></div>
+            <div><strong>200+</strong><span>Products</span></div>
+            <div><strong>4.9/5</strong><span>Customer rating</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section why-us light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Why customers choose Reign</h2>
+        <p>Trusted expertise, fast shipping, and tailored tech support.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-box">
+              <i class="bi bi-stars"></i>
+              <h3>Curated premium picks</h3>
+              <p>We only stock high-performance devices and accessories chosen for quality and reliability.</p>
+            </div>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="feature-box">
+              <i class="bi bi-lightning-charge"></i>
+              <h3>Fast local delivery</h3>
+              <p>Same-day dispatch available on many of our most popular products for busy lifestyles.</p>
+            </div>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="feature-box">
+              <i class="bi bi-headset"></i>
+              <h3>Expert support</h3>
+              <p>Our team helps you compare devices, setup gear, and find the right fit for your needs.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="reviews" class="section testimonials">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>What shoppers are saying</h2>
+        <p>Real feedback from customers who bought smarter.</p>
+      </div>
+
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="review-card">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>“Ordered the Nova X15 and it arrived faster than expected. Setup was smooth and performance is
+                outstanding.”</p>
+              <h3>Sarah K.</h3>
+            </div>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="review-card">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>“The sound quality on the Echo Pro Headset is incredible. Reign made it easy to compare features before
+                buying.”</p>
+              <h3>Marcus T.</h3>
+            </div>
+          </div>
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="review-card">
+              <div class="stars"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                  class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+              <p>“Customer service was excellent, and the smart home bundle transformed my apartment setup in one
+                afternoon.”</p>
+              <h3>Jade M.</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section newsletter">
+      <div class="container">
+        <div class="newsletter-box" data-aos="fade-up">
+          <div>
+            <p class="eyebrow">Stay updated</p>
+            <h2>Get the latest drops and exclusive discounts</h2>
+          </div>
+          <form class="newsletter-form">
+            <input type="email" placeholder="Your email address" aria-label="Email address">
+            <button type="submit">Join now</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Store</h4>
+            <p>48 Tech Avenue</p>
+            <p>San Diego, CA 92101</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Hours</h4>
+            <p><strong>Mon-Sat:</strong> <span>9AM - 8PM</span><br><strong>Sunday:</strong> <span>11AM - 5PM</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Follow us</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics</strong> <span>All Rights
+          Reserved</span></p>
+      <div class="credits">Designed for modern tech shopping</div>
+    </div>
+  </footer>
+
+  <!-- ======================================================
+       Auth Modal (Login / Register)
+  ======================================================= -->
+  <div id="auth-modal-overlay" class="auth-modal-overlay" onclick="closeAuthModal(event)">
+    <div class="auth-modal" role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+
+      <!-- Close Button -->
+      <button class="auth-modal-close" onclick="closeAuthModal()" aria-label="Close">
+        <i class="bi bi-x-lg"></i>
+      </button>
+
+      <!-- Brand -->
+      <div class="auth-modal-brand">
+        <div class="auth-modal-logo">R</div>
+        <span>Reign<strong>Electronics</strong></span>
+      </div>
+
+      <!-- Tabs -->
+      <div class="auth-tabs" role="tablist">
+        <button class="auth-tab active" id="tab-login" role="tab" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" id="tab-register" role="tab" onclick="switchAuthTab('register')">Create
+          Account</button>
+        <div class="auth-tab-indicator" id="auth-tab-indicator"></div>
+      </div>
+
+      <!-- ── LOGIN PANEL ── -->
+      <div class="auth-panel" id="panel-login">
+        <h2 class="auth-panel-title" id="auth-modal-title">Welcome back</h2>
+        <p class="auth-panel-sub">Sign in to access your account</p>
+
+        <form id="login-form" onsubmit="handleLogin(event)" novalidate>
+          <div class="auth-field">
+            <label for="login-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="login-email" name="email" placeholder="you@example.com" required
+                autocomplete="email">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="login-password">
+              Password
+              <a href="#" class="auth-forgot-link">Forgot password?</a>
+            </label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="login-password" name="password" placeholder="Enter your password" required
+                autocomplete="current-password">
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('login-password', this)"
+                aria-label="Show password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+          </div>
+          <div class="auth-remember">
+            <label class="auth-checkbox-label">
+              <input type="checkbox" id="remember-me"> Remember me
+            </label>
+          </div>
+          <div class="auth-error" id="login-error"></div>
+          <button type="submit" class="auth-submit-btn" id="login-submit-btn">
+            <span class="btn-text">Sign In</span>
+            <span class="btn-spinner d-none"><i class="bi bi-arrow-repeat spin"></i></span>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or continue with</span></div>
+        <div class="auth-social-row">
+          <button class="auth-social-btn" aria-label="Google">
+            <svg width="18" height="18" viewBox="0 0 48 48">
+              <path fill="#EA4335"
+                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+              <path fill="#4285F4"
+                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+              <path fill="#FBBC05"
+                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+              <path fill="#34A853"
+                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+            </svg>
+            Google
+          </button>
+          <button class="auth-social-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2">
+              <path
+                d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.234 2.686.234v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+            </svg>
+            Facebook
+          </button>
+        </div>
+
+        <p class="auth-switch-text">Don't have an account? <button type="button"
+            onclick="switchAuthTab('register')">Create one</button></p>
+      </div>
+
+      <!-- ── REGISTER PANEL ── -->
+      <div class="auth-panel d-none" id="panel-register">
+        <h2 class="auth-panel-title">Create account</h2>
+        <p class="auth-panel-sub">Join thousands of happy customers</p>
+
+        <form id="register-form" onsubmit="handleRegister(event)" novalidate>
+          <div class="auth-field-row">
+            <div class="auth-field">
+              <label for="reg-firstname">First name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-firstname" name="firstname" placeholder="John" required
+                  autocomplete="given-name">
+              </div>
+            </div>
+            <div class="auth-field">
+              <label for="reg-lastname">Last name</label>
+              <div class="auth-input-wrap">
+                <i class="bi bi-person"></i>
+                <input type="text" id="reg-lastname" name="lastname" placeholder="Doe" required
+                  autocomplete="family-name">
+              </div>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-email">Email address</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-envelope"></i>
+              <input type="email" id="reg-email" name="email" placeholder="you@example.com" required
+                autocomplete="email">
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-password">Password</label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-lock"></i>
+              <input type="password" id="reg-password" name="password" placeholder="Create a strong password" required
+                autocomplete="new-password">
+              <button type="button" class="auth-eye-btn" onclick="togglePassword('reg-password', this)"
+                aria-label="Show password">
+                <i class="bi bi-eye"></i>
+              </button>
+            </div>
+            <div class="auth-password-strength" id="password-strength-bar">
+              <div class="strength-track">
+                <div class="strength-fill" id="strength-fill"></div>
+              </div>
+              <span class="strength-label" id="strength-label"></span>
+            </div>
+          </div>
+          <div class="auth-field">
+            <label for="reg-phone">Phone <span class="auth-optional">(optional)</span></label>
+            <div class="auth-input-wrap">
+              <i class="bi bi-telephone"></i>
+              <input type="tel" id="reg-phone" name="phone" placeholder="+1 234 567 8900" autocomplete="tel">
+            </div>
+          </div>
+          <div class="auth-terms">
+            <label class="auth-checkbox-label">
+              <input type="checkbox" id="agree-terms" required>
+              I agree to the <a href="#">Terms of Service</a> &amp; <a href="#">Privacy Policy</a>
+            </label>
+          </div>
+          <div class="auth-error" id="register-error"></div>
+          <button type="submit" class="auth-submit-btn" id="register-submit-btn">
+            <span class="btn-text">Create Account</span>
+            <span class="btn-spinner d-none"><i class="bi bi-arrow-repeat spin"></i></span>
+          </button>
+        </form>
+
+        <div class="auth-divider"><span>or sign up with</span></div>
+        <div class="auth-social-row">
+          <button class="auth-social-btn" aria-label="Google">
+            <svg width="18" height="18" viewBox="0 0 48 48">
+              <path fill="#EA4335"
+                d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z" />
+              <path fill="#4285F4"
+                d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z" />
+              <path fill="#FBBC05"
+                d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z" />
+              <path fill="#34A853"
+                d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z" />
+            </svg>
+            Google
+          </button>
+          <button class="auth-social-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877F2">
+              <path
+                d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.234 2.686.234v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
+            </svg>
+            Facebook
+          </button>
+        </div>
+
+        <p class="auth-switch-text">Already have an account? <button type="button" onclick="switchAuthTab('login')">Sign
+            in</button></p>
+      </div>
+
+      <!-- ── SUCCESS STATE ── -->
+      <div class="auth-panel d-none" id="panel-success">
+        <div class="auth-success-icon"><i class="bi bi-check-circle-fill"></i></div>
+        <h2 class="auth-panel-title">You're in!</h2>
+        <p class="auth-panel-sub" id="success-message">Welcome back! Redirecting you now…</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+
+</body>
+
+</html>
