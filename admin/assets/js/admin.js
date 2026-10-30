@@ -472,6 +472,8 @@ window.addNewProduct = async function(e) {
   const image = form.querySelector('[name="image"]').value.trim() || 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=300&q=80';
   const badge = form.querySelector('[name="badge"]') ? form.querySelector('[name="badge"]').value.trim() : '';
   const isOnOffer = form.querySelector('[name="isOnOffer"]') ? form.querySelector('[name="isOnOffer"]').checked : false;
+  const descEl = form.querySelector('[name="description"]');
+  const description = descEl && descEl.value.trim() ? descEl.value.trim() : `${title} - Official authentic stock backed by Reign Electronics warranty.`;
 
   const newProdData = {
     title,
@@ -486,8 +488,9 @@ window.addNewProduct = async function(e) {
     badge: badge || (isOnOffer ? 'Flash Sale' : ''),
     isDealOfDay: isOnOffer,
     isFeatured: isOnOffer,
-    shortDescription: title,
-    fullDescription: `${title} - Official authentic stock backed by Reign Electronics warranty.`
+    description: description,
+    shortDescription: description,
+    fullDescription: description
   };
 
   let createdId = `prod-${Date.now()}`;
@@ -546,6 +549,11 @@ window.openEditProductModal = function(id) {
   modalEl.querySelector('[name="badge"]').value = prod.badge || '';
   modalEl.querySelector('[name="image"]').value = prod.image || prod.imageUrl || '';
   
+  const descEl = modalEl.querySelector('[name="description"]');
+  if (descEl) {
+    descEl.value = prod.fullDescription || prod.shortDescription || prod.description || '';
+  }
+
   const offerCheckbox = modalEl.querySelector('[name="isOnOffer"]');
   if (offerCheckbox) {
     offerCheckbox.checked = !!(prod.isDealOfDay || prod.isOnOffer || (prod.badge && prod.badge.toLowerCase().includes('sale')));
@@ -556,6 +564,8 @@ window.openEditProductModal = function(id) {
   if (preview && (prod.image || prod.imageUrl)) {
     preview.src = prod.image || prod.imageUrl;
     if (container) container.style.display = 'block';
+  } else if (container) {
+    container.style.display = 'none';
   }
 
   window.openAdminModal('edit-product-modal');
@@ -573,6 +583,8 @@ window.updateProductSubmit = async function(e) {
   const stock = parseInt(form.querySelector('[name="stock"]').value) || 0;
   const badge = form.querySelector('[name="badge"]').value.trim();
   const image = form.querySelector('[name="image"]').value.trim();
+  const descEl = form.querySelector('[name="description"]');
+  const description = descEl ? descEl.value.trim() : '';
   const isOnOffer = form.querySelector('[name="isOnOffer"]').checked;
 
   const updateData = {
@@ -585,6 +597,9 @@ window.updateProductSubmit = async function(e) {
     badge,
     image,
     imageUrl: image,
+    description: description,
+    shortDescription: description,
+    fullDescription: description,
     isDealOfDay: isOnOffer,
     isFeatured: isOnOffer
   };
@@ -597,10 +612,14 @@ window.updateProductSubmit = async function(e) {
     });
     const resData = await res.json();
     if (resData.success) {
-      window.adminToast(`Product updated! Instant sync to Android App.`, 'success');
+      window.adminToast(`Product updated! Instant sync to Webfront and Android front.`, 'success');
+      window.broadcastCatalogSync();
+    } else {
+      window.adminToast(resData.error || 'Update failed', 'warning');
     }
   } catch (err) {
     console.warn('Backend update deferred:', err);
+    window.adminToast('Updated locally (offline mode)', 'info');
   }
 
   // Update local store
@@ -614,6 +633,13 @@ window.updateProductSubmit = async function(e) {
     };
     saveAdminProducts(products);
   }
+
+  // Clear browser storefront session cache so changes reflect instantly
+  try {
+    sessionStorage.removeItem('reign_cached_catalog');
+    sessionStorage.removeItem('reign_catalog_etag');
+    localStorage.removeItem('reign_cached_catalog');
+  } catch (e) {}
 
   window.broadcastCatalogSync();
   window.closeAdminModal('edit-product-modal');
@@ -1554,9 +1580,21 @@ window.deleteAdminDeliveryPoint = async function(pointId) {
 // --- 13. REAL-TIME DATA SYNC WITH BACKEND ---
 window.syncAdminDataWithBackend = async function() {
   try {
-    const res = await fetch(`${API_BASE_URL}/orders`);
-    if (res.ok) {
-      const data = await res.json();
+    const [prodRes, orderRes] = await Promise.all([
+      fetch(`${API_BASE_URL}/products?limit=200`).catch(() => null),
+      fetch(`${API_BASE_URL}/orders`).catch(() => null)
+    ]);
+    if (prodRes && prodRes.ok) {
+      const pData = await prodRes.json();
+      if (pData.success && Array.isArray(pData.products) && pData.products.length > 0) {
+        localStorage.setItem(ADMIN_PRODUCTS_KEY, JSON.stringify(pData.products));
+        if (typeof renderProductsTable === 'function') {
+          renderProductsTable();
+        }
+      }
+    }
+    if (orderRes && orderRes.ok) {
+      const data = await orderRes.json();
       if (data.success && Array.isArray(data.orders) && data.orders.length > 0) {
         localStorage.setItem(ADMIN_ORDERS_KEY, JSON.stringify(data.orders));
         if (typeof renderOrdersTable === 'function') {
@@ -1565,7 +1603,7 @@ window.syncAdminDataWithBackend = async function() {
       }
     }
   } catch (e) {
-    console.warn('Sync orders deferred:', e);
+    console.warn('Sync admin data deferred:', e);
   }
 };
 

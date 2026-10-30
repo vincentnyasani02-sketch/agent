@@ -116,9 +116,12 @@
         <!-- Controls Row: Search & Add Product -->
         <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3" data-aos="fade-up">
           <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width:440px;">
-            <input type="text" id="product-search-input" class="form-control" placeholder="Search product name or SKU..." oninput="handleProductSearch(this.value)">
+            <input type="text" id="product-search-input" class="form-control" placeholder="Search product name, SKU, or description..." oninput="handleProductSearch(this.value)">
           </div>
           <div class="d-flex gap-2">
+            <button class="btn btn-outline-warning text-dark fw-bold d-flex align-items-center gap-1" onclick="fetchLiveProductsFromBackend()" title="Refresh latest products from PostgreSQL database & Android backend">
+              <i class="bi bi-arrow-repeat"></i> Sync Backend
+            </button>
             <button class="btn-reign-primary" onclick="openAdminModal('add-product-modal')">
               Add New Product
             </button>
@@ -254,6 +257,11 @@
             </div>
 
             <div class="admin-form-group">
+              <label class="admin-form-label">Product Description</label>
+              <textarea name="description" class="admin-form-input" rows="3" placeholder="Enter product description, technical details, and key features displayed on web & Android front..."></textarea>
+            </div>
+
+            <div class="admin-form-group">
               <label class="admin-form-label d-flex justify-content-between align-items-center">
                 <span>Product Photo (Camera / Upload / URL)</span>
                 <button type="button" class="btn btn-sm btn-outline-warning py-1 px-2" style="font-size:11px;" onclick="document.getElementById('web-prod-photo-input').click()">
@@ -357,6 +365,11 @@
                   </label>
                 </div>
               </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label">Product Description</label>
+              <textarea name="description" class="admin-form-input" rows="3" placeholder="Enter product description, technical details, and key features displayed on web & Android front..."></textarea>
             </div>
 
             <div class="admin-form-group">
@@ -490,6 +503,9 @@
                     <small class="text-muted">${p.category}</small>
                     ${p.badge ? `<span class="badge bg-warning text-dark py-0 px-2 fw-bold" style="font-size:10px;">${p.badge}</span>` : ''}
                   </div>
+                  <div class="text-muted small mt-1" style="max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${p.shortDescription || p.fullDescription || p.description || ''}">
+                    ${p.shortDescription || p.fullDescription || p.description || '<em class="text-muted">No description</em>'}
+                  </div>
                 </div>
               </div>
             </td>
@@ -571,7 +587,32 @@
       reader.readAsDataURL(file);
     }
 
-    document.addEventListener('DOMContentLoaded', renderProductsTable);
+    async function fetchLiveProductsFromBackend() {
+      const tbody = document.getElementById('products-table-body');
+      if (tbody && (!localStorage.getItem('reign_admin_products') || localStorage.getItem('reign_admin_products') === '[]')) {
+        tbody.innerHTML = `<tr><td colspan="8" class="text-center py-5 text-muted"><div class="spinner-border spinner-border-sm text-warning me-2"></div>Syncing products from PostgreSQL database & Android backend...</td></tr>`;
+      }
+      try {
+        const res = await fetch(`${API_BASE_URL}/products?limit=200`);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.products && Array.isArray(data.products) && data.products.length > 0) {
+            localStorage.setItem('reign_admin_products', JSON.stringify(data.products));
+            renderProductsTable();
+            if (window.adminToast) window.adminToast(`${data.products.length} products loaded from database!`, 'success');
+            return;
+          }
+        }
+      } catch (err) {
+        console.warn('Backend products fetch deferred:', err);
+      }
+      renderProductsTable();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderProductsTable();
+      fetchLiveProductsFromBackend();
+    });
   </script>
 
 </body>
