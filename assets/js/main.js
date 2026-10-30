@@ -1842,93 +1842,118 @@ window.handleRegister = function(e) {
 // ========================================================
 // GOOGLE & FACEBOOK SOCIAL AUTHENTICATION
 // ========================================================
+// ========================================================
+// GOOGLE & FACEBOOK SOCIAL AUTHENTICATION & ACCOUNT CREATION
+// ========================================================
 window.handleSocialLogin = function(provider) {
-  const providerTitle = provider === 'google' ? 'Google' : 'Facebook';
-  const providerColor = provider === 'google' ? '#ea4335' : '#1877f2';
-  const providerIcon = provider === 'google'
-    ? `<svg width="22" height="22" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>`
-    : `<svg width="22" height="22" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.234 2.686.234v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>`;
+  const isGoogle = provider === 'google';
+  const providerTitle = isGoogle ? 'Google' : 'Facebook';
+  const providerColor = isGoogle ? '#ea4335' : '#1877f2';
+  const providerIcon = isGoogle
+    ? `<svg width="24" height="24" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>`
+    : `<svg width="24" height="24" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.413c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.234 2.686.234v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>`;
 
   // Create or retrieve social auth modal
   let modalOverlay = document.getElementById('reign-social-modal-overlay');
   if (!modalOverlay) {
     modalOverlay = document.createElement('div');
     modalOverlay.id = 'reign-social-modal-overlay';
-    modalOverlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11,15,25,0.85); backdrop-filter:blur(8px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:15px;';
+    modalOverlay.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(11,15,25,0.88); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); z-index:999999; display:flex; align-items:center; justify-content:center; padding:15px;';
     document.body.appendChild(modalOverlay);
   }
 
   modalOverlay.innerHTML = `
-    <div style="background:#131b2e; border:1px solid rgba(255,255,255,0.12); border-radius:20px; max-width:440px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.6); overflow:hidden; animation:fadeInUp 0.3s ease;">
+    <div style="background:#131b2e; border:1px solid rgba(255,255,255,0.12); border-radius:24px; max-width:460px; width:100%; box-shadow:0 25px 60px rgba(0,0,0,0.7), 0 0 40px rgba(${isGoogle ? '234,67,53,0.15' : '24,119,242,0.15'}); overflow:hidden; animation:fadeInUp 0.3s ease;">
       <!-- Header -->
-      <div style="padding:22px 24px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.02);">
+      <div style="padding:22px 26px; border-bottom:1px solid rgba(255,255,255,0.08); display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,0.02);">
         <div style="display:flex; align-items:center; gap:12px;">
           ${providerIcon}
           <div>
-            <h4 style="margin:0; font-size:16px; font-weight:700; color:#fff;">Sign In with ${providerTitle}</h4>
-            <div style="font-size:12px; color:#94a3b8;">Reign Unified Commerce Account</div>
+            <h4 style="margin:0; font-size:17px; font-weight:700; color:#fff;">Continue with ${providerTitle}</h4>
+            <div style="font-size:12px; color:#94a3b8;">Reign Electronics & Mali Mali SSO</div>
           </div>
         </div>
-        <button type="button" onclick="document.getElementById('reign-social-modal-overlay').remove()" style="background:none; border:none; color:#94a3b8; font-size:22px; cursor:pointer;">&times;</button>
+        <button type="button" onclick="document.getElementById('reign-social-modal-overlay').remove()" style="background:none; border:none; color:#94a3b8; font-size:24px; cursor:pointer; line-height:1;" aria-label="Close">&times;</button>
       </div>
 
       <!-- Body -->
-      <div style="padding:24px;">
-        <p style="font-size:13px; color:#cbd5e1; margin-bottom:18px;">
-          Choose an account to continue to <strong>Reign Electronics & Mali Mali</strong>. You will automatically receive <strong>150 Welcome Points</strong> on your first sign-in:
+      <div style="padding:26px;">
+        <div style="background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.25); border-radius:12px; padding:10px 14px; margin-bottom:18px; display:flex; align-items:center; gap:10px;">
+          <i class="bi bi-gift-fill text-success" style="font-size:18px;"></i>
+          <span style="font-size:12.5px; color:#34d399; font-weight:500;">
+            <strong>+150 Loyalty Welcome Points</strong> credited instantly upon creating your account!
+          </span>
+        </div>
+
+        <p style="font-size:13.5px; color:#cbd5e1; margin-bottom:16px;">
+          Select a verified profile or enter your details to create your account or sign in:
         </p>
 
-        <!-- Pre-filled Accounts -->
-        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px;">
-          <button type="button" onclick="submitOAuthProfile('${provider}', 'vincentnyasani02@gmail.com', 'Vincent Nyasani')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; text-align:left; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,107,0,0.15)'; this.style.borderColor='#ff6b00';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-            <div style="width:36px; height:36px; border-radius:50%; background:#ff6b00; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">V</div>
+        <!-- Instant 1-Click Profile Choices -->
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:20px;">
+          <button type="button" onclick="submitOAuthProfile('${provider}', 'vincentnyasani02@gmail.com', 'Vincent Nyasani')" style="display:flex; align-items:center; gap:14px; padding:12px 16px; border-radius:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:#fff; text-align:left; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(${isGoogle ? '234,67,53,0.15' : '24,119,242,0.15'})'; this.style.borderColor='${providerColor}';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.1)';">
+            <div style="width:38px; height:38px; border-radius:50%; background:${providerColor}; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">V</div>
             <div style="flex:1;">
-              <div style="font-weight:600; font-size:14px;">Vincent Nyasani</div>
+              <div style="font-weight:600; font-size:14px; color:#fff;">Vincent Nyasani</div>
               <div style="font-size:12px; color:#94a3b8;">vincentnyasani02@gmail.com</div>
             </div>
-            <i class="bi bi-arrow-right-short" style="font-size:20px; color:#ff6b00;"></i>
+            <i class="bi bi-check-circle-fill" style="font-size:18px; color:#10b981;"></i>
           </button>
 
-          <button type="button" onclick="submitOAuthProfile('${provider}', 'customer.shopper@reign.co.ke', 'Joy Wanjiku')" style="display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; text-align:left; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(255,107,0,0.15)'; this.style.borderColor='#ff6b00';" onmouseout="this.style.background='rgba(255,255,255,0.05)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-            <div style="width:36px; height:36px; border-radius:50%; background:#10b981; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700;">J</div>
+          <button type="button" onclick="submitOAuthProfile('${provider}', 'customer.shopper@reign.co.ke', 'Joy Wanjiku')" style="display:flex; align-items:center; gap:14px; padding:12px 16px; border-radius:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:#fff; text-align:left; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='rgba(${isGoogle ? '234,67,53,0.15' : '24,119,242,0.15'})'; this.style.borderColor='${providerColor}';" onmouseout="this.style.background='rgba(255,255,255,0.04)'; this.style.borderColor='rgba(255,255,255,0.1)';">
+            <div style="width:38px; height:38px; border-radius:50%; background:#10b981; color:#fff; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px;">J</div>
             <div style="flex:1;">
-              <div style="font-weight:600; font-size:14px;">Joy Wanjiku</div>
+              <div style="font-weight:600; font-size:14px; color:#fff;">Joy Wanjiku</div>
               <div style="font-size:12px; color:#94a3b8;">joy.wanjiku@gmail.com</div>
             </div>
-            <i class="bi bi-arrow-right-short" style="font-size:20px; color:#ff6b00;"></i>
+            <i class="bi bi-check-circle-fill" style="font-size:18px; color:#10b981;"></i>
           </button>
         </div>
 
-        <!-- Custom Email Form -->
-        <div style="border-top:1px dashed rgba(255,255,255,0.12); padding-top:14px;">
-          <label style="font-size:12px; font-weight:600; color:#94a3b8; text-transform:uppercase; margin-bottom:6px; display:block;">Or Enter Your ${providerTitle} Email</label>
-          <div style="display:flex; gap:8px;">
-            <input type="email" id="custom-oauth-email" placeholder="name@domain.com" style="flex:1; background:#0f172a; border:1px solid #334155; border-radius:10px; color:#fff; padding:9px 12px; font-size:13px;">
-            <button type="button" onclick="const em = document.getElementById('custom-oauth-email').value.trim(); if(em) submitOAuthProfile('${provider}', em, em.split('@')[0]);" style="background:${providerColor}; color:#fff; border:none; border-radius:10px; padding:0 16px; font-size:13px; font-weight:600; cursor:pointer;">Continue</button>
+        <!-- Custom Account Entry Form -->
+        <div style="border-top:1px dashed rgba(255,255,255,0.12); padding-top:18px;">
+          <label style="font-size:12px; font-weight:700; color:#94a3b8; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px; display:block;">
+            Or Register with Another ${providerTitle} Account
+          </label>
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+            <input type="text" id="custom-oauth-name" placeholder="Your Full Name (e.g. Samuel Maina)" style="background:#0f172a; border:1px solid #334155; border-radius:12px; color:#fff; padding:10px 14px; font-size:13.5px; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='${providerColor}'" onblur="this.style.borderColor='#334155'">
+            <input type="email" id="custom-oauth-email" placeholder="Your ${providerTitle} Email (e.g. sam.maina@gmail.com)" style="background:#0f172a; border:1px solid #334155; border-radius:12px; color:#fff; padding:10px 14px; font-size:13.5px; outline:none; transition:border-color 0.2s;" onfocus="this.style.borderColor='${providerColor}'" onblur="this.style.borderColor='#334155'">
           </div>
+          <button type="button" onclick="const em = document.getElementById('custom-oauth-email').value.trim(); const nm = document.getElementById('custom-oauth-name').value.trim(); if(!em) { alert('Please enter your email'); return; } submitOAuthProfile('${provider}', em, nm);" style="width:100%; background:${providerColor}; color:#fff; border:none; border-radius:12px; padding:12px 18px; font-size:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px; box-shadow:0 10px 20px -5px ${providerColor};">
+            <i class="bi bi-person-plus-fill"></i> Create / Sign In with ${providerTitle}
+          </button>
         </div>
 
-        <div id="oauth-loading-status" style="display:none; text-align:center; padding:15px; color:#ff8800; font-size:13px;">
-          <span class="spinner-border spinner-border-sm me-2"></span> Authenticating with ${providerTitle}...
+        <div id="oauth-loading-status" style="display:none; text-align:center; padding:16px 0 0; color:#ff8800; font-size:13.5px; font-weight:600;">
+          <span class="spinner-border spinner-border-sm me-2"></span> Connecting to ${providerTitle} SSO...
         </div>
       </div>
     </div>
   `;
 };
 
-window.submitOAuthProfile = function(provider, email, name) {
+window.submitOAuthProfile = function(provider, email, name, picture) {
   const statusEl = document.getElementById('oauth-loading-status');
   if (statusEl) statusEl.style.display = 'block';
+
+  const cleanEmail = (email || '').trim().toLowerCase();
+  const cleanName = (name || cleanEmail.split('@')[0] || 'User').trim();
+
+  if (!cleanEmail) {
+    alert('Please enter a valid email address.');
+    if (statusEl) statusEl.style.display = 'none';
+    return;
+  }
 
   fetch(`${API_BASE_URL}/auth/oauth/${provider}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       profile: {
-        email: email,
-        name: name,
+        email: cleanEmail,
+        name: cleanName,
         sub: 'oauth_' + Math.random().toString(36).substring(2, 10),
-        picture: ''
+        picture: picture || ''
       }
     })
   })
@@ -1936,6 +1961,7 @@ window.submitOAuthProfile = function(provider, email, name) {
   .then(data => {
     if (!data.success) {
       alert(data.error || 'Social sign in failed. Please try again.');
+      if (statusEl) statusEl.style.display = 'none';
       return;
     }
 
@@ -1944,8 +1970,10 @@ window.submitOAuthProfile = function(provider, email, name) {
       name: data.user.name,
       email: data.user.email,
       phone: data.user.phone || '',
+      role: data.user.role || 'customer',
+      loyaltyPoints: data.user.loyaltyPoints || 150,
       oauthProvider: provider,
-      initials: data.user.name.substring(0, 2).toUpperCase()
+      initials: (data.user.name || 'CU').substring(0, 2).toUpperCase()
     };
 
     localStorage.setItem(AUTH_KEY, JSON.stringify(user));
@@ -1962,11 +1990,16 @@ window.submitOAuthProfile = function(provider, email, name) {
     if (socOverlay) socOverlay.remove();
     if (typeof window.closeAuthModal === 'function') window.closeAuthModal();
 
-    window.showToast(data.message || `Signed in as ${user.name}`, 'success', 'bi-person-check-fill');
+    const welcomeMsg = data.isNewUser
+      ? `🎉 Welcome to Reign Electronics, ${user.name}! 150 Welcome Points added to your account.`
+      : `Welcome back, ${user.name}!`;
+
+    window.showToast(welcomeMsg, 'success', provider === 'google' ? 'bi-google' : 'bi-facebook');
   })
   .catch(err => {
     console.error('OAuth network error:', err);
     alert('Failed to connect to authentication server. Please check your connection.');
+    if (statusEl) statusEl.style.display = 'none';
   });
 };
 
