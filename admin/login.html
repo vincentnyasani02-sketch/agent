@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Admin Portal Sign In — Reign Electronics & Mali Mali</title>
+  <meta name="description" content="Secure administrative login for Reign Electronics & Mali Mali backoffice portal.">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Design Tokens & Admin Styles -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/admin.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --reign-orange: #ff6b00;
+      --reign-orange-glow: rgba(255, 107, 0, 0.35);
+      --reign-dark-bg: #0b0f19;
+      --reign-surface: #131b2e;
+      --reign-surface-border: rgba(255, 255, 255, 0.08);
+    }
+
+    body.admin-login-page {
+      min-height: 100vh;
+      background: radial-gradient(circle at 15% 20%, rgba(255, 107, 0, 0.12) 0%, transparent 40%),
+                  radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+                  #0b0f19;
+      color: #f1f5f9;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient animated mesh backdrop */
+    .login-backdrop-grid {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .login-header-nav {
+      position: relative;
+      z-index: 10;
+      padding: 20px 28px;
+    }
+
+    .login-card-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 480px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: rgba(19, 27, 46, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--reign-surface-border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
+                  0 0 40px -10px var(--reign-orange-glow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .reign-login-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      margin-bottom: 24px;
+    }
+
+    .reign-logo-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #ff6b00 0%, #ff8800 100%);
+      color: #fff;
+      font-weight: 800;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+    }
+
+    .reign-login-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .reign-login-subtitle {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      margin-bottom: 26px;
+    }
+
+    .form-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .input-group-text-dark {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-right: none;
+      color: #64748b;
+      border-top-left-radius: 12px;
+      border-bottom-left-radius: 12px;
+      padding-left: 14px;
+      padding-right: 14px;
+    }
+
+    .form-control-dark {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #f8fafc;
+      font-size: 0.95rem;
+      padding: 12px 14px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .form-control-dark:focus {
+      background: #0f172a;
+      border-color: #ff6b00;
+      color: #fff;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.2);
+    }
+
+    .input-group .form-control-dark {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+      border-left: none;
+    }
+
+    .toggle-pwd-btn {
+      background: #0f172a;
+      border: 1px solid #334155;
+      border-left: none;
+      color: #94a3b8;
+      border-top-right-radius: 12px;
+      border-bottom-right-radius: 12px;
+      padding-right: 14px;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .toggle-pwd-btn:hover {
+      color: #ff6b00;
+    }
+
+    .btn-reign-primary {
+      background: linear-gradient(135deg, #ff6b00 0%, #ff8800 100%);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 13px 20px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 8px 24px rgba(255, 107, 0, 0.35);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .btn-reign-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(255, 107, 0, 0.5);
+      color: #fff;
+    }
+
+    .btn-reign-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-reign-primary:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .demo-credentials-box {
+      margin-top: 24px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    .demo-chip {
+      background: rgba(255, 107, 0, 0.12);
+      border: 1px solid rgba(255, 107, 0, 0.3);
+      color: #ff9d54;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 6px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .demo-chip:hover {
+      background: rgba(255, 107, 0, 0.25);
+      color: #fff;
+      border-color: #ff6b00;
+    }
+
+    .security-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    /* 2FA Verification Styling */
+    .twofa-shield-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      background: rgba(255, 107, 0, 0.12);
+      border: 1px solid rgba(255, 107, 0, 0.35);
+      color: #ff6b00;
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px auto;
+      box-shadow: 0 0 25px rgba(255, 107, 0, 0.25);
+      animation: pulseGlow 2.5s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 15px rgba(255, 107, 0, 0.2); }
+      100% { box-shadow: 0 0 30px rgba(255, 107, 0, 0.45); }
+    }
+
+    .otp-digits-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 22px 0 16px 0;
+    }
+
+    .otp-digit-input {
+      width: 48px;
+      height: 58px;
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 12px;
+      color: #ff8800;
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-align: center;
+      font-family: 'Space Grotesk', monospace;
+      transition: all 0.2s ease;
+      caret-color: #ff6b00;
+    }
+
+    .otp-digit-input:focus {
+      outline: none;
+      border-color: #ff6b00;
+      background: #111a33;
+      box-shadow: 0 0 0 4px rgba(255, 107, 0, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .otp-digit-input.filled {
+      border-color: #10b981;
+      color: #10b981;
+    }
+
+    .status-pill {
+      font-size: 0.78rem;
+      padding: 6px 12px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .status-pill.dispatched {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .status-pill.simulated {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+  </style>
+</head>
+
+<body class="admin-login-page">
+
+  <div class="login-backdrop-grid"></div>
+
+  <!-- Top bar with brand & storefront link -->
+  <header class="login-header-nav d-flex align-items-center justify-content-between">
+    <a href="../index.html" class="d-flex align-items-center text-decoration-none text-white gap-2">
+      <div class="reign-logo-badge" style="width:36px; height:36px; font-size:18px;">R</div>
+      <span class="fw-bold" style="font-size:1.15rem; letter-spacing:-0.3px;">Reign<span style="color:#ff6b00;">Electronics</span></span>
+    </a>
+    <a href="../index.html" class="btn btn-outline-light btn-sm rounded-pill px-3 py-1 text-decoration-none" style="font-size:0.82rem; border-color:rgba(255,255,255,0.2);">
+      <i class="bi bi-arrow-left me-1"></i> Customer Storefront
+    </a>
+  </header>
+
+  <!-- Login Card Container -->
+  <main class="login-card-container">
+    <div class="login-card">
+
+      <!-- ============================================== -->
+      <!-- STEP 1: CREDENTIALS SIGN IN                    -->
+      <!-- ============================================== -->
+      <div id="stepCredentials">
+        <div class="text-center">
+          <span class="security-badge">
+            <i class="bi bi-shield-lock-fill"></i> Secure Backoffice Access
+          </span>
+          <h1 class="reign-login-title">Administrator Portal</h1>
+          <p class="reign-login-subtitle">Sign in to control inventory, live orders, repair pipelines &amp; POS.</p>
+        </div>
+
+        <!-- Alert Box -->
+        <div id="loginAlert" class="alert d-none" role="alert" style="font-size:0.86rem; border-radius:10px;"></div>
+
+        <form id="adminLoginForm" onsubmit="handleAdminLogin(event)" novalidate>
+          <!-- Email / Username -->
+          <div class="mb-3">
+            <label class="form-label" for="adminEmail">Staff Email or Username</label>
+            <div class="input-group">
+              <span class="input-group-text input-group-text-dark">
+                <i class="bi bi-envelope"></i>
+              </span>
+              <input type="text" class="form-control form-control-dark" id="adminEmail" placeholder="admin@reignshop.com" required autocomplete="username" autofocus>
+            </div>
+          </div>
+
+          <!-- Password -->
+          <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <label class="form-label mb-0" for="adminPassword">Password</label>
+              <span class="text-secondary" style="font-size:0.75rem;">Encrypted TLS 1.3</span>
+            </div>
+            <div class="input-group">
+              <span class="input-group-text input-group-text-dark">
+                <i class="bi bi-key"></i>
+              </span>
+              <input type="password" class="form-control form-control-dark" id="adminPassword" placeholder="••••••••••••" required autocomplete="current-password">
+              <button class="toggle-pwd-btn" type="button" onclick="togglePasswordVisibility()" title="Show/Hide Password">
+                <i class="bi bi-eye" id="togglePwdIcon"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Remember Me Checkbox -->
+          <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="form-check">
+              <input class="form-check-input bg-dark border-secondary" type="checkbox" id="rememberMe" checked>
+              <label class="form-check-label text-secondary" for="rememberMe" style="font-size:0.83rem;">
+                Stay signed in on this station
+              </label>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button type="submit" id="adminLoginBtn" class="btn-reign-primary">
+            <span id="loginBtnText"><i class="bi bi-box-arrow-in-right me-1"></i> Authenticate &amp; Enter Admin</span>
+            <span id="loginBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <!-- Demo Quick Fill Buttons -->
+        <div class="demo-credentials-box">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="text-secondary fw-semibold" style="font-size:0.75rem; text-transform:uppercase; letter-spacing:0.5px;">
+              <i class="bi bi-lightning-charge-fill text-warning me-1"></i> Quick Fill Staff Credentials
+            </span>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <button type="button" class="demo-chip" onclick="fillCredentials('admin@reignshop.com', 'admin123')">
+              <i class="bi bi-person-badge"></i> Super Admin (Vincent)
+            </button>
+            <button type="button" class="demo-chip" onclick="fillCredentials('admin@shop.com', 'admin123')">
+              <i class="bi bi-shield-check"></i> System Admin
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ============================================== -->
+      <!-- STEP 2: TWO-FACTOR (2FA) OTP VERIFICATION      -->
+      <!-- ============================================== -->
+      <div id="stepTwoFactor" class="d-none">
+        <div class="text-center">
+          <div class="twofa-shield-avatar">
+            <i class="bi bi-shield-lock"></i>
+          </div>
+          <h2 class="reign-login-title" style="font-size:1.4rem;">2-Step Verification</h2>
+          <p class="reign-login-subtitle mb-2">
+            Enter the 6-digit verification code sent to:
+          </p>
+          <div class="fw-bold text-white mb-2" id="twoFaTargetEmail" style="font-size:0.95rem; letter-spacing:0.3px;">
+            admin@reignshop.com
+          </div>
+
+          <!-- Live Email Dispatched Badge -->
+          <div id="twoFaStatusPill" class="status-pill dispatched d-none">
+            <i class="bi bi-envelope-check-fill"></i> Security code emailed via SMTP
+          </div>
+
+          <!-- Dev OTP Chip (for local convenience) -->
+          <div id="devOtpBox" class="d-none mb-3">
+            <span class="demo-chip" onclick="quickFillDevOtp()" title="Click to fill code automatically">
+              <i class="bi bi-key-fill"></i> Code: <strong id="devOtpDisplay" class="ms-1">------</strong> (Click to Paste)
+            </span>
+          </div>
+        </div>
+
+        <!-- 2FA Alert Box -->
+        <div id="twoFaAlert" class="alert d-none" role="alert" style="font-size:0.86rem; border-radius:10px;"></div>
+
+        <form id="twoFaForm" onsubmit="handle2FaVerify(event)">
+          <!-- 6-digit OTP Inputs -->
+          <div class="otp-digits-container" id="otpInputsContainer">
+            <input type="text" maxlength="1" class="otp-digit-input" id="otp-0" inputmode="numeric" autocomplete="one-time-code" autofocus>
+            <input type="text" maxlength="1" class="otp-digit-input" id="otp-1" inputmode="numeric">
+            <input type="text" maxlength="1" class="otp-digit-input" id="otp-2" inputmode="numeric">
+            <input type="text" maxlength="1" class="otp-digit-input" id="otp-3" inputmode="numeric">
+            <input type="text" maxlength="1" class="otp-digit-input" id="otp-4" inputmode="numeric">
+            <input type="text" maxlength="1" class="otp-digit-input" id="otp-5" inputmode="numeric">
+          </div>
+
+          <!-- Hidden fallback full-code field -->
+          <input type="hidden" id="fullOtpCode" value="">
+
+          <!-- Expiration countdown & Resend -->
+          <div class="d-flex align-items-center justify-content-between text-secondary mb-4 px-1" style="font-size:0.82rem;">
+            <span>
+              <i class="bi bi-stopwatch me-1"></i> Expires in <strong id="twoFaTimer" class="text-white">05:00</strong>
+            </span>
+            <button type="button" class="btn btn-link btn-sm text-decoration-none p-0 text-warning" id="resend2FaBtn" onclick="handle2FaResend()">
+              <i class="bi bi-arrow-repeat me-1"></i> Resend Email
+            </button>
+          </div>
+
+          <!-- Verify Button -->
+          <button type="submit" id="verify2FaBtn" class="btn-reign-primary">
+            <span id="verifyBtnText"><i class="bi bi-check-circle-fill me-1"></i> Verify &amp; Launch Console</span>
+            <span id="verifyBtnSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+          </button>
+        </form>
+
+        <!-- Back to Credentials Button -->
+        <div class="text-center mt-3">
+          <button type="button" class="btn btn-link btn-sm text-decoration-none text-secondary" onclick="backToCredentials()">
+            <i class="bi bi-arrow-left me-1"></i> Sign in with a different account
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Security notice footer -->
+    <div class="text-center mt-3 text-secondary" style="font-size:0.78rem;">
+      <i class="bi bi-lock me-1"></i> Protected by Reign Enterprise RBAC &amp; JWT Session Verification.
+    </div>
+  </main>
+
+  <!-- Vendor & Core Scripts -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Automatically append ngrok-skip-browser-warning to all fetch calls
+    (function installNgrokHeaderInterceptor() {
+      if (typeof window === 'undefined' || !window.fetch) return;
+      const originalFetch = window.fetch;
+      window.fetch = function(resource, init = {}) {
+        init = init || {};
+        let headers = init.headers;
+        if (!headers) {
+          headers = { 'ngrok-skip-browser-warning': 'true' };
+        } else if (headers instanceof Headers) {
+          if (!headers.has('ngrok-skip-browser-warning')) {
+            headers.set('ngrok-skip-browser-warning', 'true');
+          }
+        } else if (Array.isArray(headers)) {
+          headers.push(['ngrok-skip-browser-warning', 'true']);
+        } else if (typeof headers === 'object') {
+          headers['ngrok-skip-browser-warning'] = 'true';
+        }
+        init.headers = headers;
+        return originalFetch.call(this, resource, init);
+      };
+    })();
+
+    // Compute dynamic API base URL matching server environment
+    window.API_BASE_URL = window.API_BASE_URL || ((window.location.origin.includes('5000') || window.location.hostname.includes('trycloudflare') || window.location.hostname.includes('ngrok') || window.location.hostname.includes('localtunnel') || window.location.port === '' || window.location.port === '80' || window.location.port === '443')
+      ? `${window.location.origin}/api`
+      : (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || !window.location.hostname)
+        ? 'http://127.0.0.1:5000/api'
+        : `${window.location.protocol}//${window.location.hostname}:5000/api`);
+    var API_BASE_URL = window.API_BASE_URL;
+
+    // Active 2FA session state
+    let active2FaSession = null;
+    let timerInterval = null;
+    let resendCooldown = 0;
+
+    // Check if already authenticated with active admin token
+    window.addEventListener('DOMContentLoaded', () => {
+      setupOtpInputHandlers();
+
+      const existingToken = localStorage.getItem('reign_admin_token') || sessionStorage.getItem('reign_admin_token');
+      const existingUser = localStorage.getItem('reign_admin_user') || sessionStorage.getItem('reign_admin_user');
+      
+      // Check for logout query param
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get('action') === 'logout') {
+        localStorage.removeItem('reign_admin_token');
+        localStorage.removeItem('reign_admin_user');
+        sessionStorage.removeItem('reign_admin_token');
+        sessionStorage.removeItem('reign_admin_user');
+        showAlert('You have been securely signed out of the Admin Console.', 'info');
+        return;
+      }
+
+      if (urlParams.get('unauthorized') === '1') {
+        showAlert('Access Denied: Administrative privileges required. Please sign in with an Admin account.', 'warning');
+        return;
+      }
+
+      // If token exists and user is admin, auto-redirect to target or index
+      if (existingToken && existingUser) {
+        try {
+          const u = JSON.parse(existingUser);
+          const role = (u.role || '').toUpperCase();
+          if (u.isAdmin || ['ADMIN', 'SUPER_ADMIN', 'MANAGER', 'STAFF'].includes(role)) {
+            const redirectUrl = urlParams.get('redirect') || 'index.html';
+            window.location.href = redirectUrl;
+          }
+        } catch (e) {}
+      }
+    });
+
+    function togglePasswordVisibility() {
+      const pwdInput = document.getElementById('adminPassword');
+      const icon = document.getElementById('togglePwdIcon');
+      if (pwdInput.type === 'password') {
+        pwdInput.type = 'text';
+        icon.classList.remove('bi-eye');
+        icon.classList.add('bi-eye-slash');
+      } else {
+        pwdInput.type = 'password';
+        icon.classList.remove('bi-eye-slash');
+        icon.classList.add('bi-eye');
+      }
+    }
+
+    function fillCredentials(email, password) {
+      document.getElementById('adminEmail').value = email;
+      document.getElementById('adminPassword').value = password;
+      showAlert(`Loaded credentials for ${email}. Click Authenticate to continue.`, 'info');
+    }
+
+    function showAlert(message, type = 'danger') {
+      const alertBox = document.getElementById('loginAlert');
+      alertBox.className = `alert alert-${type} d-block mb-3`;
+      alertBox.innerHTML = `<i class="bi bi-exclamation-triangle-fill me-2"></i> ${message}`;
+    }
+
+    function show2FaAlert(message, type = 'danger') {
+      const alertBox = document.getElementById('twoFaAlert');
+      alertBox.className = `alert alert-${type} d-block mb-3`;
+      alertBox.innerHTML = `<i class="bi bi-info-circle-fill me-2"></i> ${message}`;
+    }
+
+    async function handleAdminLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('adminEmail').value.trim();
+      const password = document.getElementById('adminPassword').value;
+      const remember = document.getElementById('rememberMe').checked;
+
+      if (!email || !password) {
+        showAlert('Please enter both your staff email and password.');
+        return;
+      }
+
+      const loginBtn = document.getElementById('adminLoginBtn');
+      const btnText = document.getElementById('loginBtnText');
+      const btnSpinner = document.getElementById('loginBtnSpinner');
+
+      loginBtn.disabled = true;
+      btnText.classList.add('d-none');
+      btnSpinner.classList.remove('d-none');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || data.error || 'Authentication failed. Please verify credentials.');
+        }
+
+        // Check if 2FA is required for this staff member
+        if (data.require2FA) {
+          active2FaSession = {
+            tempToken: data.tempToken,
+            email: email,
+            maskedIdentifier: data.maskedIdentifier || email,
+            remember: remember,
+            devOtp: data.devOtp || '',
+            expiresIn: data.expiresIn || 300,
+            emailDispatched: !!data.emailDispatched
+          };
+          transitionTo2FaScreen(active2FaSession);
+          return;
+        }
+
+        // Direct login without 2FA (e.g. if disabled)
+        processSuccessfulLogin(data.user, data.token, remember);
+
+      } catch (err) {
+        console.error('Login error:', err);
+        showAlert(err.message || 'Network error connecting to authentication server.');
+      } finally {
+        loginBtn.disabled = false;
+        btnText.classList.remove('d-none');
+        btnSpinner.classList.add('d-none');
+      }
+    }
+
+    function transitionTo2FaScreen(session) {
+      document.getElementById('stepCredentials').classList.add('d-none');
+      document.getElementById('stepTwoFactor').classList.remove('d-none');
+
+      // Update target email display
+      document.getElementById('twoFaTargetEmail').textContent = session.maskedIdentifier || session.email;
+
+      // Status pill for email dispatch
+      const statusPill = document.getElementById('twoFaStatusPill');
+      if (session.emailDispatched) {
+        statusPill.className = 'status-pill dispatched d-inline-flex';
+        statusPill.innerHTML = '<i class="bi bi-envelope-check-fill me-1"></i> Verification code emailed via SMTP';
+      } else {
+        statusPill.className = 'status-pill simulated d-inline-flex';
+        statusPill.innerHTML = '<i class="bi bi-shield-lock me-1"></i> 2-Step Verification Active';
+      }
+
+      // Show dev OTP helper if available
+      const devBox = document.getElementById('devOtpBox');
+      const devDisplay = document.getElementById('devOtpDisplay');
+      if (session.devOtp) {
+        devBox.classList.remove('d-none');
+        devDisplay.textContent = session.devOtp;
+      } else {
+        devBox.classList.add('d-none');
+      }
+
+      // Clear previous OTP inputs
+      for (let i = 0; i < 6; i++) {
+        const inp = document.getElementById(`otp-${i}`);
+        if (inp) {
+          inp.value = '';
+          inp.classList.remove('filled');
+        }
+      }
+      document.getElementById('fullOtpCode').value = '';
+      setTimeout(() => document.getElementById('otp-0').focus(), 100);
+
+      // Start countdown timer
+      start2FaTimer(session.expiresIn || 300);
+      show2FaAlert(`A 6-digit code has been dispatched. Enter it below to proceed.`, 'info');
+    }
+
+    function backToCredentials() {
+      if (timerInterval) clearInterval(timerInterval);
+      document.getElementById('stepTwoFactor').classList.add('d-none');
+      document.getElementById('stepCredentials').classList.remove('d-none');
+      active2FaSession = null;
+    }
+
+    function start2FaTimer(seconds) {
+      if (timerInterval) clearInterval(timerInterval);
+      let remaining = seconds;
+      const timerDisplay = document.getElementById('twoFaTimer');
+
+      function updateDisplay() {
+        const mins = Math.floor(remaining / 60);
+        const secs = remaining % 60;
+        timerDisplay.textContent = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        if (remaining <= 0) {
+          clearInterval(timerInterval);
+          show2FaAlert('Verification code has expired. Please click "Resend Email" for a fresh code.', 'danger');
+        }
+        remaining--;
+      }
+      updateDisplay();
+      timerInterval = setInterval(updateDisplay, 1000);
+    }
+
+    function setupOtpInputHandlers() {
+      for (let i = 0; i < 6; i++) {
+        const input = document.getElementById(`otp-${i}`);
+        if (!input) continue;
+
+        input.addEventListener('input', (e) => {
+          const val = e.target.value.replace(/[^0-9]/g, '');
+          e.target.value = val ? val[0] : '';
+          
+          if (val) {
+            e.target.classList.add('filled');
+            if (i < 5) document.getElementById(`otp-${i + 1}`).focus();
+          } else {
+            e.target.classList.remove('filled');
+          }
+          syncFullOtpCode();
+        });
+
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Backspace' && !e.target.value && i > 0) {
+            const prev = document.getElementById(`otp-${i - 1}`);
+            prev.focus();
+            prev.value = '';
+            prev.classList.remove('filled');
+            syncFullOtpCode();
+          } else if (e.key === 'ArrowLeft' && i > 0) {
+            document.getElementById(`otp-${i - 1}`).focus();
+          } else if (e.key === 'ArrowRight' && i < 5) {
+            document.getElementById(`otp-${i + 1}`).focus();
+          }
+        });
+
+        input.addEventListener('paste', (e) => {
+          e.preventDefault();
+          const pasteData = (e.clipboardData || window.clipboardData).getData('text').trim().replace(/[^0-9]/g, '');
+          if (!pasteData) return;
+
+          for (let j = 0; j < 6; j++) {
+            const digitInput = document.getElementById(`otp-${j}`);
+            if (j < pasteData.length) {
+              digitInput.value = pasteData[j];
+              digitInput.classList.add('filled');
+            } else {
+              digitInput.value = '';
+              digitInput.classList.remove('filled');
+            }
+          }
+          syncFullOtpCode();
+          const nextFocus = Math.min(pasteData.length, 5);
+          document.getElementById(`otp-${nextFocus}`).focus();
+        });
+      }
+    }
+
+    function syncFullOtpCode() {
+      let code = '';
+      for (let i = 0; i < 6; i++) {
+        code += (document.getElementById(`otp-${i}`)?.value || '');
+      }
+      document.getElementById('fullOtpCode').value = code;
+      if (code.length === 6) {
+        // Auto-verify on 6th digit entered
+        setTimeout(() => handle2FaVerify(), 200);
+      }
+    }
+
+    function quickFillDevOtp() {
+      if (!active2FaSession || !active2FaSession.devOtp) return;
+      const code = String(active2FaSession.devOtp).trim();
+      for (let i = 0; i < 6; i++) {
+        const inp = document.getElementById(`otp-${i}`);
+        if (inp) {
+          inp.value = code[i] || '';
+          inp.classList.add('filled');
+        }
+      }
+      syncFullOtpCode();
+    }
+
+    async function handle2FaVerify(e) {
+      if (e) e.preventDefault();
+      syncFullOtpCode();
+      const code = document.getElementById('fullOtpCode').value.trim();
+
+      if (!active2FaSession || !active2FaSession.tempToken) {
+        show2FaAlert('Verification session invalid. Please sign in again.');
+        backToCredentials();
+        return;
+      }
+
+      if (code.length !== 6) {
+        show2FaAlert('Please enter all 6 digits of your security code.');
+        return;
+      }
+
+      const verifyBtn = document.getElementById('verify2FaBtn');
+      const btnText = document.getElementById('verifyBtnText');
+      const btnSpinner = document.getElementById('verifyBtnSpinner');
+
+      verifyBtn.disabled = true;
+      btnText.classList.add('d-none');
+      btnSpinner.classList.remove('d-none');
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/verify-2fa`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tempToken: active2FaSession.tempToken,
+            otp: code
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || data.error || 'Verification failed. Please re-check code.');
+        }
+
+        show2FaAlert('Verification successful! Access granted.', 'success');
+        processSuccessfulLogin(data.user, data.token, active2FaSession.remember);
+
+      } catch (err) {
+        console.error('2FA Verification Error:', err);
+        show2FaAlert(err.message || 'Incorrect verification code. Please try again.');
+        // Highlight inputs in red briefly
+        for (let i = 0; i < 6; i++) {
+          const inp = document.getElementById(`otp-${i}`);
+          if (inp) {
+            inp.style.borderColor = '#ef4444';
+            setTimeout(() => inp.style.borderColor = '', 1200);
+          }
+        }
+      } finally {
+        verifyBtn.disabled = false;
+        btnText.classList.remove('d-none');
+        btnSpinner.classList.add('d-none');
+      }
+    }
+
+    async function handle2FaResend() {
+      if (!active2FaSession || !active2FaSession.tempToken) return;
+      const resendBtn = document.getElementById('resend2FaBtn');
+      resendBtn.disabled = true;
+      resendBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span> Dispatching...';
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/resend-2fa`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tempToken: active2FaSession.tempToken })
+        });
+
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || data.error || 'Failed to resend code');
+        }
+
+        active2FaSession.devOtp = data.devOtp || active2FaSession.devOtp;
+        if (data.devOtp) {
+          document.getElementById('devOtpDisplay').textContent = data.devOtp;
+          document.getElementById('devOtpBox').classList.remove('d-none');
+        }
+
+        // Restart timer
+        start2FaTimer(data.expiresIn || 300);
+        show2FaAlert(`A fresh 6-digit code was sent to ${data.maskedIdentifier || active2FaSession.email}.`, 'success');
+
+        // Cooldown for 30s
+        let cd = 30;
+        const cdInterval = setInterval(() => {
+          cd--;
+          if (cd <= 0) {
+            clearInterval(cdInterval);
+            resendBtn.disabled = false;
+            resendBtn.innerHTML = '<i class="bi bi-arrow-repeat me-1"></i> Resend Email';
+          } else {
+            resendBtn.innerHTML = `<i class="bi bi-hourglass-split me-1"></i> Resend in ${cd}s`;
+          }
+        }, 1000);
+
+      } catch (err) {
+        show2FaAlert(err.message || 'Error requesting new verification code.');
+        resendBtn.disabled = false;
+        resendBtn.innerHTML = '<i class="bi bi-arrow-repeat me-1"></i> Resend Email';
+      }
+    }
+
+    function processSuccessfulLogin(user, token, remember) {
+      const u = user || {};
+      const role = (u.role || '').toUpperCase();
+      const isAdmin = u.isAdmin === true || ['ADMIN', 'SUPER_ADMIN', 'MANAGER', 'STAFF'].includes(role);
+
+      if (!isAdmin) {
+        showAlert(`Unauthorized: "${u.email}" is registered as ${u.role || 'customer'}. Admin privileges required.`);
+        backToCredentials();
+        return;
+      }
+
+      const storage = remember ? localStorage : sessionStorage;
+      storage.setItem('reign_admin_token', token || 'demo_token');
+      storage.setItem('reign_admin_user', JSON.stringify({
+        id: u.id,
+        name: u.name || u.fullName || u.username || 'Admin Staff',
+        email: u.email,
+        role: role || 'ADMIN',
+        isAdmin: true
+      }));
+
+      if (remember) {
+        sessionStorage.removeItem('reign_admin_token');
+        sessionStorage.removeItem('reign_admin_user');
+      } else {
+        localStorage.removeItem('reign_admin_token');
+        localStorage.removeItem('reign_admin_user');
+      }
+
+      showAlert(`Welcome back, ${u.name || 'Admin'}! Loading Admin Console...`, 'success');
+      const urlParams = new URLSearchParams(window.location.search);
+      const redirectUrl = urlParams.get('redirect') || 'index.html';
+
+      setTimeout(() => {
+        window.location.href = redirectUrl;
+      }, 700);
+    }
+  </script>
+</body>
+
+</html>

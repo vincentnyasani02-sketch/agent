@@ -82,8 +82,8 @@
                 <span class="auth-dropdown-email" id="user-display-email">customer@reignshop.com</span>
               </div>
               <hr class="auth-dropdown-divider">
-              <a href="#" class="auth-dropdown-item"><i class="bi bi-person-circle"></i> My Orders</a>
-              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> View Cart</a>
+              <a href="admin/index.html" class="auth-dropdown-item text-warning fw-semibold"><i class="bi bi-speedometer2"></i> Admin Portal</a>
+              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> My Orders & Cart</a>
               <hr class="auth-dropdown-divider">
               <button class="auth-dropdown-item auth-signout-btn" id="signout-btn" onclick="signOut()">
                 <i class="bi bi-box-arrow-right"></i> Sign Out
@@ -107,7 +107,7 @@
           <li class="text-white-50">/</li>
           <li><a href="properties.html" style="color:#cbd5e1; text-decoration:none;">Shop Catalog</a></li>
           <li class="text-white-50">/</li>
-          <li class="current text-white fw-medium">Apex Blade Pro 16" OLED Laptop</li>
+          <li class="current text-white fw-medium" id="single-breadcrumb-title">Apex Blade Pro 16" OLED Laptop</li>
         </ol>
       </div>
     </div>
@@ -148,11 +148,11 @@
           <!-- Right Column: Product Specs & Buy -->
           <div class="col-lg-6 product-single-details" data-aos="fade-left">
             <div class="d-flex align-items-center justify-content-between mb-2">
-              <span class="product-category-tag" style="font-size:13px;">Computing &bull; SKU: REG-X16-PRO</span>
-              <span class="stock-status-badge"><i class="bi bi-check-circle-fill"></i> In Stock &bull; Ships in 24h</span>
+              <span class="product-category-tag" id="single-category-sku" style="font-size:13px;">Computing &bull; SKU: REG-X16-PRO</span>
+              <span class="stock-status-badge" id="single-stock-badge"><i class="bi bi-check-circle-fill"></i> In Stock &bull; Ships in 24h</span>
             </div>
 
-            <h1>Apex Blade Pro 16" OLED Creator & Gaming Laptop</h1>
+            <h1 id="single-product-title">Apex Blade Pro 16" OLED Creator & Gaming Laptop</h1>
 
             <div class="d-flex align-items-center gap-3 mb-3">
               <div class="product-rating m-0">
@@ -166,12 +166,12 @@
 
             <!-- Price -->
             <div class="single-price-row">
-              <span class="single-current-price">$1,399.00</span>
-              <span class="single-original-price">$1,799.00</span>
-              <span class="discount-pill">Save $400 (22% OFF)</span>
+              <span class="single-current-price" id="single-current-price">KSh 145,000</span>
+              <span class="single-original-price" id="single-original-price">KSh 165,000</span>
+              <span class="discount-pill" id="single-discount-pill">Save KSh 20,000 (12% OFF)</span>
             </div>
 
-            <p class="text-secondary mb-4" style="font-size:1.02rem; line-height:1.65;">
+            <p class="text-secondary mb-4" id="single-short-desc" style="font-size:1.02rem; line-height:1.65;">
               Built for power users, developers, and competitive gamers. Powered by the 14th Gen Intel Core i9 processor, NVIDIA GeForce RTX 4080 graphics, and a stunning 16-inch 3.2K 120Hz OLED display with 100% DCI-P3 color accuracy.
             </p>
 
@@ -202,7 +202,7 @@
                 <button type="button" class="qty-picker-btn" onclick="updateSingleQty(1)">+</button>
               </div>
 
-              <button class="btn-single-cart" onclick="addSingleToCart()">
+              <button class="btn-single-cart" id="single-add-cart-btn" onclick="addSingleToCart()">
                 <i class="bi bi-bag-plus-fill"></i> Add to Cart
               </button>
 
@@ -259,8 +259,8 @@
             <div class="tab-pane fade show active" id="overview" role="tabpanel">
               <div class="row align-items-center gy-4">
                 <div class="col-lg-6">
-                  <h3 class="fw-bold mb-3">Ultimate Power in an Ultra-Sleek CNC Chassis</h3>
-                  <p class="text-secondary">
+                  <h3 class="fw-bold mb-3" id="single-overview-title">Ultimate Power in an Ultra-Sleek CNC Chassis</h3>
+                  <p class="text-secondary" id="single-full-desc">
                     Precision-milled from aerospace-grade aluminum, the Apex Blade Pro combines thin-and-light portability with extreme thermal mastery. The dual vapor-chamber cooling keeps whisper-quiet acoustics under intense loads.
                   </p>
                   <ul class="list-unstyled d-flex flex-column gap-2 text-secondary">
@@ -281,7 +281,7 @@
               <h3 class="fw-bold mb-4">Detailed Hardware Specifications</h3>
               <div class="table-responsive">
                 <table class="table table-striped table-bordered align-middle">
-                  <tbody>
+                  <tbody id="single-specs-tbody">
                     <tr><th class="w-25 bg-light">Processor</th><td>14th Gen Intel Core i9-14900HX (24 Cores, 32 Threads, 36MB Cache)</td></tr>
                     <tr><th class="bg-light">Graphics Card</th><td>NVIDIA GeForce RTX 4080 Laptop GPU (12GB GDDR6, Max TGP 175W)</td></tr>
                     <tr><th class="bg-light">Display</th><td>16.0" 3.2K OLED 16:10, 120Hz Refresh, 0.2ms Response, VESA TrueBlack 600</td></tr>
@@ -554,8 +554,21 @@
 
         <div class="auth-divider"><span>or continue with</span></div>
         <div class="auth-social-row">
-          <button class="auth-social-btn" aria-label="Google">Google</button>
-          <button class="auth-social-btn" aria-label="Facebook">Facebook</button>
+          <button type="button" class="auth-social-btn" aria-label="Google" onclick="handleSocialLogin('google')">
+            <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Google</span>
+          </button>
+          <button type="button" class="auth-social-btn" aria-label="Facebook" onclick="handleSocialLogin('facebook')">
+            <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="#1877F2">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span>Facebook</span>
+          </button>
         </div>
 
         <p class="auth-switch-text">Don't have an account? <button type="button" onclick="switchAuthTab('register')">Create one</button></p>

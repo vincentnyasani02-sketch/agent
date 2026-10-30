@@ -1,0 +1,6 @@
+# Ignore binaries and downloads
+downloads/
+*.apk
+*.aab
+.DS_Store
+Thumbs.db

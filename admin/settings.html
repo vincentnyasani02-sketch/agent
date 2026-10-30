@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Store Settings & Integrations — Reign Admin</title>
+  <meta name="description" content="Official Reign Electronics & Mali Mali store settings, payment gateways, and staff configurations.">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File (EstateAgency Client-Side Design System) -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+
+  <!-- Admin Extension CSS File -->
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+
+<body class="admin-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Admin</span></h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="products.html">Inventory</a></li>
+          <li><a href="orders.html">Orders</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="pos.html">POS Register</a></li>
+          <li><a href="settings.html" class="active">Settings</a></li>
+        </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <a href="../index.html" target="_blank" class="btn btn-outline-warning btn-sm rounded-pill px-3 py-1 fw-bold text-decoration-none d-none d-sm-inline-flex">
+            Storefront
+          </a>
+
+          <!-- Admin Profile dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-dark rounded-pill px-3 py-2 d-flex align-items-center gap-2" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="badge rounded-circle bg-warning text-dark p-1">VN</span>
+              <span class="d-none d-md-inline fw-semibold" style="font-size:13px;">Vincent (Super Admin)</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2">
+              <li><h6 class="dropdown-header">Vincent Nyasani</h6></li>
+              <li><a class="dropdown-item" href="pos.html">POS Cashier Terminal</a></li>
+              <li><a class="dropdown-item" href="settings.html">Store Settings</a></li>
+              <li><a class="dropdown-item" href="../index.html" target="_blank">Customer Store</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html">Exit Admin</a></li>
+            </ul>
+          </div>
+        </div>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Clean Admin Header -->
+    <div class="admin-page-header">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+              <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+              <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Store Settings</li>
+            </ol>
+          </nav>
+          <h2>Store Settings &amp; Infrastructure</h2>
+        </div>
+        <div class="text-muted small">
+          <i class="bi bi-gear-wide-connected text-primary me-1"></i> Global mobile app sync, payment gateways &amp; brand identity
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Content Section -->
+    <section class="section py-5">
+      <div class="container">
+
+        <!-- Navigation Filter Pills (Text Only) -->
+        <div class="catalog-filters mb-4" data-aos="fade-up">
+          <a href="index.html" class="filter-pill">Overview</a>
+          <a href="products.html" class="filter-pill">Products & Inventory</a>
+          <a href="orders.html" class="filter-pill">Orders & Sales</a>
+          <a href="repairs.html" class="filter-pill">Diagnostic Tickets</a>
+          <a href="pos.html" class="filter-pill">POS Register</a>
+          <a href="settings.html" class="filter-pill active">Store Settings</a>
+        </div>
+
+        <!-- Action Row -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3" data-aos="fade-up">
+          <div>
+            <h3 class="fw-bold mb-1" style="color:#0f172a; font-family:var(--heading-font);">System Settings</h3>
+            <p class="text-secondary small mb-0">Modify global configuration parameters and API integrations.</p>
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-reign-primary" onclick="saveAllAdminSettings(event)">
+              <i class="bi bi-cloud-check-fill me-1"></i> Save All Changes
+            </button>
+          </div>
+        </div>
+
+        <div class="row g-4" data-aos="fade-up">
+
+          <!-- ========================================================
+               ANDROID MOBILE APP CONTROL CENTER (LIVE SYNC TO APP)
+               ======================================================== -->
+          <div class="col-12" data-aos="fade-up">
+            <div class="admin-card border-warning shadow-sm" style="background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);">
+              <div class="admin-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div class="admin-card-title d-flex align-items-center gap-2">
+                  <i class="bi bi-phone-fill text-warning fs-4"></i>
+                  <span>Android App Frontend Control Center</span>
+                  <span class="badge bg-success-subtle text-success border border-success ms-2">Real-Time Sync Active</span>
+                </div>
+                <button class="btn btn-warning fw-bold px-4 py-2 rounded-pill shadow-sm" onclick="saveMobileAppSettings(event)">
+                  <i class="bi bi-cloud-arrow-up-fill me-1"></i> Push Changes to Android App & Website
+                </button>
+              </div>
+
+              <div class="row g-4 mt-1">
+                <!-- 1. Banners Management -->
+                <div class="col-lg-6">
+                  <div class="p-3 rounded-3 border bg-light h-100">
+                    <h5 class="fw-bold mb-3 d-flex align-items-center justify-content-between" style="color:#0f172a;">
+                      <span><i class="bi bi-images text-primary me-2"></i> App Hero Carousel Banners</span>
+                      <small class="text-muted fw-normal" style="font-size:12px;">App Top Slider</small>
+                    </h5>
+
+                    <!-- Banner 1 -->
+                    <div class="p-3 mb-3 bg-white rounded-3 border">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-danger">Banner 1: Flash Sale</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input banner-active-toggle" type="checkbox" id="banner1-active" checked>
+                        </div>
+                      </div>
+                      <div class="row g-2">
+                        <div class="col-sm-4">
+                          <label class="form-label small text-muted mb-0">Tag Pill</label>
+                          <input type="text" id="banner1-tag" class="form-control form-control-sm" value="FLASH SALES">
+                        </div>
+                        <div class="col-sm-8">
+                          <label class="form-label small text-muted mb-0">Headline Title</label>
+                          <input type="text" id="banner1-title" class="form-control form-control-sm" value="REIGN MEGA DEALS">
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label small text-muted mb-0">Subtitle / Description</label>
+                          <input type="text" id="banner1-sub" class="form-control form-control-sm" value="Up to 60% OFF electronics, laptops & smart TVs">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Banner 2 -->
+                    <div class="p-3 mb-3 bg-white rounded-3 border">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-warning text-dark">Banner 2: LPG Gas Delivery</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input banner-active-toggle" type="checkbox" id="banner2-active" checked>
+                        </div>
+                      </div>
+                      <div class="row g-2">
+                        <div class="col-sm-4">
+                          <label class="form-label small text-muted mb-0">Tag Pill</label>
+                          <input type="text" id="banner2-tag" class="form-control form-control-sm" value="REIGN EXPRESS">
+                        </div>
+                        <div class="col-sm-8">
+                          <label class="form-label small text-muted mb-0">Headline Title</label>
+                          <input type="text" id="banner2-title" class="form-control form-control-sm" value="30-MIN LPG GAS DISPATCH">
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label small text-muted mb-0">Subtitle / Description</label>
+                          <input type="text" id="banner2-sub" class="form-control form-control-sm" value="Doorstep cylinder delivery & free leak valve safety check">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Banner 3 -->
+                    <div class="p-3 bg-white rounded-3 border">
+                      <div class="d-flex justify-content-between align-items-center mb-2">
+                        <span class="badge bg-primary">Banner 3: Official Brands</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input banner-active-toggle" type="checkbox" id="banner3-active" checked>
+                        </div>
+                      </div>
+                      <div class="row g-2">
+                        <div class="col-sm-4">
+                          <label class="form-label small text-muted mb-0">Tag Pill</label>
+                          <input type="text" id="banner3-tag" class="form-control form-control-sm" value="OFFICIAL BRAND FESTIVAL">
+                        </div>
+                        <div class="col-sm-8">
+                          <label class="form-label small text-muted mb-0">Headline Title</label>
+                          <input type="text" id="banner3-title" class="form-control form-control-sm" value="GENUINE 2-YR WARRANTY">
+                        </div>
+                        <div class="col-12">
+                          <label class="form-label small text-muted mb-0">Subtitle / Description</label>
+                          <input type="text" id="banner3-sub" class="form-control form-control-sm" value="Official Apple, Samsung, Sony, Ramtons & HP store">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Flash Sale, LPG Prices & Announcements -->
+                <div class="col-lg-6">
+                  <div class="d-flex flex-column gap-3">
+                    
+                    <!-- Flash Sale Ticker & Timer -->
+                    <div class="p-3 rounded-3 border bg-light">
+                      <h5 class="fw-bold mb-3 d-flex align-items-center justify-content-between" style="color:#0f172a;">
+                        <span><i class="bi bi-lightning-charge-fill text-danger me-2"></i> Flash Sale & Countdown Timer</span>
+                        <div class="form-check form-switch m-0">
+                          <input class="form-check-input" type="checkbox" id="flash-sale-enabled" checked>
+                        </div>
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-sm-6">
+                          <label class="admin-form-label">Flash Sale Section Title</label>
+                          <input type="text" id="flash-sale-title" class="form-control form-control-sm" value="FLASH SALES">
+                        </div>
+                        <div class="col-sm-6">
+                          <label class="admin-form-label">Countdown Duration (Hours)</label>
+                          <input type="number" id="flash-sale-hours" class="form-control form-control-sm" value="4" min="1" max="48">
+                        </div>
+                        <div class="col-12">
+                          <label class="admin-form-label">Announcement Marquee Ticker (Top Bar)</label>
+                          <input type="text" id="global-announcement" class="form-control form-control-sm" value="⚡ Limited Stock Mega Flash Sales - Up to 60% OFF in Molo! Free delivery over KSh 2,000!">
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- LPG Gas Refill Doorstep Pricing -->
+                    <div class="p-3 rounded-3 border bg-light">
+                      <h5 class="fw-bold mb-3 d-flex align-items-center" style="color:#0f172a;">
+                        <i class="bi bi-fire text-warning me-2"></i> LPG Gas Cylinder App Refill Prices (KSh)
+                      </h5>
+                      <div class="row g-3">
+                        <div class="col-sm-4">
+                          <label class="admin-form-label">6kg Cylinder Refill</label>
+                          <div class="input-group input-group-sm">
+                            <span class="input-group-text">KSh</span>
+                            <input type="number" id="lpg-price-6kg" class="form-control" value="1450">
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <label class="admin-form-label">13kg Cylinder Refill</label>
+                          <div class="input-group input-group-sm">
+                            <span class="input-group-text">KSh</span>
+                            <input type="number" id="lpg-price-13kg" class="form-control" value="3200">
+                          </div>
+                        </div>
+                        <div class="col-sm-4">
+                          <label class="admin-form-label">50kg Commercial Refill</label>
+                          <div class="input-group input-group-sm">
+                            <span class="input-group-text">KSh</span>
+                            <input type="number" id="lpg-price-50kg" class="form-control" value="11500">
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <label class="admin-form-label">Rider Dispatch Fee</label>
+                          <div class="input-group input-group-sm">
+                            <span class="input-group-text">KSh</span>
+                            <input type="number" id="lpg-delivery-fee" class="form-control" value="150">
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <label class="admin-form-label">Dispatch Rider Hotline</label>
+                          <input type="text" id="lpg-rider-phone" class="form-control form-control-sm" value="+254 712 345 678">
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- General Store Profile -->
+          <div class="col-lg-6">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Store Profile & Identity
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Store Brand Name</label>
+                <input type="text" id="store-brand-name" class="admin-form-input" value="Reign Electronics & Mali Mali">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Contact Email</label>
+                <input type="email" id="store-contact-email" class="admin-form-input" value="hello@reignshop.com">
+              </div>
+
+              <div class="row g-3">
+                <div class="col-md-6 admin-form-group">
+                  <label class="admin-form-label">Customer Hotline</label>
+                  <input type="text" id="store-customer-hotline" class="admin-form-input" value="+254 712 345 678">
+                </div>
+
+                <div class="col-md-6 admin-form-group">
+                  <label class="admin-form-label">Base Currency</label>
+                  <select id="store-base-currency" class="admin-form-select">
+                    <option value="KES" selected>KES (KSh) Kenya Shillings</option>
+                    <option value="USD">USD ($) United States Dollar</option>
+                    <option value="EUR">EUR (€) Euro</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Showroom Physical Address</label>
+                <textarea rows="2" id="store-physical-address" class="admin-form-textarea">Posta Road, Next to Posta Molo, Molo Town, Nakuru County, Kenya</textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Gateways -->
+          <div class="col-lg-6">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Payment Integrations
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <!-- M-Pesa -->
+                <div class="p-3 rounded-3 border bg-light d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold d-flex align-items-center gap-2" style="color:#0f172a;">
+                      <span class="badge bg-success">Active</span> M-Pesa Express (STK Push)
+                    </div>
+                    <small class="text-muted">Direct mobile checkout for Kenya & East Africa</small>
+                  </div>
+                  <input type="checkbox" id="gateway-mpesa" checked style="width:20px; height:20px; accent-color:#ff7d3b;">
+                </div>
+
+                <!-- Stripe / Credit Card -->
+                <div class="p-3 rounded-3 border bg-light d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold d-flex align-items-center gap-2" style="color:#0f172a;">
+                      <span class="badge bg-success">Active</span> Credit & Debit Cards (Visa, MC)
+                    </div>
+                    <small class="text-muted">Global 3D Secure card processing via Stripe</small>
+                  </div>
+                  <input type="checkbox" id="gateway-stripe" checked style="width:20px; height:20px; accent-color:#ff7d3b;">
+                </div>
+
+                <!-- PayPal -->
+                <div class="p-3 rounded-3 border bg-light d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold d-flex align-items-center gap-2" style="color:#0f172a;">
+                      <span class="badge bg-success">Active</span> PayPal Express
+                    </div>
+                    <small class="text-muted">International buyer protection checkout</small>
+                  </div>
+                  <input type="checkbox" id="gateway-paypal" checked style="width:20px; height:20px; accent-color:#ff7d3b;">
+                </div>
+
+                <!-- Pay on Delivery -->
+                <div class="p-3 rounded-3 border bg-light d-flex justify-content-between align-items-center">
+                  <div>
+                    <div class="fw-bold d-flex align-items-center gap-2" style="color:#0f172a;">
+                      <span class="badge bg-secondary">Optional</span> Pay on Delivery (POD)
+                    </div>
+                    <small class="text-muted">Eligible for Nairobi metro area orders only</small>
+                  </div>
+                  <input type="checkbox" id="gateway-pod" checked style="width:20px; height:20px; accent-color:#ff7d3b;">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Official Delivery Points & Pickup Stations -->
+          <div class="col-12" data-aos="fade-up">
+            <div class="admin-card mb-0 shadow-sm border-warning" style="background: linear-gradient(180deg, #ffffff 0%, #fffdfa 100%);">
+              <div class="admin-card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+                <div>
+                  <div class="admin-card-title d-flex align-items-center gap-2">
+                    <i class="bi bi-geo-alt-fill text-warning fs-4"></i>
+                    <span>Official Delivery Points & Pickup Stations</span>
+                    <span class="badge bg-warning-subtle text-dark border border-warning ms-2" id="admin-dp-count-badge">5 Stations Active</span>
+                  </div>
+                  <small class="text-muted">Live regional pickup stations available for customer checkout across Android App and Web Storefront.</small>
+                </div>
+                <button class="btn btn-warning fw-bold px-3 py-2 rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#addDeliveryPointModal">
+                  <i class="bi bi-plus-circle-fill me-1"></i> Add Pickup Station
+                </button>
+              </div>
+
+              <div class="table-responsive mt-3">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Station & Town</th>
+                      <th>Physical Address & Landmark</th>
+                      <th>Operating Hours</th>
+                      <th>Hotline Phone</th>
+                      <th>Pickup Fee</th>
+                      <th>Status</th>
+                      <th style="text-align:right;">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-delivery-points-tbody">
+                    <!-- Injected via loadAdminDeliveryPoints() -->
+                    <tr>
+                      <td colspan="7" class="text-center py-4 text-muted">
+                        <div class="spinner-border spinner-border-sm text-warning me-2" role="status"></div> Loading delivery points...
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Staff Accounts & Roles -->
+          <div class="col-lg-6">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Authorized Staff Access
+                </div>
+                <button class="btn btn-sm btn-outline-secondary rounded-pill px-3" onclick="adminToast('Staff invite dispatched via email', 'success')">
+                  Invite Staff
+                </button>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <div class="d-flex justify-content-between align-items-center p-2 border-bottom">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-circle bg-dark text-warning p-2">VN</span>
+                    <div>
+                      <div class="fw-bold" style="color:#0f172a;">Vincent Nyasani</div>
+                      <small class="text-muted">vincent@reignshop.com</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-danger">Super Admin</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center p-2 border-bottom">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-circle bg-primary text-white p-2">MV</span>
+                    <div>
+                      <div class="fw-bold" style="color:#0f172a;">Marcus Vance</div>
+                      <small class="text-muted">lab@reignshop.com</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-primary">Lead Technician</span>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center p-2">
+                  <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-circle bg-success text-white p-2">SW</span>
+                    <div>
+                      <div class="fw-bold" style="color:#0f172a;">Sarah Wambui</div>
+                      <small class="text-muted">sarah@reignshop.com</small>
+                    </div>
+                  </div>
+                  <span class="badge bg-success">Store Manager</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (Same as Client Side Template) -->
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Store Location</h4>
+            <p>Reign Plaza, 48 Tech Avenue</p>
+            <p>Nairobi / San Diego Flagship</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact Support</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p><strong>Mon-Sat:</strong> <span>8:30AM - 8:30PM</span><br><strong>Sunday:</strong> <span>10:00AM - 6:00PM</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Stay Connected</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics & Mali Mali</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed for Modern Electronics, Tech & Smart Living Essentials</div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Add Delivery Point Modal -->
+  <div class="modal fade" id="addDeliveryPointModal" tabindex="-1" aria-labelledby="addDeliveryPointModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header bg-dark text-white">
+          <h5 class="modal-title d-flex align-items-center gap-2" id="addDeliveryPointModalLabel">
+            <i class="bi bi-geo-alt-fill text-warning"></i> Add Official Delivery Point / Pickup Hub
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form onsubmit="saveAdminDeliveryPoint(event)">
+          <div class="modal-body p-4">
+            <div class="mb-3">
+              <label class="form-label fw-bold small text-secondary">Hub / Station Name</label>
+              <input type="text" id="new-dp-name" class="form-control" placeholder="e.g. Eldoret CBD Station" required>
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-sm-6">
+                <label class="form-label fw-bold small text-secondary">Town / Region</label>
+                <input type="text" id="new-dp-town" class="form-control" placeholder="e.g. Eldoret" required>
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label fw-bold small text-secondary">Pickup Fee (KSh)</label>
+                <div class="input-group">
+                  <span class="input-group-text">KSh</span>
+                  <input type="number" id="new-dp-fee" class="form-control" value="80" min="0" max="1000" required>
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold small text-secondary">Street / Building Address</label>
+              <input type="text" id="new-dp-address" class="form-control" placeholder="e.g. Uganda Road, Rupa Mall Ground Floor" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label fw-bold small text-secondary">Landmark / Specific Directions</label>
+              <input type="text" id="new-dp-landmark" class="form-control" placeholder="e.g. Opposite CleanShelf Supermarket Entrance">
+            </div>
+            <div class="row g-2 mb-3">
+              <div class="col-sm-6">
+                <label class="form-label fw-bold small text-secondary">Operating Hours</label>
+                <input type="text" id="new-dp-hours" class="form-control" value="Mon - Sat: 8:00 AM - 7:30 PM">
+              </div>
+              <div class="col-sm-6">
+                <label class="form-label fw-bold small text-secondary">Station Hotline Phone</label>
+                <input type="text" id="new-dp-phone" class="form-control" value="+254 712 345 678">
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer bg-light">
+            <button type="button" class="btn btn-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-warning fw-bold rounded-pill px-4">
+              <i class="bi bi-cloud-arrow-up-fill me-1"></i> Save & Sync Station
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin JS Engine -->
+  <script src="assets/js/admin.js"></script>
+
+</body>
+
+</html>

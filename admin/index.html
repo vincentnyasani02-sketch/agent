@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Admin Dashboard — Reign Electronics & Mali Mali</title>
+  <meta name="description" content="Official Reign Electronics & Mali Mali store administrator dashboard.">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File (EstateAgency Client-Side Design System) -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+
+  <!-- Admin Extension CSS File -->
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+
+<body class="admin-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Admin</span></h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html" class="active">Dashboard</a></li>
+          <li><a href="products.html">Inventory</a></li>
+          <li><a href="orders.html">Orders</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="pos.html">POS Register</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <a href="../index.html" target="_blank" class="btn btn-outline-warning btn-sm rounded-pill px-3 py-1 fw-bold text-decoration-none d-none d-sm-inline-flex">
+            Storefront
+          </a>
+
+          <!-- Admin Profile dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-dark rounded-pill px-3 py-2 d-flex align-items-center gap-2" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="badge rounded-circle bg-warning text-dark p-1">VN</span>
+              <span class="d-none d-md-inline fw-semibold" style="font-size:13px;">Vincent (Super Admin)</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2">
+              <li><h6 class="dropdown-header">Vincent Nyasani</h6></li>
+              <li><a class="dropdown-item" href="pos.html">POS Cashier Terminal</a></li>
+              <li><a class="dropdown-item" href="settings.html">Store Settings</a></li>
+              <li><a class="dropdown-item" href="../properties.html" target="_blank">Shop Catalog</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html">Exit Admin</a></li>
+            </ul>
+          </div>
+        </div>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Clean Admin Header -->
+    <div class="admin-page-header">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+              <li class="breadcrumb-item"><a href="../index.html">Storefront</a></li>
+              <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Dashboard</li>
+            </ol>
+          </nav>
+          <h2>Executive Dashboard</h2>
+        </div>
+        <div class="text-muted small">
+          <i class="bi bi-shield-check text-success me-1"></i> Reign Backoffice Operations &amp; Velocity
+        </div>
+      </div>
+    </div>
+
+    <!-- Dashboard Content Section -->
+    <section class="section py-5">
+      <div class="container">
+
+        <!-- Navigation Filter Pills (Same as Client Catalog, Text Only) -->
+        <div class="catalog-filters mb-4" data-aos="fade-up">
+          <a href="index.html" class="filter-pill active">Overview</a>
+          <a href="products.html" class="filter-pill">Products & Inventory</a>
+          <a href="orders.html" class="filter-pill">Orders & Sales</a>
+          <a href="repairs.html" class="filter-pill">Diagnostic Tickets</a>
+          <a href="pos.html" class="filter-pill">POS Register</a>
+          <a href="settings.html" class="filter-pill">Store Settings</a>
+        </div>
+
+        <!-- Action Bar Row -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3" data-aos="fade-up">
+          <div>
+            <h3 class="fw-bold mb-1" style="color:#0f172a; font-family:var(--heading-font);">Store Health & Velocity</h3>
+            <p class="text-secondary small mb-0">Aggregated live store metrics, sales revenue, and stock statuses.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="pos.html" class="btn btn-warning fw-bold rounded-pill px-3 py-2 d-inline-flex align-items-center gap-2 text-dark shadow-sm" style="font-size:13.5px;">
+              <i class="bi bi-fullscreen"></i> Full-Page Staff POS
+            </a>
+            <button class="btn-reign-secondary" onclick="adminToast('Generating sales report PDF...', 'info')">
+              Export Data
+            </button>
+            <button class="btn-reign-primary" onclick="openAdminModal('add-product-modal')">
+              Add New Product
+            </button>
+          </div>
+        </div>
+
+        <!-- Staff POS Workstation Banner -->
+        <div class="p-4 rounded-4 mb-4 text-white shadow-sm d-flex flex-wrap align-items-center justify-content-between gap-3" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #ea580c 100%); border: 1px solid rgba(255,255,255,0.12);" data-aos="fade-up">
+          <div class="d-flex align-items-center gap-3">
+            <div class="rounded-3 p-3 text-warning bg-black bg-opacity-25 fs-2">
+              <i class="bi bi-calculator-fill"></i>
+            </div>
+            <div>
+              <div class="d-flex align-items-center gap-2 mb-1">
+                <span class="badge bg-warning text-dark fw-bold">STAFF CASHIER TERMINAL</span>
+                <span class="badge bg-success-subtle text-success border border-success"><i class="bi bi-circle-fill me-1" style="font-size:7px;"></i> Shift Active</span>
+              </div>
+              <h4 class="fw-bold mb-1 text-white">Full-Screen Point of Sale (POS) Station</h4>
+              <p class="text-white-50 small mb-0">Dedicated full-page counter terminal for walk-in sales, barcode scanning, M-Pesa STK push, and printed thermal receipts.</p>
+            </div>
+          </div>
+          <a href="pos.html" class="btn btn-warning text-dark fw-bold rounded-pill px-4 py-3 d-inline-flex align-items-center gap-2 shadow">
+            <i class="bi bi-fullscreen"></i> Launch Full-Page POS Terminal
+          </a>
+        </div>
+
+        <!-- 4 KPI Cards (Clean Text & Numbers) -->
+        <div class="admin-kpi-grid" data-aos="fade-up">
+          <!-- KPI 1 -->
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-top">
+              <span class="admin-kpi-title">Gross Revenue (Month)</span>
+            </div>
+            <div class="admin-kpi-val">KSh 19,450,000</div>
+            <div class="admin-kpi-trend positive">
+              +14.8% <span class="admin-kpi-trend-note">vs last month</span>
+            </div>
+          </div>
+
+          <!-- KPI 2 -->
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-top">
+              <span class="admin-kpi-title">Orders Dispatched</span>
+            </div>
+            <div class="admin-kpi-val">1,482</div>
+            <div class="admin-kpi-trend positive">
+              +8.2% <span class="admin-kpi-trend-note">this week</span>
+            </div>
+          </div>
+
+          <!-- KPI 3 -->
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-top">
+              <span class="admin-kpi-title">Active Repair Tickets</span>
+            </div>
+            <div class="admin-kpi-val">32 Tickets</div>
+            <div class="admin-kpi-trend" style="color:#64748b;">
+              4 Pending Diagnostic
+            </div>
+          </div>
+
+          <!-- KPI 4 -->
+          <div class="admin-kpi-card">
+            <div class="admin-kpi-top">
+              <span class="admin-kpi-title">Average Order Value</span>
+            </div>
+            <div class="admin-kpi-val">KSh 42,500</div>
+            <div class="admin-kpi-trend positive">
+              +5.4% <span class="admin-kpi-trend-note">AOV increase</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Revenue Chart & Sales Breakdown Row -->
+        <div class="row g-4 mb-4" data-aos="fade-up">
+          
+          <!-- Sales Analytics Graph -->
+          <div class="col-lg-8">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Revenue Velocity (2026)
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="status-pill status-instock" style="border:none; cursor:pointer;">Weekly</button>
+                  <button class="status-pill" style="border:none; background:#f1f5f9; color:#64748b; cursor:pointer;">Monthly</button>
+                </div>
+              </div>
+
+              <div class="chart-container">
+                <svg class="chart-svg" viewBox="0 0 700 240">
+                  <defs>
+                    <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                      <stop offset="0%" stop-color="#ff7d3b" stop-opacity="0.38"/>
+                      <stop offset="100%" stop-color="#ff7d3b" stop-opacity="0.0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Grid Lines -->
+                  <line x1="0" y1="40" x2="700" y2="40" stroke="#f1f5f9" stroke-dasharray="4"/>
+                  <line x1="0" y1="100" x2="700" y2="100" stroke="#f1f5f9" stroke-dasharray="4"/>
+                  <line x1="0" y1="160" x2="700" y2="160" stroke="#f1f5f9" stroke-dasharray="4"/>
+                  <line x1="0" y1="220" x2="700" y2="220" stroke="#e2e8f0"/>
+
+                  <!-- Area Fill -->
+                  <path d="M 20 180 Q 90 140, 150 110 T 280 90 T 400 130 T 520 60 T 680 30 L 680 220 L 20 220 Z" fill="url(#chartGradient)"/>
+                  
+                  <!-- Line Path -->
+                  <path d="M 20 180 Q 90 140, 150 110 T 280 90 T 400 130 T 520 60 T 680 30" fill="none" stroke="#ff7d3b" stroke-width="3.5" stroke-linecap="round"/>
+
+                  <!-- Glowing Data Points -->
+                  <circle cx="150" cy="110" r="5" fill="#fff" stroke="#ff7d3b" stroke-width="3"/>
+                  <circle cx="280" cy="90" r="5" fill="#fff" stroke="#ff7d3b" stroke-width="3"/>
+                  <circle cx="400" cy="130" r="5" fill="#fff" stroke="#ff7d3b" stroke-width="3"/>
+                  <circle cx="520" cy="60" r="5" fill="#fff" stroke="#ff7d3b" stroke-width="3"/>
+                  <circle cx="680" cy="30" r="6" fill="#10b981" stroke="#fff" stroke-width="3"/>
+                </svg>
+              </div>
+              <div class="d-flex justify-content-between text-muted mt-2" style="font-size:12px;">
+                <span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span class="fw-bold text-success">Oct 2026 (Peak)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Top Sellers Leaderboard -->
+          <div class="col-lg-4">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Top Categories
+                </div>
+              </div>
+
+              <div class="d-flex flex-column gap-3">
+                <div>
+                  <div class="d-flex justify-content-between mb-1 small fw-bold">
+                    <span>Laptops & Computing</span>
+                    <span style="color:#ff7d3b;">42% (KSh 8.1M)</span>
+                  </div>
+                  <div style="background:#f1f5f9; height:8px; border-radius:99px; overflow:hidden;">
+                    <div style="width:42%; height:100%; background:linear-gradient(135deg, #ff7d3b, #ff5a36);"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1 small fw-bold">
+                    <span>Audio & Headphones</span>
+                    <span style="color:#3b82f6;">28% (KSh 5.4M)</span>
+                  </div>
+                  <div style="background:#f1f5f9; height:8px; border-radius:99px; overflow:hidden;">
+                    <div style="width:28%; height:100%; background:#3b82f6;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1 small fw-bold">
+                    <span>Smartphones & Wearables</span>
+                    <span style="color:#10b981;">18% (KSh 3.5M)</span>
+                  </div>
+                  <div style="background:#f1f5f9; height:8px; border-radius:99px; overflow:hidden;">
+                    <div style="width:18%; height:100%; background:#10b981;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1 small fw-bold">
+                    <span>Smart Living & Mali Mali</span>
+                    <span style="color:#8b5cf6;">12% (KSh 2.3M)</span>
+                  </div>
+                  <div style="background:#f1f5f9; height:8px; border-radius:99px; overflow:hidden;">
+                    <div style="width:12%; height:100%; background:#8b5cf6;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Recent Store Orders & Live Activity Row -->
+        <div class="row g-4" data-aos="fade-up">
+
+          <!-- Recent Orders Table -->
+          <div class="col-lg-8">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Recent Store Orders
+                </div>
+                <a href="orders.html" class="status-pill status-instock text-decoration-none">View All (5) &rarr;</a>
+              </div>
+
+              <div class="table-responsive">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Order ID</th>
+                      <th>Customer</th>
+                      <th>Items</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody id="dashboard-orders-body">
+                    <!-- Injected via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Store Live Activity Feed -->
+          <div class="col-lg-4">
+            <div class="admin-card h-100 mb-0">
+              <div class="admin-card-header">
+                <div class="admin-card-title">
+                  Live Activity Feed
+                </div>
+              </div>
+
+              <div class="activity-feed">
+                <div class="activity-item">
+                  <div class="activity-details">
+                    <div class="activity-title">New order #REG-8924 paid via M-Pesa</div>
+                    <div class="activity-time">5 minutes ago &bull; David Mwangi ($1,399.00)</div>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-details">
+                    <div class="activity-title">Diagnostic ticket #REP-104 assigned</div>
+                    <div class="activity-time">24 minutes ago &bull; Marcus Vance</div>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-details">
+                    <div class="activity-title">Low inventory warning on Volt Console</div>
+                    <div class="activity-time">1 hour ago &bull; 4 units remaining</div>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-details">
+                    <div class="activity-title">Order #REG-8922 marked Out for Delivery</div>
+                    <div class="activity-time">3 hours ago &bull; Brian Otieno</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Add Product Modal (Bootstrap 5 Modal formatted to EstateAgency) -->
+  <div class="modal fade" id="add-product-modal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content admin-modal-custom">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addProductModalLabel">
+            Add Product to Inventory
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form onsubmit="addNewProduct(event)">
+            <div class="admin-form-group">
+              <label class="admin-form-label">Product Name / Title</label>
+              <input type="text" name="title" class="admin-form-input" placeholder="e.g. Apex Horizon Pro 14 Laptop" required>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6 admin-form-group">
+                <label class="admin-form-label">Category</label>
+                <select name="category" class="admin-form-select">
+                  <option value="Computing">Computing & Laptops</option>
+                  <option value="Audio">Audio & Headphones</option>
+                  <option value="Mobile">Smartphones & Tablets</option>
+                  <option value="Gaming">Gaming & Gear</option>
+                  <option value="Mali Mali">Smart Living & Mali Mali</option>
+                </select>
+              </div>
+
+              <div class="col-md-6 admin-form-group">
+                <label class="admin-form-label">SKU Code</label>
+                <input type="text" name="sku" class="admin-form-input" placeholder="REG-PROD-01">
+              </div>
+            </div>
+
+            <div class="row g-3">
+              <div class="col-md-6 admin-form-group">
+                <label class="admin-form-label">Retail Price ($ USD)</label>
+                <input type="number" step="0.01" name="price" class="admin-form-input" placeholder="499.00" required>
+              </div>
+
+              <div class="col-md-6 admin-form-group">
+                <label class="admin-form-label">Initial Stock Count</label>
+                <input type="number" name="stock" class="admin-form-input" placeholder="25" required>
+              </div>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label d-flex justify-content-between align-items-center">
+                <span>Product Photo (Camera / Upload / URL)</span>
+                <button type="button" class="btn btn-sm btn-outline-warning py-1 px-2" style="font-size:11px;" onclick="document.getElementById('dash-prod-photo-input').click()">
+                  <i class="bi bi-camera-fill me-1"></i> Snap Photo / Upload
+                </button>
+              </label>
+              <input type="file" id="dash-prod-photo-input" accept="image/*" capture="environment" style="display:none;" onchange="handleDashProductPhoto(event)">
+              <input type="text" id="dash-prod-image-url" name="image" class="admin-form-input" placeholder="https://... or photo data">
+              
+              <div id="dash-prod-preview-container" class="mt-2 text-center" style="display:none;">
+                <img id="dash-prod-preview-img" src="" alt="Product Photo Preview" style="max-height:140px; border-radius:10px; border:2px solid #ffb48a; object-fit:cover; width:100%;">
+                <small class="text-success d-block mt-1"><i class="bi bi-check-circle-fill"></i> Photo loaded ready for upload</small>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-end gap-2 mt-4">
+              <button type="button" class="btn-reign-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="submit" class="btn-reign-primary">Save to Catalog</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer (Same as Client Side Template) -->
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Store Location</h4>
+            <p>Reign Plaza, 48 Tech Avenue</p>
+            <p>Nairobi / San Diego Flagship</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact Support</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p><strong>Mon-Sat:</strong> <span>8:30AM - 8:30PM</span><br><strong>Sunday:</strong> <span>10:00AM - 6:00PM</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Stay Connected</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics & Mali Mali</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed for Modern Electronics, Tech & Smart Living Essentials</div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Admin JS Engine -->
+  <script src="assets/js/admin.js"></script>
+
+  <script>
+    function renderDashboardOrders() {
+      const tbody = document.getElementById('dashboard-orders-body');
+      if (!tbody) return;
+      const orders = getAdminOrders().slice(0, 4);
+
+      let html = '';
+      orders.forEach(o => {
+        let statusClass = 'status-delivered';
+        if (o.status === 'Processing') statusClass = 'status-processing';
+        if (o.status === 'Shipped') statusClass = 'status-shipped';
+        if (o.status === 'Paid') statusClass = 'status-paid';
+
+        html += `
+          <tr>
+            <td><strong>#${o.orderId}</strong></td>
+            <td>
+              <div class="fw-bold" style="color:#0f172a;">${o.customer}</div>
+              <small class="text-muted">${o.payment}</small>
+            </td>
+            <td><small class="text-secondary">${o.items}</small></td>
+            <td><strong style="color:#0f172a;">$${o.total.toFixed(2)}</strong></td>
+            <td><span class="status-pill ${statusClass}">${o.status}</span></td>
+            <td>
+              <button class="btn btn-sm btn-outline-secondary px-2 py-1" style="font-size:12px; border-radius:6px;" onclick="adminToast('Order #${o.orderId} receipt sent to printer', 'info')">
+                Print
+              </button>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    function handleDashProductPhoto(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const base64 = evt.target.result;
+        document.getElementById('dash-prod-image-url').value = base64;
+        const preview = document.getElementById('dash-prod-preview-img');
+        const container = document.getElementById('dash-prod-preview-container');
+        preview.src = base64;
+        container.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    document.addEventListener('DOMContentLoaded', renderDashboardOrders);
+  </script>
+
+</body>
+
+</html>

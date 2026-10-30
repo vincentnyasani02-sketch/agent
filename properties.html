@@ -51,6 +51,9 @@
           <li><a href="contact.html">Contact</a></li>
         </ul>
         <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <a href="downloads/reign-express.apk" download="reign-express.apk" class="btn btn-sm text-white fw-bold d-none d-md-flex align-items-center gap-1 shadow-sm px-3 py-1" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); border-radius: 20px; font-size: 13px;" title="Download Android App APK (11.15 MB)">
+            <i class="bi bi-android2 fs-6"></i> <span>Get App (APK)</span>
+          </a>
           <button class="nav-icon-btn" aria-label="Search" onclick="openSearchModal()"><i class="bi bi-search"></i></button>
           <button class="nav-icon-btn position-relative" aria-label="Wishlist">
             <i class="bi bi-heart"></i>
@@ -82,8 +85,8 @@
                 <span class="auth-dropdown-email" id="user-display-email">customer@reignshop.com</span>
               </div>
               <hr class="auth-dropdown-divider">
-              <a href="#" class="auth-dropdown-item"><i class="bi bi-person-circle"></i> My Orders</a>
-              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> View Cart</a>
+              <a href="admin/index.html" class="auth-dropdown-item text-warning fw-semibold"><i class="bi bi-speedometer2"></i> Admin Portal</a>
+              <a href="#" class="auth-dropdown-item" onclick="openCart()"><i class="bi bi-bag-check"></i> My Orders & Cart</a>
               <hr class="auth-dropdown-divider">
               <button class="auth-dropdown-item auth-signout-btn" id="signout-btn" onclick="signOut()">
                 <i class="bi bi-box-arrow-right"></i> Sign Out
@@ -127,302 +130,27 @@
 
         <!-- Category Filters -->
         <div class="catalog-filters" data-aos="fade-up">
-          <button class="filter-pill active" onclick="filterCatalog('all', this)"><i class="bi bi-grid-fill"></i> All Items (8)</button>
+          <button class="filter-pill active" onclick="filterCatalog('all', this)"><i class="bi bi-grid-fill"></i> All Items</button>
           <button class="filter-pill" onclick="filterCatalog('computing', this)"><i class="bi bi-laptop"></i> Laptops & Computing</button>
           <button class="filter-pill" onclick="filterCatalog('audio', this)"><i class="bi bi-headphones"></i> Audio & Sound</button>
           <button class="filter-pill" onclick="filterCatalog('mobile', this)"><i class="bi bi-phone"></i> Phones & Wearables</button>
-          <button class="filter-pill" onclick="filterCatalog('mali-mali', this)"><i class="bi bi-house-gear"></i> Smart Home & Mali Mali</button>
+          <button class="filter-pill" onclick="filterCatalog('smart-home', this)"><i class="bi bi-house-gear"></i> Smart Home</button>
+          <button class="filter-pill" onclick="filterCatalog('gaming', this)"><i class="bi bi-controller"></i> Gaming</button>
+          <button class="filter-pill" onclick="filterCatalog('appliances', this)"><i class="bi bi-cup-hot"></i> Appliances</button>
+          <button class="filter-pill" onclick="filterCatalog('tools', this)"><i class="bi bi-tools"></i> Tools</button>
+          <button class="filter-pill" onclick="filterCatalog('mali-mali', this)"><i class="bi bi-pencil-ruler"></i> Mali Mali</button>
+          <button class="filter-pill" onclick="filterCatalog('lpg-gas', this)"><i class="bi bi-fire"></i> LPG Gas Express</button>
         </div>
 
-        <!-- Products Grid -->
-        <div class="row gy-4">
+        <!-- Products Grid (Live PostgreSQL shopdb Catalog) -->
+        <div class="row gy-4" id="catalog-products-container">
 
-          <!-- Product 1: Laptop -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="computing" data-aos="fade-up" data-aos-delay="100">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge hot">Top Seller</span>
-                <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="Apex Blade Pro 16">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('apex-blade-pro', 'Apex Blade Pro 16', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Computing</span>
-                <h3 class="product-title"><a href="property-single.html">Apex Blade Pro 16" OLED</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">32GB RAM</span>
-                  <span class="spec-chip">1TB NVMe</span>
-                  <span class="spec-chip">RTX 4080</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                  <span class="review-count">(128)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$1,399</span>
-                    <span class="original-price">$1,799</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'apex-blade-pro', title:'Apex Blade Pro 16 OLED', price:1399, image:'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
+          <!-- Dynamically populated by window.loadCatalogProducts() from PostgreSQL backend -->
+          <div class="col-12 text-center py-5" id="catalog-loading-placeholder">
+            <div class="spinner-border text-warning" role="status" style="width: 3rem; height: 3rem;">
+              <span class="visually-hidden">Loading live catalog...</span>
             </div>
-          </div>
-
-          <!-- Product 2: Audio -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="audio" data-aos="fade-up" data-aos-delay="150">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge">-25% OFF</span>
-                <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=800&q=80" alt="EchoPulse Ultra">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('echopulse-ultra', 'EchoPulse Ultra ANC', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Audio</span>
-                <h3 class="product-title"><a href="property-single.html">EchoPulse Ultra ANC Headset</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">Hybrid ANC</span>
-                  <span class="spec-chip">40h Playtime</span>
-                  <span class="spec-chip">Spatial Audio</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  <span class="review-count">(214)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$249</span>
-                    <span class="original-price">$329</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'echopulse-ultra', title:'EchoPulse Ultra ANC Headset', price:249, image:'https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 3: Mobile / Smartphone -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mobile" data-aos="fade-up" data-aos-delay="200">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge hot">New Flagship</span>
-                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80" alt="Vanta Pro Max 5G">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('vanta-pro-max', 'Vanta Pro Max 5G', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Mobile</span>
-                <h3 class="product-title"><a href="property-single.html">Vanta Pro Max 5G (256GB)</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">120Hz OLED</span>
-                  <span class="spec-chip">200MP Camera</span>
-                  <span class="spec-chip">5000mAh</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                  <span class="review-count">(96)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$899</span>
-                    <span class="original-price">$1,149</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'vanta-pro-max', title:'Vanta Pro Max 5G (256GB)', price:899, image:'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 4: Smart Home / Mali Mali -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mali-mali" data-aos="fade-up" data-aos-delay="250">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge">Smart Living</span>
-                <img src="https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=800&q=80" alt="HomeSense AI Hub">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('homesense-hub', 'HomeSense AI Hub', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Mali Mali</span>
-                <h3 class="product-title"><a href="property-single.html">HomeSense AI Smart Hub + Sensor</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">Voice Control</span>
-                  <span class="spec-chip">Zigbee/Matter</span>
-                  <span class="spec-chip">App Sync</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
-                  <span class="review-count">(72)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$179</span>
-                    <span class="original-price">$249</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'homesense-hub', title:'HomeSense AI Smart Hub + Sensor', price:179, image:'https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 5: Wearables -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mobile" data-aos="fade-up" data-aos-delay="300">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge hot">Popular</span>
-                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80" alt="Chronos Watch 7">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('chronos-watch-7', 'Chronos Watch 7', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Wearables</span>
-                <h3 class="product-title"><a href="property-single.html">Chronos Pro Active Smartwatch</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">ECG / SpO2</span>
-                  <span class="spec-chip">AMOLED Always-On</span>
-                  <span class="spec-chip">5 ATM Water</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  <span class="review-count">(182)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$329</span>
-                    <span class="original-price">$429</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'chronos-watch-7', title:'Chronos Pro Active Smartwatch', price:329, image:'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 6: Camera / Creator -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="computing" data-aos="fade-up" data-aos-delay="350">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge">Creator Gear</span>
-                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=800&q=80" alt="LensMax 4K Mirrorless">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('lensmax-camera', 'LensMax 4K Mirrorless', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Photography</span>
-                <h3 class="product-title"><a href="property-single.html">LensMax 4K Mirrorless Camera</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">4K 60fps</span>
-                  <span class="spec-chip">In-Body OIS</span>
-                  <span class="spec-chip">Dual Card Slots</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                  <span class="review-count">(64)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$899</span>
-                    <span class="original-price">$1,099</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'lensmax-camera', title:'LensMax 4K Mirrorless Camera', price:899, image:'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 7: Gaming Console -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="computing" data-aos="fade-up" data-aos-delay="400">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge hot">Special Offer</span>
-                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=800&q=80" alt="Volt Console Pro">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('volt-console-pro', 'Volt Console Pro', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Gaming</span>
-                <h3 class="product-title"><a href="property-single.html">Volt Console Pro Next-Gen 1TB</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">Ray Tracing</span>
-                  <span class="spec-chip">120 FPS 4K</span>
-                  <span class="spec-chip">Haptic Controller</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  <span class="review-count">(340)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$699</span>
-                    <span class="original-price">$899</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'volt-console-pro', title:'Volt Console Pro Next-Gen 1TB', price:699, image:'https://images.unsplash.com/photo-1585386959984-a4155224a1ad?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Product 8: Mali Mali Household / Smart Kitchen Gadget -->
-          <div class="col-xl-3 col-lg-4 col-md-6 product-grid-item" data-category="mali-mali" data-aos="fade-up" data-aos-delay="450">
-            <div class="product-card-modern">
-              <div class="product-img-wrap">
-                <span class="product-badge">Home Essential</span>
-                <img src="https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=800&q=80" alt="Smart Barista Espresso Maker">
-                <div class="product-action-btns">
-                  <button class="action-icon-btn" onclick="toggleWishlist('barista-espresso', 'Smart Barista Espresso Maker', this)" title="Add to Wishlist"><i class="bi bi-heart"></i></button>
-                  <a href="property-single.html" class="action-icon-btn" title="View details"><i class="bi bi-eye"></i></a>
-                </div>
-              </div>
-              <div class="product-card-body">
-                <span class="product-category-tag">Mali Mali</span>
-                <h3 class="product-title"><a href="property-single.html">Aura Smart Precision Espresso Maker</a></h3>
-                <div class="product-specs-list">
-                  <span class="spec-chip">19-Bar Italian Pump</span>
-                  <span class="spec-chip">Thermal PID</span>
-                  <span class="spec-chip">Milk Frother</span>
-                </div>
-                <div class="product-rating">
-                  <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
-                  <span class="review-count">(89)</span>
-                </div>
-                <div class="product-card-footer">
-                  <div class="product-price-box">
-                    <span class="current-price">$389</span>
-                    <span class="original-price">$499</span>
-                  </div>
-                  <button class="btn-add-cart" onclick="addToCart({id:'barista-espresso', title:'Aura Smart Precision Espresso Maker', price:389, image:'https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?auto=format&fit=crop&w=300&q=80'})">
-                    <i class="bi bi-bag-plus"></i> Add
-                  </button>
-                </div>
-              </div>
-            </div>
+            <p class="mt-3 text-secondary fw-semibold">Loading live catalog from database...</p>
           </div>
 
         </div><!-- End Products Grid -->
@@ -608,8 +336,21 @@
 
         <div class="auth-divider"><span>or continue with</span></div>
         <div class="auth-social-row">
-          <button class="auth-social-btn" aria-label="Google">Google</button>
-          <button class="auth-social-btn" aria-label="Facebook">Facebook</button>
+          <button type="button" class="auth-social-btn" aria-label="Google" onclick="handleSocialLogin('google')">
+            <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18">
+              <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+              <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+              <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+              <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+            </svg>
+            <span>Google</span>
+          </button>
+          <button type="button" class="auth-social-btn" aria-label="Facebook" onclick="handleSocialLogin('facebook')">
+            <svg class="social-icon" viewBox="0 0 24 24" width="18" height="18" fill="#1877F2">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            <span>Facebook</span>
+          </button>
         </div>
 
         <p class="auth-switch-text">Don't have an account? <button type="button" onclick="switchAuthTab('register')">Create one</button></p>

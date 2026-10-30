@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Orders & Fulfillment — Reign Admin</title>
+  <meta name="description" content="Official Reign Electronics & Mali Mali customer orders and fulfillment portal.">
+
+  <!-- Favicons -->
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File (EstateAgency Client-Side Design System) -->
+  <link href="../assets/css/main.css" rel="stylesheet">
+
+  <!-- Admin Extension CSS File -->
+  <link href="assets/css/admin.css" rel="stylesheet">
+</head>
+
+<body class="admin-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <div class="reign-badge">R</div>
+        <h1 class="sitename">Reign<span>Admin</span></h1>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html">Dashboard</a></li>
+          <li><a href="products.html">Inventory</a></li>
+          <li><a href="orders.html" class="active">Orders</a></li>
+          <li><a href="repairs.html">Repairs</a></li>
+          <li><a href="pos.html">POS Register</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+        <div class="nav-actions d-flex align-items-center gap-3 ms-3">
+          <a href="../properties.html" target="_blank" class="btn btn-outline-warning btn-sm rounded-pill px-3 py-1 fw-bold text-decoration-none d-none d-sm-inline-flex">
+            Shop Catalog
+          </a>
+
+          <!-- Admin Profile dropdown -->
+          <div class="dropdown">
+            <button class="btn btn-sm btn-dark rounded-pill px-3 py-2 d-flex align-items-center gap-2" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="badge rounded-circle bg-warning text-dark p-1">VN</span>
+              <span class="d-none d-md-inline fw-semibold" style="font-size:13px;">Vincent (Super Admin)</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow border-0 p-2">
+              <li><h6 class="dropdown-header">Vincent Nyasani</h6></li>
+              <li><a class="dropdown-item" href="pos.html">POS Cashier Terminal</a></li>
+              <li><a class="dropdown-item" href="settings.html">Store Settings</a></li>
+              <li><a class="dropdown-item" href="../index.html" target="_blank">Customer Store</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="../index.html">Exit Admin</a></li>
+            </ul>
+          </div>
+        </div>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Clean Admin Header -->
+    <div class="admin-page-header">
+      <div class="container d-flex flex-wrap justify-content-between align-items-center gap-2">
+        <div>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-1">
+              <li class="breadcrumb-item"><a href="index.html">Admin</a></li>
+              <li class="breadcrumb-item active text-dark fw-semibold" aria-current="page">Orders &amp; Sales</li>
+            </ol>
+          </nav>
+          <h2>Customer Orders &amp; Sales</h2>
+        </div>
+        <div class="text-muted small">
+          <i class="bi bi-receipt text-primary me-1"></i> Real-time invoices &amp; automated M-Pesa verification
+        </div>
+      </div>
+    </div>
+
+    <!-- Orders Content Section -->
+    <section class="section py-5">
+      <div class="container">
+
+        <!-- Navigation Filter Pills (Text Only) -->
+        <div class="catalog-filters mb-4" data-aos="fade-up">
+          <a href="index.html" class="filter-pill">Overview</a>
+          <a href="products.html" class="filter-pill">Products & Inventory</a>
+          <a href="orders.html" class="filter-pill active">Orders & Sales</a>
+          <a href="repairs.html" class="filter-pill">Diagnostic Tickets</a>
+          <a href="pos.html" class="filter-pill">POS Register</a>
+          <a href="settings.html" class="filter-pill">Store Settings</a>
+        </div>
+
+        <!-- Controls Row: Search & Export -->
+        <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3" data-aos="fade-up">
+          <div class="d-flex align-items-center gap-2 flex-grow-1" style="max-width:440px;">
+            <input type="text" class="form-control" placeholder="Search order ID or customer name..." oninput="filterOrdersSearch(this.value)">
+          </div>
+          <div class="d-flex gap-2">
+            <button class="btn-reign-secondary" onclick="adminToast('Exporting orders CSV spreadsheet...', 'info')">
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Order Status Filters -->
+        <div class="d-flex gap-2 flex-wrap mb-4" data-aos="fade-up">
+          <button class="filter-pill active" onclick="filterOrderStatus('all', this)">
+            All Orders (5)
+          </button>
+          <button class="filter-pill" onclick="filterOrderStatus('Processing', this)">
+            Processing (1)
+          </button>
+          <button class="filter-pill" onclick="filterOrderStatus('Shipped', this)">
+            Shipped (1)
+          </button>
+          <button class="filter-pill" onclick="filterOrderStatus('Delivered', this)">
+            Delivered (2)
+          </button>
+          <button class="filter-pill" onclick="filterOrderStatus('Paid', this)">
+            Paid (1)
+          </button>
+        </div>
+
+        <!-- Orders Table Card -->
+        <div class="admin-card" data-aos="fade-up">
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order Number</th>
+                  <th>Customer Info</th>
+                  <th>Purchased Products</th>
+                  <th>Order Value</th>
+                  <th>Payment Channel</th>
+                  <th>Fulfillment Status</th>
+                  <th>Rider Dispatch</th>
+                  <th>Date & Time</th>
+                  <th style="text-align:right;">Update Status</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer (Same as Client Side Template) -->
+  <footer id="footer" class="footer light-background">
+    <div class="container">
+      <div class="row gy-3">
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-geo-alt icon"></i>
+          <div class="address">
+            <h4>Store Location</h4>
+            <p>Reign Plaza, 48 Tech Avenue</p>
+            <p>Nairobi / San Diego Flagship</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-telephone icon"></i>
+          <div>
+            <h4>Contact Support</h4>
+            <p><strong>Phone:</strong> <span>+1 (619) 555-8411</span><br><strong>Email:</strong>
+              <span>hello@reignshop.com</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex">
+          <i class="bi bi-clock icon"></i>
+          <div>
+            <h4>Opening Hours</h4>
+            <p><strong>Mon-Sat:</strong> <span>8:30AM - 8:30PM</span><br><strong>Sunday:</strong> <span>10:00AM - 6:00PM</span></p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <h4>Stay Connected</h4>
+          <div class="social-links d-flex">
+            <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Reign Electronics & Mali Mali</strong> <span>All Rights Reserved</span></p>
+      <div class="credits">Designed for Modern Electronics, Tech & Smart Living Essentials</div>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Modal: Assign Delivery to Rider -->
+  <div class="modal fade" id="assignRiderModal" tabindex="-1" aria-labelledby="assignRiderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow-lg border-0" style="border-radius: 16px;">
+        <div class="modal-header bg-dark text-white" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+          <h5 class="modal-title fw-bold" id="assignRiderModalLabel">
+            <i class="bi bi-bicycle text-warning me-2"></i>Assign Order to Rider
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Order Brief Box -->
+          <div class="p-3 mb-3 rounded-3 bg-light border">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+              <strong id="modal-order-id" class="text-primary fs-6">#REG-0000</strong>
+              <span id="modal-order-total" class="badge bg-success fs-6">KSh 0</span>
+            </div>
+            <div id="modal-customer-info" class="fw-semibold text-dark">Customer Name</div>
+            <div id="modal-delivery-addr" class="small text-muted mb-1"><i class="bi bi-geo-alt text-danger"></i> Destination</div>
+            <div id="modal-items-summary" class="small text-secondary fst-italic">Items</div>
+          </div>
+
+          <!-- Rider Selection -->
+          <div class="mb-3">
+            <label class="form-label fw-bold text-dark d-flex justify-content-between">
+              <span>Select Active Delivery Rider</span>
+              <span class="badge bg-success-subtle text-success border border-success" style="font-size:11px;">
+                <i class="bi bi-circle-fill" style="font-size:8px;"></i> Live Status
+              </span>
+            </label>
+            <select class="form-select" id="assign-rider-select" required>
+              <option value="">-- Loading active riders... --</option>
+            </select>
+            <div id="rider-status-alert" class="form-text mt-1 text-danger d-none fw-medium"></div>
+            <small class="text-muted d-block mt-1" style="font-size:11.5px;">
+              <i class="bi bi-info-circle text-primary"></i> Only online riders can receive deliveries. Offline riders are disabled.
+            </small>
+          </div>
+
+          <!-- Rider Fee Payout -->
+          <div class="mb-3">
+            <label class="form-label fw-bold text-dark">Rider Delivery Payout Fee (KSh)</label>
+            <div class="input-group">
+              <span class="input-group-text fw-semibold bg-light">KSh</span>
+              <input type="number" class="form-control" id="assign-rider-payout" value="200" min="50" step="10" placeholder="e.g. 200">
+            </div>
+            <small class="text-muted" style="font-size:11px;">Amount the rider will earn for completing this delivery.</small>
+          </div>
+
+          <!-- Return Empty Gas Cylinder Checkbox -->
+          <div class="mb-3 p-3 rounded-3 border bg-warning-subtle border-warning-subtle">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="assign-return-cylinder">
+              <label class="form-check-label fw-bold text-dark" for="assign-return-cylinder">
+                <i class="bi bi-arrow-repeat text-warning me-1"></i> Return Empty Gas Cylinder
+              </label>
+            </div>
+            <small class="text-muted d-block ps-4" style="font-size:11.5px;">
+              Instruct the driver to collect the customer's empty cylinder and bring it back to the Molo depot.
+            </small>
+          </div>
+
+          <!-- Collect Cash on Delivery Checkbox & Amount -->
+          <div class="mb-3 p-3 rounded-3 border bg-info-subtle border-info-subtle">
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" role="switch" id="assign-collect-cash" onchange="toggleCashAmountInput(this.checked)">
+              <label class="form-check-label fw-bold text-dark" for="assign-collect-cash">
+                <i class="bi bi-cash-stack text-primary me-1"></i> Collect Cash on Delivery
+              </label>
+            </div>
+            <div id="cash-amount-group" class="mt-2 ps-4" style="display:none;">
+              <label class="form-label small fw-bold text-secondary mb-1">Cash Amount to Collect (KSh)</label>
+              <div class="input-group input-group-sm" style="max-width:240px;">
+                <span class="input-group-text bg-white">KSh</span>
+                <input type="number" class="form-control" id="assign-cash-amount" placeholder="0">
+              </div>
+              <small class="text-muted" style="font-size:11px;">Rider will be instructed to collect and remit this exact cash amount.</small>
+            </div>
+          </div>
+
+          <div id="modal-error-box" class="alert alert-danger py-2 small d-none mb-0"></div>
+        </div>
+        <div class="modal-footer bg-light" style="border-bottom-left-radius: 16px; border-bottom-right-radius: 16px;">
+          <button type="button" class="btn btn-secondary rounded-pill px-3" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-warning rounded-pill px-4 fw-bold shadow-sm" onclick="submitRiderAssignment()">
+            <i class="bi bi-send-fill me-1"></i> Dispatch &amp; Assign Order
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/vendor/aos/aos.js"></script>
+  <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
+
+  <!-- Admin JS Engine -->
+  <script src="assets/js/admin.js"></script>
+
+  <script>
+    let activeStatus = 'all';
+    let orderSearch = '';
+    let cachedOrders = [];
+    let cachedRiders = [];
+    let currentAssignOrderId = null;
+
+    async function fetchOrdersFromApi() {
+      try {
+        const res = await fetch('/api/orders');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && Array.isArray(data.orders)) {
+            cachedOrders = data.orders;
+            return cachedOrders;
+          }
+        }
+      } catch (err) {
+        console.warn('API fetch orders error, falling back to local storage', err);
+      }
+      cachedOrders = getAdminOrders();
+      return cachedOrders;
+    }
+
+    async function fetchRidersList() {
+      try {
+        const res = await fetch('/api/rider/list');
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success && Array.isArray(data.riders)) {
+            cachedRiders = data.riders;
+            return cachedRiders;
+          }
+        }
+      } catch (err) {
+        console.warn('Could not fetch riders from API', err);
+      }
+      return cachedRiders;
+    }
+
+    async function renderOrdersTable() {
+      const tbody = document.getElementById('orders-table-body');
+      if (!tbody) return;
+
+      if (!cachedOrders.length) {
+        await fetchOrdersFromApi();
+      }
+      const orders = cachedOrders.length ? cachedOrders : getAdminOrders();
+
+      let filtered = orders.filter(o => {
+        const matchesStatus = activeStatus === 'all' || o.status === activeStatus;
+        const oId = String(o.orderId || o.id || '');
+        const cust = String(o.customer || o.customerName || '');
+        const matchesQuery = !orderSearch || 
+          oId.toLowerCase().includes(orderSearch.toLowerCase()) || 
+          cust.toLowerCase().includes(orderSearch.toLowerCase());
+        return matchesStatus && matchesQuery;
+      });
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="9" class="text-center py-5 text-muted">No orders found matching filters.</td></tr>`;
+        return;
+      }
+
+      let html = '';
+      filtered.forEach(o => {
+        let statusClass = 'status-delivered';
+        if (o.status === 'Processing') statusClass = 'status-processing';
+        if (o.status === 'Shipped') statusClass = 'status-shipped';
+        if (o.status === 'Paid') statusClass = 'status-paid';
+
+        const orderIdVal = o.orderId || o.id;
+        const custName = o.customer || o.customerName || 'Customer';
+        const destAddr = o.deliveryAddress || o.destinationAddress || o.pickupLocation || '';
+        const isPickup = (o.deliveryMethod && o.deliveryMethod.toLowerCase().includes('pickup')) || 
+                         destAddr.toLowerCase().includes('pickup') || 
+                         destAddr.toLowerCase().includes('hub') || 
+                         destAddr.toLowerCase().includes('station');
+        const deliveryBadge = isPickup 
+          ? `<span class="badge bg-warning-subtle text-dark border border-warning" style="font-size:10.5px;"><i class="bi bi-building me-1"></i> Pickup Hub</span>` 
+          : `<span class="badge bg-info-subtle text-info-emphasis border border-info" style="font-size:10.5px;"><i class="bi bi-truck me-1"></i> Doorstep</span>`;
+
+        // Rider Dispatch Column formatting
+        let dispatchHtml = '';
+        if (o.riderId) {
+          const payoutVal = o.riderFee || o.deliveryFeePayout || 150;
+          dispatchHtml = `
+            <div class="mb-1">
+              <span class="badge bg-success-subtle text-success border border-success fw-bold" style="font-size:11px;">
+                <i class="bi bi-bicycle me-1"></i> ${o.riderId}
+              </span>
+              <span class="badge bg-light text-dark border" style="font-size:10px;">${o.riderStatus || 'ACCEPTED'}</span>
+            </div>
+            <div class="small fw-bold text-success" style="font-size:11px;">Payout: KSh ${Number(payout).toLocaleString()}</div>
+            ${o.returnEmptyCylinder ? '<span class="badge bg-warning-subtle text-warning-emphasis border border-warning mt-1 me-1" style="font-size:10px;"><i class="bi bi-arrow-repeat"></i> Return Gas Cyl</span>' : ''}
+            ${o.collectCash ? `<span class="badge bg-info-subtle text-info-emphasis border border-info mt-1" style="font-size:10px;"><i class="bi bi-cash-stack"></i> Collect KSh ${Number(o.cashAmountToCollect || o.total).toLocaleString()}</span>` : ''}
+            <div class="mt-1">
+              <button class="btn btn-outline-secondary btn-sm py-0 px-2" style="font-size:10.5px; border-radius:6px;" onclick="openAssignModal('${orderIdVal}')">
+                Reassign
+              </button>
+            </div>
+          `;
+        } else {
+          dispatchHtml = `
+            <span class="badge bg-secondary-subtle text-secondary border border-secondary mb-1" style="font-size:11px;">Unassigned</span>
+            <div>
+              <button class="btn btn-warning btn-sm text-dark fw-bold px-2 py-1 shadow-sm" style="font-size:11.5px; border-radius:6px;" onclick="openAssignModal('${orderIdVal}')">
+                <i class="bi bi-bicycle me-1"></i> Assign Rider
+              </button>
+            </div>
+          `;
+        }
+
+        html += `
+          <tr>
+            <td><strong style="color:#0f172a;">#${orderIdVal}</strong></td>
+            <td>
+              <div class="fw-bold" style="color:#0f172a;">${custName}</div>
+              <small class="text-muted d-block">${o.phone || o.customerPhone || o.email || 'No phone'}</small>
+              <div class="mt-1">${deliveryBadge}</div>
+            </td>
+            <td>
+              <span class="text-secondary small fw-medium">${o.items || o.itemsSummary || 'Goods'}</span>
+              <div class="small text-muted mt-1" style="font-size:11.5px;">
+                <i class="bi bi-geo-alt text-warning"></i> ${destAddr || 'Flagship Store'}
+                ${o.landmark ? `<br><span class="text-secondary" style="font-size:11px;">Note: ${o.landmark}</span>` : ''}
+              </div>
+            </td>
+            <td>
+              <strong style="color:#0f172a;">KSh ${Number(o.total || o.orderAmount || 0).toLocaleString()}</strong>
+              ${o.deliveryFee ? `<br><small class="text-muted" style="font-size:11px;">Delivery Fee: KSh ${Number(o.deliveryFee).toLocaleString()}</small>` : ''}
+            </td>
+            <td>
+              <span class="badge bg-light text-dark border px-2 py-1">
+                ${o.payment || o.paymentMethod || 'M-Pesa'}
+              </span>
+            </td>
+            <td><span class="status-pill ${statusClass}">${o.status}</span></td>
+            <td>${dispatchHtml}</td>
+            <td><small class="text-muted">${o.date || ''}</small></td>
+            <td style="text-align:right;">
+              <select class="form-select form-select-sm d-inline-block" style="width:auto; font-size:12px; border-radius:8px;" onchange="updateOrderStatus('${orderIdVal}', this.value)">
+                <option value="Paid" ${o.status === 'Paid' ? 'selected' : ''}>Paid</option>
+                <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
+                <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+              </select>
+            </td>
+          </tr>
+        `;
+      });
+      tbody.innerHTML = html;
+    }
+
+    async function openAssignModal(orderId) {
+      currentAssignOrderId = orderId;
+      const order = cachedOrders.find(o => (o.orderId || o.id) === orderId);
+      if (!order) {
+        adminToast('Order not found', 'warning');
+        return;
+      }
+
+      document.getElementById('modal-order-id').textContent = `#${orderId}`;
+      const totalNum = Number(order.total || order.orderAmount || 0);
+      document.getElementById('modal-order-total').textContent = `KSh ${totalNum.toLocaleString()}`;
+      document.getElementById('modal-customer-info').textContent = `${order.customer || order.customerName || 'Customer'} • ${order.phone || order.customerPhone || ''}`;
+      document.getElementById('modal-delivery-addr').innerHTML = `<i class="bi bi-geo-alt text-danger"></i> ${order.deliveryAddress || order.destinationAddress || 'Molo Area'}`;
+      document.getElementById('modal-items-summary').textContent = order.items || order.itemsSummary || 'Customer Delivery';
+
+      // Payout default
+      document.getElementById('assign-rider-payout').value = order.riderFee || order.deliveryFeePayout || 200;
+
+      // Return gas cylinder toggle
+      const itemsText = (order.items || order.itemsSummary || '').toLowerCase();
+      const hasGas = itemsText.includes('gas') || itemsText.includes('lpg') || itemsText.includes('cylinder') || itemsText.includes('kg');
+      document.getElementById('assign-return-cylinder').checked = Boolean(order.returnEmptyCylinder || hasGas);
+
+      // Cash collection toggle
+      const isCod = (order.payment || order.paymentMethod || '').toLowerCase().includes('cash');
+      document.getElementById('assign-collect-cash').checked = Boolean(order.collectCash || isCod);
+      toggleCashAmountInput(document.getElementById('assign-collect-cash').checked);
+      document.getElementById('assign-cash-amount').value = order.cashAmountToCollect || totalNum;
+
+      // Clear alerts
+      const errBox = document.getElementById('modal-error-box');
+      errBox.classList.add('d-none');
+      errBox.textContent = '';
+
+      // Populate Riders dropdown
+      const select = document.getElementById('assign-rider-select');
+      select.innerHTML = '<option value="">-- Choose Rider --</option>';
+
+      await fetchRidersList();
+      let hasOnlineRider = false;
+
+      if (cachedRiders.length) {
+        cachedRiders.forEach(r => {
+          const opt = document.createElement('option');
+          opt.value = r.id;
+          if (r.isOnline) {
+            hasOnlineRider = true;
+            opt.textContent = `🟢 ${r.name} (${r.id}) — Online • ${r.vehiclePlate || r.vehicleType}`;
+            opt.style.color = '#15803d';
+            opt.style.fontWeight = '600';
+          } else {
+            opt.textContent = `⚪ ${r.name} (${r.id}) — OFFLINE (Unavailable)`;
+            opt.disabled = true;
+            opt.style.color = '#94a3b8';
+            opt.style.backgroundColor = '#f1f5f9';
+          }
+          if (order.riderId === r.id && r.isOnline) {
+            opt.selected = true;
+          }
+          select.appendChild(opt);
+        });
+      }
+
+      const alertEl = document.getElementById('rider-status-alert');
+      if (!hasOnlineRider) {
+        alertEl.textContent = 'Notice: No riders are currently online. Riders must open their Reign Rider app to receive orders.';
+        alertEl.classList.remove('d-none');
+      } else {
+        alertEl.classList.add('d-none');
+      }
+
+      const modalEl = document.getElementById('assignRiderModal');
+      const bsModal = new bootstrap.Modal(modalEl);
+      bsModal.show();
+    }
+
+    function toggleCashAmountInput(checked) {
+      const group = document.getElementById('cash-amount-group');
+      if (group) group.style.display = checked ? 'block' : 'none';
+    }
+
+    async function submitRiderAssignment() {
+      const riderId = document.getElementById('assign-rider-select').value;
+      const payout = parseFloat(document.getElementById('assign-rider-payout').value) || 200;
+      const returnCylinder = document.getElementById('assign-return-cylinder').checked;
+      const collectCash = document.getElementById('assign-collect-cash').checked;
+      const cashAmount = collectCash ? parseFloat(document.getElementById('assign-cash-amount').value) || 0 : 0;
+      const errBox = document.getElementById('modal-error-box');
+
+      if (!riderId) {
+        errBox.textContent = 'Please choose an online rider to assign this delivery.';
+        errBox.classList.remove('d-none');
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/rider/assign', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            orderId: currentAssignOrderId,
+            riderId: riderId,
+            deliveryFeePayout: payout,
+            returnEmptyCylinder: returnCylinder,
+            collectCash: collectCash,
+            cashAmountToCollect: cashAmount
+          })
+        });
+
+        const data = await res.json();
+        if (!res.ok || !data.success) {
+          errBox.textContent = data.error || 'Failed to assign rider';
+          errBox.classList.remove('d-none');
+          return;
+        }
+
+        // Hide modal
+        const modalEl = document.getElementById('assignRiderModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalEl);
+        if (modalInstance) modalInstance.hide();
+
+        adminToast(`Order #${currentAssignOrderId} assigned to ${data.rider?.name || riderId}!`, 'success');
+
+        // Refresh orders
+        await fetchOrdersFromApi();
+        renderOrdersTable();
+
+      } catch (err) {
+        errBox.textContent = 'Network connection error: ' + err.message;
+        errBox.classList.remove('d-none');
+      }
+    }
+
+    function filterOrderStatus(status, btn) {
+      activeStatus = status;
+      if (btn) {
+        btn.parentElement.querySelectorAll('.filter-pill').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+      }
+      renderOrdersTable();
+    }
+
+    function filterOrdersSearch(q) {
+      orderSearch = q;
+      renderOrdersTable();
+    }
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      await fetchOrdersFromApi();
+      await fetchRidersList();
+      renderOrdersTable();
+    });
+  </script>
+
+</body>
+
+</html>
