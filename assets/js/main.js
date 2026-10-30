@@ -2354,24 +2354,49 @@ window.loadCatalogProducts = async function() {
   const container = document.getElementById('catalog-products-container');
   if (!container) return;
 
-  // Render initial products immediately so catalog is NEVER empty
-  if (!window.allCatalogProducts || window.allCatalogProducts.length === 0) {
+  // 1. Instant Render from Client Cache (0ms latency, zero layout shift)
+  const cachedCatalog = sessionStorage.getItem('reign_cached_catalog');
+  if (cachedCatalog) {
+    try {
+      const parsed = JSON.parse(cachedCatalog);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        window.allCatalogProducts = parsed;
+        window.renderCatalogProducts(window.allCatalogProducts);
+      }
+    } catch (e) {
+      console.warn('Cached catalog parse error:', e);
+    }
+  } else if (!window.allCatalogProducts || window.allCatalogProducts.length === 0) {
     window.allCatalogProducts = window.DEFAULT_CATALOG_FALLBACK;
     window.renderCatalogProducts(window.allCatalogProducts);
   }
 
-  // Attempt live sync from database
+  // 2. High-Efficiency Sync with HTTP 304 ETag Validation
   try {
-    const res = await fetch(`${API_BASE_URL}/products?limit=100`);
+    const headers = {};
+    const storedEtag = sessionStorage.getItem('reign_catalog_etag');
+    if (storedEtag) {
+      headers['If-None-Match'] = storedEtag;
+    }
+
+    const res = await fetch(`${API_BASE_URL}/products?limit=100`, { headers });
+    if (res.status === 304) {
+      // Data is identical on server; cached DOM is 100% current
+      return;
+    }
     if (res.ok) {
+      const newEtag = res.headers.get('ETag');
+      if (newEtag) sessionStorage.setItem('reign_catalog_etag', newEtag);
+
       const data = await res.json();
       if (data.success && Array.isArray(data.products) && data.products.length > 0) {
         window.allCatalogProducts = data.products;
+        sessionStorage.setItem('reign_cached_catalog', JSON.stringify(data.products));
         window.renderCatalogProducts(window.allCatalogProducts);
       }
     }
   } catch (err) {
-    console.warn('Live catalog sync deferred, displaying active fallback inventory:', err);
+    console.warn('Live catalog sync deferred, displaying active inventory:', err);
   }
 };
 
@@ -2544,8 +2569,14 @@ window.loadFeaturedProducts = async function() {
     container.innerHTML = html;
   }
 
-  // Render initial fallback immediately
-  if (Array.isArray(window.DEFAULT_CATALOG_FALLBACK)) {
+  // Render from client cache or fallback immediately
+  const cachedFeatured = sessionStorage.getItem('reign_cached_featured');
+  if (cachedFeatured) {
+    try {
+      const parsed = JSON.parse(cachedFeatured);
+      if (Array.isArray(parsed) && parsed.length > 0) renderFeaturedCards(parsed);
+    } catch (e) {}
+  } else if (Array.isArray(window.DEFAULT_CATALOG_FALLBACK)) {
     renderFeaturedCards(window.DEFAULT_CATALOG_FALLBACK);
   }
 
@@ -2555,6 +2586,7 @@ window.loadFeaturedProducts = async function() {
       const data = await res.json();
       if (data.success && Array.isArray(data.products) && data.products.length > 0) {
         renderFeaturedCards(data.products);
+        sessionStorage.setItem('reign_cached_featured', JSON.stringify(data.products));
       }
     }
   } catch (err) {
